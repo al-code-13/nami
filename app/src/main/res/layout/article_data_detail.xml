@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    tools:context=".Detail">
+
+
+    <TextView
+        android:id="@+id/name"
+        android:layout_width="120dp"
+        android:layout_height="30dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentLeft="true"
+
+        android:layout_alignParentTop="true"
+        android:layout_marginStart="17dp"
+        android:layout_marginLeft="17dp"
+        android:layout_marginTop="32dp"
+        android:text="name"
+        android:textSize="@dimen/text_size_standard"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/idProduct"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+
+        android:layout_above="@+id/name"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentLeft="true"
+        android:layout_marginStart="20dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginBottom="-28dp"
+        android:text="id"
+        android:textColor="@color/md_red_A700"
+        android:textSize="16dp" />
+
+    <ImageView
+        android:id="@+id/minusButton"
+        android:layout_width="25dp"
+        android:layout_height="30dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginStart="287dp"
+        android:layout_marginLeft="287dp"
+        android:layout_marginTop="35dp"
+        app:srcCompat="@drawable/minusbox"
+        tools:ignore="VectorDrawableCompat" />
+
+    <TextView
+        android:id="@+id/cant"
+        android:layout_width="wrap_content"
+        android:layout_height="23dp"
+
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:layout_marginTop="38dp"
+        android:layout_marginEnd="61dp"
+        android:layout_marginRight="61dp"
+        android:gravity="center"
+        android:text="cant"
+        android:textSize="@dimen/text_size_standard" />
+
+    <ImageView
+        android:id="@+id/moreButton"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginStart="365dp"
+        android:layout_marginLeft="365dp"
+        android:layout_marginTop="35dp"
+        app:srcCompat="@drawable/morebox"
+        tools:ignore="VectorDrawableCompat" />
+</RelativeLayout>

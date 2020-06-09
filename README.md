@@ -1,1 +1,1 @@
-# nami
+# ghost
