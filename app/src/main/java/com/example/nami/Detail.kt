@@ -32,7 +32,7 @@ class Detail : AppCompatActivity(), DetailUI {
     lateinit var data: DetailResponse
     var articleList: MutableList<String> = mutableListOf<String>()
     private lateinit var observationsView: EditText
-
+    private var adjustvalue:Double=0.0
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -54,6 +54,8 @@ class Detail : AppCompatActivity(), DetailUI {
         phoneNumber.text = userInfo[5]
         method.text = userInfo[12]
         adress.text = userInfo[3]
+        adjustvalue=userInfo[4].toDouble()
+        adjustTotal.text = adjustvalue.toString()
         date.text = userInfo[6]
         time.text = userInfo[9].substring(0, userInfo[9].length - 13)
 
@@ -66,7 +68,7 @@ class Detail : AppCompatActivity(), DetailUI {
         recyclerItemsDetail!!.setHasFixedSize(true)
         recyclerItemsDetail!!.layoutManager = LinearLayoutManager(this)
         recyclerItemsDetail?.adapter =
-            ItemsDetailAdapter(this, data.order.detailOrder.list, newFunction, this.articleList)
+            ItemsDetailAdapter(this, data.order.detailOrder.list, newFunction, this.articleList, adjustvalue)
     }
 
     override fun showDetailInfo(data: DetailResponse) {
@@ -74,10 +76,9 @@ class Detail : AppCompatActivity(), DetailUI {
             if (data.order.service == "D") {
                 type.text = "Domicilio"
             }
-            orderValue.text = userInfo[4]
+            orderValue.text =( userInfo[4].toDouble()-data.order.deliveryValue.toDouble()).toString()
             delivered.text = data.order.deliveryValue
             totalValue.text = userInfo[4]
-            adjustTotal.text = userInfo[4]
             comments.text = data.order.comments
             // change
             // pay.text =
@@ -163,10 +164,10 @@ class Detail : AppCompatActivity(), DetailUI {
                                 }
                                 cancel.action.text = "Cancelar"
                                 cancel.action.setCompoundDrawablesWithIntrinsicBounds(
-                                        R.drawable.cancel,
-                                0,
-                                0,
-                                0
+                                    R.drawable.cancel,
+                                    0,
+                                    0,
+                                    0
                                 )
                                 layoutActions.addView(cancel)
 
@@ -206,10 +207,10 @@ class Detail : AppCompatActivity(), DetailUI {
                                 }
                                 cancel.action.text = "Cancelar"
                                 cancel.action.setCompoundDrawablesWithIntrinsicBounds(
-                                        R.drawable.cancel,
-                                0,
-                                0,
-                                0
+                                    R.drawable.cancel,
+                                    0,
+                                    0,
+                                    0
                                 )
                                 layoutActions.addView(cancel)
 

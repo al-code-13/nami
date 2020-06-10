@@ -15,14 +15,15 @@ class ItemsDetailAdapter(
     private val mContext: Context,
     private var data: List<ListElement>,
     private val behavior: Int,
-    private val compareList: List<String>
-
+    private val compareList: List<String>,
+    private var adjustValue:Double
 ) : RecyclerView.Adapter<ItemsDetailAdapter.ViewHolder>() {
 
     class ViewHolder(v: View) : RecyclerView.ViewHolder(v) {
         var name: TextView = v.findViewById(R.id.name)
         var idProduct: TextView = v.findViewById(R.id.idProduct)
         var cant: TextView = v.findViewById(R.id.cant)
+
         var minusButton: ImageView? = v.findViewById(R.id.minusButton)
         var moreButton: ImageView? = v.findViewById(R.id.moreButton)
     }
@@ -59,8 +60,8 @@ class ItemsDetailAdapter(
             v.minusButton?.visibility = View.VISIBLE
             v.minusButton?.setOnClickListener {
                 v.moreButton?.visibility = View.VISIBLE
-                elements.quantityArticle.toInt() - elements.article.value.toInt()
                 elements.quantityArticle = (elements.quantityArticle.toInt() - 1).toString()
+                adjustValue-=elements.article.value.toInt()
                 onBindViewHolder(v, position)
             }
 
@@ -72,8 +73,8 @@ class ItemsDetailAdapter(
         if (elements.quantityArticle.toInt() < oldvalue) {
             v.moreButton?.visibility = View.VISIBLE
             v.moreButton?.setOnClickListener {
-                elements.quantityArticle.toInt() + elements.article.value.toInt()
                 elements.quantityArticle = (elements.quantityArticle.toInt() + 1).toString()
+                adjustValue+=elements.valueTotalArticle.toDouble()
                 onBindViewHolder(v, position)
             }
         } else {
