@@ -67,7 +67,7 @@ class ItemsDetailAdapter(
 
         } else {
 
-            v.minusButton?.visibility = View.GONE
+            v.minusButton?.visibility = View.INVISIBLE
         }
         val oldvalue = compareList[position].toInt()
         if (elements.quantityArticle.toInt() < oldvalue) {
