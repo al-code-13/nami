@@ -1,12 +1,12 @@
 package com.example.nami.presenters
 
-import SectionResponse
 import android.content.Context
 import android.util.Log
 import com.example.nami.controllers.services.ServiceInteractor
 import com.example.nami.models.detailModels.DetailResponse
 import com.example.nami.models.detailModels.ListDataPicker
 import com.example.nami.models.detailModels.ListElement
+import com.example.nami.models.sections.SectionResponse
 
 
 interface SectionUI {

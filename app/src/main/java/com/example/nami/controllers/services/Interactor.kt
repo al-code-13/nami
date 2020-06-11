@@ -1,11 +1,11 @@
 package com.example.nami.controllers.services
 
-import SectionResponse
 import android.util.Log
 import com.example.nami.models.auth.LoginRequest
 import com.example.nami.models.auth.LoginResponse
 import com.example.nami.models.detailModels.*
 import com.example.nami.models.sections.ReasonsResponse
+import com.example.nami.models.sections.SectionResponse
 import com.example.nami.models.sections.SectionsResponse
 import com.google.gson.Gson
 import com.google.gson.GsonBuilder

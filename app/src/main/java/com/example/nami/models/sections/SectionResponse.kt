@@ -1,3 +1,4 @@
+package com.example.nami.models.sections
 
 data class SectionResponse(
     val orders: List<OrdersList>,

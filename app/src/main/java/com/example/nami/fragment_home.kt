@@ -1,6 +1,5 @@
 package com.example.nami
 
-import SectionResponse
 import android.content.Context
 import android.content.Intent
 import android.content.res.Configuration
@@ -24,6 +23,7 @@ import co.zsmb.materialdrawerkt.builders.footer
 import co.zsmb.materialdrawerkt.draweritems.badge
 import co.zsmb.materialdrawerkt.draweritems.badgeable.primaryItem
 import co.zsmb.materialdrawerkt.draweritems.profile.profile
+import com.example.nami.models.sections.SectionResponse
 import com.example.nami.presenters.SectionUI
 
 
