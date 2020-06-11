@@ -113,7 +113,7 @@ class SectionFragment(
 
     override fun showData(data: SectionResponse) {
         activity?.runOnUiThread {
-            reciclerView?.adapter = OrdersAdapter(mContext, data.orders,presenter)
+            reciclerView?.adapter = OrdersAdapter(mContext, data.orders!!,presenter)
             itemsRefresh?.setProgressBackgroundColorSchemeColor(
                 ContextCompat.getColor(
                     mContext,
@@ -126,7 +126,7 @@ class SectionFragment(
                     sectionId
                 )
 
-                reciclerView?.adapter = OrdersAdapter(mContext, data.orders,presenter)
+                reciclerView?.adapter = OrdersAdapter(mContext, data.orders!!,presenter)
                 gridView.adapter = adapter
                 itemsRefresh?.isRefreshing = false
             }

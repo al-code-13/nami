@@ -62,7 +62,7 @@ class OrdersAdapter(
             val legend = ServiceFactory.data.behaviors.firstOrNull { it.id == items.behavior }
             if (legend != null) {
                 if (legend.action != null) {
-                    verDetalle(items)
+                    verDetalle(items!!)
                 } else {
                     val dialog = BottomSheetDialog(mContext)
                     val dialogView =
@@ -79,7 +79,7 @@ class OrdersAdapter(
                             } else {
                                 when (id) {
                                     3 -> {
-                                        presenter.actionTake(items.id)
+                                        presenter.actionTake(items.id!!)
                                     }
                                     5 -> {
                                         val dialog = BottomSheetDialog(mContext)
@@ -96,7 +96,7 @@ class OrdersAdapter(
                                                 .inflate(R.layout.action_item, null)
                                         v.setOnClickListener {
                                             val observations = null
-                                            presenter.actionRelease(items.id, observations)
+                                            presenter.actionRelease(items.id!!, observations)
                                             dialog.dismiss()
                                         }
                                         v.action.text = "Aceptar"
@@ -127,12 +127,12 @@ class OrdersAdapter(
                                         dialog.show()
                                     }
                                     6 -> {
-                                        presenter.actionPutDeliverCourier(items.id)
+                                        presenter.actionPutDeliverCourier(items.id!!)
                                         dialog.show()
 
                                     }
                                     7 -> {
-                                        presenter.actionPutDeliverCustomer(items.id)
+                                        presenter.actionPutDeliverCustomer(items.id!!)
                                         dialog.show()
                                     }
                                     8 -> {
@@ -151,7 +151,7 @@ class OrdersAdapter(
                                                 LayoutInflater.from(mContext)
                                                     .inflate(R.layout.action_item, null)
                                             v.setOnClickListener {
-                                                presenter.actionPutFreeze(items.id, i.id)
+                                                presenter.actionPutFreeze(items.id!!, i.id)
                                                 dialog.dismiss()
                                             }
                                             v.action.text = i.description
@@ -250,7 +250,7 @@ class OrdersAdapter(
     }
 
     fun verDetalle(items: OrdersList) {
-        var datos: Array<String> = arrayOf(
+        var datos: Array<String?> = arrayOf(
             items.id.toString(),
             items.name,
             items.lastname,
@@ -263,9 +263,9 @@ class OrdersAdapter(
             items.hour,
             items.idState.toString(),
             items.observations,
-            items.methodPay.name,
+            items.methodPay!!.name,
             items.pickingOrder.toString(),
-            items.detailOrder.totalItems.toString(),
+            items.detailOrder!!.totalItems.toString(),
             items.behavior.toString()
         )
         val intent: Intent = Intent(mContext, Detail::class.java)
@@ -286,11 +286,11 @@ class OrdersAdapter(
 
         holder.idOrder.text = mDataSet[position].id.toString()
 
-        holder.amount.text = mDataSet[position].detailOrder.totalItems.toString()
+        holder.amount.text = mDataSet[position].detailOrder!!.totalItems.toString()
 
         holder.date.text = mDataSet[position].date
 
-        holder.time.text = mDataSet[position].hour.substring(0, mDataSet[position].hour.length - 13)
+        holder.time.text = mDataSet[position].hour!!.substring(0, mDataSet[position].hour!!.length - 13)
 
         holder.cell.text = mDataSet[position].phoneClient
 

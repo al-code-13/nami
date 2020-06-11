@@ -1,39 +1,43 @@
 package com.example.nami.models.sections
 
-data class SectionResponse(
-    val orders: List<OrdersList>,
-    val message: String?
-)
+import io.realm.RealmList
+import io.realm.RealmObject
+
+open class SectionResponse(
+    var orders: RealmList<OrdersList>? = null,
+    var message: String? = null
+) : RealmObject()
 
 
-data class OrdersList(
-    val id: Int,
-    val name: String,
-    val lastname: String,
-    val address: String,
-    val value: String,
-    val phoneClient: String,
-    val date: String,
-    val origin: String,
-    val idCodBranch: Int,
-    val hour: String,
-    val idState: Int,
-    val observations: String,
-    val methodPay: MethodPay,
-    val pickingOrder: PickingOrder,
-    val detailOrder: DetailOrder,
-    val behavior: Int
-)
+open class OrdersList(
+    var id: Int? = null,
+    var name: String? = null,
+    var lastname: String? = null,
+    var address: String? = null,
+    var value: String? = null,
+    var phoneClient: String? = null,
+    var date: String? = null,
+    var origin: String? = null,
+    var idCodBranch: Int? = null,
+    var hour: String? = null,
+    var idState: Int? = null,
+    var observations: String? = null,
+    var methodPay: MethodPay? = null,
+    var pickingOrder: PickingOrder? = null,
+    var detailOrder: DetailOrder? = null,
+    var behavior: Int? = null
+) : RealmObject()
 
-data class DetailOrder(
-    val totalItems: Int
-)
+open class DetailOrder(
+    var totalItems: Int? = null
+) : RealmObject()
 
-data class MethodPay(
-    val id: Int,
-    val name: String
-)
+open class MethodPay(
+    var id: Int? = null,
+    var name: String? = null
+) : RealmObject()
 
-data class PickingOrder(
-    val list: List<Any?>
-)
+open class PickingOrder(
+    var list: RealmList<Any?>? = null
+
+) : RealmObject()

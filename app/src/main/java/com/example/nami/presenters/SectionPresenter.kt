@@ -1,28 +1,31 @@
 package com.example.nami.presenters
 
-import android.content.Context
 import android.util.Log
 import com.example.nami.controllers.services.ServiceInteractor
-import com.example.nami.models.detailModels.DetailResponse
-import com.example.nami.models.detailModels.ListDataPicker
-import com.example.nami.models.detailModels.ListElement
+import com.example.nami.db.models.SectionDB
 import com.example.nami.models.sections.SectionResponse
+import io.realm.Realm
 
 
 interface SectionUI {
     fun showData(data: SectionResponse)
     fun showError(error: String)
-    fun actionSuccess(message:String)
+    fun actionSuccess(message: String)
 }
 
-class SectionPresenter(val ui: SectionUI) {
+class SectionPresenter(private val ui: SectionUI) {
+    private lateinit var realm: Realm
+    private val interactor = ServiceInteractor()
+    fun actionSection(idSection: Int) {
+        realm = Realm.getDefaultInstance()
 
-    val interactor = ServiceInteractor()
-    fun actionSection(idSection:Int) {
         interactor.getSection(
-
             idSection,
             { data ->
+                val newData = SectionDB()
+                newData.id = idSection
+                newData.data = data
+                addDataToDB(newData)
                 ui.showData(data)
             },
             { error ->
@@ -30,7 +33,19 @@ class SectionPresenter(val ui: SectionUI) {
             })
     }
 
-    fun actionTake(orderId:Int) {
+    private fun addDataToDB(data: SectionDB) {
+        try {
+            realm.beginTransaction()
+            realm.copyToRealmOrUpdate(data)
+            realm.commitTransaction()
+            Log.i("Si guardo","GUARDADITO")
+
+        } catch (e: Exception) {
+            Log.i("SE TOTIO", "AL GUARDAR")
+        }
+    }
+
+    fun actionTake(orderId: Int) {
         interactor.putTakeOrder(orderId, "2020-05-20", { data ->
             ui.actionSuccess(data.message)
         }, { error ->
@@ -38,7 +53,7 @@ class SectionPresenter(val ui: SectionUI) {
         })
     }
 
-    fun actionRelease(orderId:Int,observations: String?) {
+    fun actionRelease(orderId: Int, observations: String?) {
         interactor.putReleaseOrder(orderId, observations, { data ->
             ui.actionSuccess(data.message)
         }, { error ->
@@ -46,7 +61,7 @@ class SectionPresenter(val ui: SectionUI) {
         })
     }
 
-    fun actionPutDeliverCourier(orderId:Int) {
+    fun actionPutDeliverCourier(orderId: Int) {
         interactor.putDeliverCourier(orderId, { data ->
             ui.actionSuccess(data.message)
         }, { error ->
@@ -54,7 +69,7 @@ class SectionPresenter(val ui: SectionUI) {
         })
     }
 
-    fun actionPutDeliverCustomer(orderId:Int) {
+    fun actionPutDeliverCustomer(orderId: Int) {
         interactor.putDeliverCustomer(orderId, { data ->
             ui.actionSuccess(data.message)
         }, { error ->
@@ -62,7 +77,7 @@ class SectionPresenter(val ui: SectionUI) {
         })
     }
 
-    fun actionPutFreeze(orderId:Int,idReason: Int) {
+    fun actionPutFreeze(orderId: Int, idReason: Int) {
         interactor.putFreeze(orderId, idReason, { data ->
             ui.actionSuccess(data.message)
         }, { error ->

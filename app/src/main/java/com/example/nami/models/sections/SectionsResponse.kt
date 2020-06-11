@@ -1,5 +1,7 @@
 package com.example.nami.models.sections
 
+import io.realm.RealmObject
+
 data class SectionsResponse(
     val actions: List<Action>,
     val behaviors: List<Behavior>,

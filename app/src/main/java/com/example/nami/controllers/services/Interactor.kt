@@ -81,7 +81,7 @@ class ServiceInteractor : ServiceFactory() {
     ) {
 
         val url = serverUrl + routeBase + routeSections
-        get(url, token).enqueue(object : Callback {
+        get(url, token!!).enqueue(object : Callback {
             override fun onResponse(call: Call, response: Response) {
 
                 val body = response.body?.string()
@@ -117,7 +117,7 @@ class ServiceInteractor : ServiceFactory() {
     ) {
 
         val url = serverUrl + routeBase + routeReasons
-        get(url, token).enqueue(object : Callback {
+        get(url, token!!).enqueue(object : Callback {
             override fun onResponse(call: Call, response: Response) {
                 val body = response.body?.string()
                 Log.i("bodySections",body.toString())
@@ -156,7 +156,7 @@ class ServiceInteractor : ServiceFactory() {
 
         val url = "$serverUrl$routeBase$routeSections/$section"
         withContext(Dispatchers.IO) {
-            get(url, token).enqueue(object : Callback {
+            get(url, token!!).enqueue(object : Callback {
                 override fun onResponse(call: Call, response: Response) {
 
                     val body = response.body?.string()
@@ -195,7 +195,7 @@ class ServiceInteractor : ServiceFactory() {
         Log.i("token peticion detail", token)
         val url = "$serverUrl$routeBase$routeOrders/$order"
         withContext(Dispatchers.IO) {
-            get(url, token).enqueue(object : Callback {
+            get(url, token!!).enqueue(object : Callback {
                 override fun onResponse(call: Call, response: Response) {
                     val body = response.body?.string()
                     val gson = GsonBuilder().create()
@@ -237,7 +237,7 @@ class ServiceInteractor : ServiceFactory() {
         val request = TakeOrderRequest(dataTake)
         val json = Gson().toJson(request)
         withContext(Dispatchers.IO) {
-            put( url,token, json).enqueue(object : Callback {
+            put( url,token!!, json).enqueue(object : Callback {
 
                 override fun onResponse(call: Call, response: Response) {
                     val body = response.body?.string()
@@ -279,7 +279,7 @@ class ServiceInteractor : ServiceFactory() {
         val request = ReleaseOrderRequest(observations)
         val json = Gson().toJson(request)
         withContext(Dispatchers.IO) {
-            put(url, token, json).enqueue(object : Callback {
+            put(url, token!!, json).enqueue(object : Callback {
 
                 override fun onResponse(call: Call, response: Response) {
                     val body = response.body?.string()
@@ -340,7 +340,7 @@ class ServiceInteractor : ServiceFactory() {
         )
         val json = Gson().toJson(request)
         withContext(Dispatchers.IO) {
-            put(url, token,json).enqueue(object : Callback {
+            put(url, token!!,json).enqueue(object : Callback {
                 override fun onResponse(call: Call, response: Response) {
                     val body = response.body?.string()
 
@@ -380,7 +380,7 @@ class ServiceInteractor : ServiceFactory() {
         val request = DeliverCourierRequest(idOrder)
         val json = Gson().toJson(request)
         withContext(Dispatchers.IO) {
-            put( url,token, json).enqueue(object : Callback {
+            put( url,token!!, json).enqueue(object : Callback {
                 override fun onResponse(call: Call, response: Response) {
                     val body = response.body?.string()
                     val gson = GsonBuilder().create()
@@ -419,7 +419,7 @@ class ServiceInteractor : ServiceFactory() {
         val request = DeliverConsumerRequest(idOrder)
         val json = Gson().toJson(request)
         withContext(Dispatchers.IO) {
-            put( url,token, json).enqueue(object : Callback {
+            put( url,token!!, json).enqueue(object : Callback {
                 override fun onResponse(call: Call, response: Response) {
                     val body = response.body?.string()
                     val gson = GsonBuilder().create()
@@ -460,7 +460,7 @@ class ServiceInteractor : ServiceFactory() {
         val request = FreezeRequest(idReason)
         val json = Gson().toJson(request)
         withContext(Dispatchers.IO) {
-            put(token, url, json).enqueue(object : Callback {
+            put(token!!, url, json).enqueue(object : Callback {
                 override fun onResponse(call: Call, response: Response) {
                     val body = response.body?.string()
                     val gson = GsonBuilder().create()

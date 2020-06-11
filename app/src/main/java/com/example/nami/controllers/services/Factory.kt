@@ -70,7 +70,7 @@ open class ServiceFactory {
 
     companion object {
         lateinit var data: SectionsResponse
-        lateinit var token: String
+        var token: String?=null
         lateinit var reasons: ReasonsResponse
     }
 
