@@ -37,7 +37,15 @@ open class MethodPay(
     var name: String? = null
 ) : RealmObject()
 
-open class PickingOrder(
-    var list: RealmList<Any?>? = null
 
+open class PickingOrder (
+    var totalCount: Int? = null,
+    var list: RealmList<ListElements>? = null
 ) : RealmObject()
+
+open class ListElements (
+    var id: Int? = null,
+    var idUser: Int? = null,
+    var totalPicker: String? = null,
+    var observations: String? = null
+): RealmObject()

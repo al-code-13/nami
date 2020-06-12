@@ -5,6 +5,7 @@ import android.content.Context
 import android.content.Intent
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -54,11 +55,15 @@ class OrdersAdapter(
         parent: ViewGroup,
         viewType: Int
     ): ViewHolder {
+        Log.i("elotrodata", mDataSet.toString())
+
         val v: View =
             LayoutInflater.from(mContext).inflate(R.layout.card_view_item_grid, parent, false)
 
         return ViewHolder(v).listen { pos, _ ->
             val items = mDataSet[pos]
+
+            Log.i("elotrodata", mDataSet.toString())
             val legend = ServiceFactory.data.behaviors.firstOrNull { it.id == items.behavior }
             if (legend != null) {
                 if (legend.action != null) {
@@ -268,7 +273,7 @@ class OrdersAdapter(
             items.detailOrder!!.totalItems.toString(),
             items.behavior.toString()
         )
-        val intent: Intent = Intent(mContext, Detail::class.java)
+        val intent = Intent(mContext, Detail::class.java)
         intent.putExtra("orderId", items.id)
         intent.putExtra("userInfo", datos)
         intent.putExtra("behavior", items.behavior)

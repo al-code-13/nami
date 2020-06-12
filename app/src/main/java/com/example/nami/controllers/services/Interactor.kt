@@ -85,7 +85,6 @@ class ServiceInteractor : ServiceFactory() {
             override fun onResponse(call: Call, response: Response) {
 
                 val body = response.body?.string()
-                Log.i("bodySections",body.toString())
                 val gson = GsonBuilder().create()
                 val res = gson.fromJson(body, SectionsResponse::class.java)
                 if (response.isSuccessful) {
@@ -120,7 +119,6 @@ class ServiceInteractor : ServiceFactory() {
         get(url, token!!).enqueue(object : Callback {
             override fun onResponse(call: Call, response: Response) {
                 val body = response.body?.string()
-                Log.i("bodySections",body.toString())
                 val gson = GsonBuilder().create()
                 val res = gson.fromJson(body, ReasonsResponse::class.java)
                 if (response.isSuccessful) {
