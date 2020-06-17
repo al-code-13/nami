@@ -12,6 +12,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="e2a19b41-8dcf-4555-9135-d65f83e40892" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/app/src/main/java/com/example/nami/presenters/BasePresenter.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/6.1.1/executionHistory/executionHistory.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/6.1.1/executionHistory/executionHistory.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/6.1.1/executionHistory/executionHistory.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/6.1.1/executionHistory/executionHistory.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/6.1.1/fileHashes/fileHashes.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/6.1.1/fileHashes/fileHashes.bin" afterDir="false" />
@@ -20,18 +21,11 @@
       <change beforePath="$PROJECT_DIR$/.gradle/6.1.1/javaCompile/classAnalysis.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/6.1.1/javaCompile/classAnalysis.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/6.1.1/javaCompile/jarAnalysis.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/6.1.1/javaCompile/jarAnalysis.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/6.1.1/javaCompile/javaCompile.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/6.1.1/javaCompile/javaCompile.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/6.1.1/javaCompile/taskHistory.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/6.1.1/javaCompile/taskHistory.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/checksums/checksums.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/checksums/checksums.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/checksums/md5-checksums.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/checksums/md5-checksums.bin" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/modules/app/app.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules/app/app.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/nami/adapter/OrdersAdapter.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/nami/adapter/OrdersAdapter.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/nami/controllers/services/Interactor.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/nami/controllers/services/Interactor.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/nami/MainActivity.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/nami/MainActivity.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/nami/fragment_home.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/nami/fragment_home.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/nami/models/sections/SectionResponse.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/nami/models/sections/SectionResponse.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/nami/presenters/SectionPresenter.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/nami/presenters/SectionPresenter.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/build-attribution/androidGradlePluginAttributionData" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -55,6 +49,7 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="Kotlin File" />
+        <option value="Kotlin Class" />
       </list>
     </option>
   </component>
@@ -182,42 +177,50 @@
       <screen x="1280" y="0" width="1920" height="1080" />
     </state>
     <state x="2096" y="312" key="AndroidProcessChooserDialog/1280.0.1920.1080/0.0.1280.800@1280.0.1920.1080" timestamp="1591977203131" />
-    <state width="1878" height="378" key="GridCell.Tab.0.bottom" timestamp="1591977578396">
-      <screen x="1280" y="0" width="1920" height="1080" />
+    <state width="1238" height="414" key="GridCell.Tab.0.bottom" timestamp="1592357341331">
+      <screen x="0" y="0" width="1280" height="800" />
     </state>
     <state width="1238" height="170" key="GridCell.Tab.0.bottom/-1920.0.1920.1080/0.0.1280.800@0.0.1280.800" timestamp="1591823686083" />
-    <state width="1238" height="304" key="GridCell.Tab.0.bottom/0.0.1280.800@0.0.1280.800" timestamp="1591917615842" />
+    <state width="1238" height="414" key="GridCell.Tab.0.bottom/0.0.1280.800@0.0.1280.800" timestamp="1592357341331" />
     <state width="1238" height="212" key="GridCell.Tab.0.bottom/0.23.1280.777@0.23.1280.777" timestamp="1591808759147" />
-    <state width="1878" height="378" key="GridCell.Tab.0.bottom/1280.0.1920.1080/0.0.1280.800@1280.0.1920.1080" timestamp="1591977578396" />
+    <state width="1238" height="227" key="GridCell.Tab.0.bottom/1280.0.1920.1080/0.0.1280.800@0.0.1280.800" timestamp="1592355343503" />
+    <state width="1878" height="449" key="GridCell.Tab.0.bottom/1280.0.1920.1080/0.0.1280.800@1280.0.1920.1080" timestamp="1592345601406" />
     <state width="1878" height="378" key="GridCell.Tab.0.bottom/1280.0.1920.1080/0.23.1280.777@1280.0.1920.1080" timestamp="1591975400092" />
-    <state width="1878" height="375" key="GridCell.Tab.0.bottom/1280.23.1920.1057/0.23.1280.777@1280.23.1920.1057" timestamp="1591976700590" />
-    <state width="1878" height="378" key="GridCell.Tab.0.center" timestamp="1591977578393">
-      <screen x="1280" y="0" width="1920" height="1080" />
+    <state width="1238" height="2" key="GridCell.Tab.0.bottom/1280.23.1920.1057/0.0.1280.800@0.0.1280.800" timestamp="1592356166228" />
+    <state width="1878" height="168" key="GridCell.Tab.0.bottom/1280.23.1920.1057/0.23.1280.777@1280.23.1920.1057" timestamp="1592350685270" />
+    <state width="1238" height="414" key="GridCell.Tab.0.center" timestamp="1592357341328">
+      <screen x="0" y="0" width="1280" height="800" />
     </state>
     <state width="1238" height="170" key="GridCell.Tab.0.center/-1920.0.1920.1080/0.0.1280.800@0.0.1280.800" timestamp="1591823686080" />
-    <state width="1238" height="304" key="GridCell.Tab.0.center/0.0.1280.800@0.0.1280.800" timestamp="1591917615840" />
+    <state width="1238" height="414" key="GridCell.Tab.0.center/0.0.1280.800@0.0.1280.800" timestamp="1592357341328" />
     <state width="1238" height="212" key="GridCell.Tab.0.center/0.23.1280.777@0.23.1280.777" timestamp="1591808759144" />
-    <state width="1878" height="378" key="GridCell.Tab.0.center/1280.0.1920.1080/0.0.1280.800@1280.0.1920.1080" timestamp="1591977578393" />
+    <state width="1238" height="227" key="GridCell.Tab.0.center/1280.0.1920.1080/0.0.1280.800@0.0.1280.800" timestamp="1592355343495" />
+    <state width="1878" height="449" key="GridCell.Tab.0.center/1280.0.1920.1080/0.0.1280.800@1280.0.1920.1080" timestamp="1592345601402" />
     <state width="1878" height="378" key="GridCell.Tab.0.center/1280.0.1920.1080/0.23.1280.777@1280.0.1920.1080" timestamp="1591975400083" />
-    <state width="1878" height="375" key="GridCell.Tab.0.center/1280.23.1920.1057/0.23.1280.777@1280.23.1920.1057" timestamp="1591976700586" />
-    <state width="1878" height="378" key="GridCell.Tab.0.left" timestamp="1591977578391">
-      <screen x="1280" y="0" width="1920" height="1080" />
+    <state width="1238" height="2" key="GridCell.Tab.0.center/1280.23.1920.1057/0.0.1280.800@0.0.1280.800" timestamp="1592356166224" />
+    <state width="1878" height="168" key="GridCell.Tab.0.center/1280.23.1920.1057/0.23.1280.777@1280.23.1920.1057" timestamp="1592350685260" />
+    <state width="1238" height="414" key="GridCell.Tab.0.left" timestamp="1592357341327">
+      <screen x="0" y="0" width="1280" height="800" />
     </state>
     <state width="1238" height="170" key="GridCell.Tab.0.left/-1920.0.1920.1080/0.0.1280.800@0.0.1280.800" timestamp="1591823686078" />
-    <state width="1238" height="304" key="GridCell.Tab.0.left/0.0.1280.800@0.0.1280.800" timestamp="1591917615839" />
+    <state width="1238" height="414" key="GridCell.Tab.0.left/0.0.1280.800@0.0.1280.800" timestamp="1592357341327" />
     <state width="1238" height="212" key="GridCell.Tab.0.left/0.23.1280.777@0.23.1280.777" timestamp="1591808759143" />
-    <state width="1878" height="378" key="GridCell.Tab.0.left/1280.0.1920.1080/0.0.1280.800@1280.0.1920.1080" timestamp="1591977578391" />
+    <state width="1238" height="227" key="GridCell.Tab.0.left/1280.0.1920.1080/0.0.1280.800@0.0.1280.800" timestamp="1592355343492" />
+    <state width="1878" height="449" key="GridCell.Tab.0.left/1280.0.1920.1080/0.0.1280.800@1280.0.1920.1080" timestamp="1592345601400" />
     <state width="1878" height="378" key="GridCell.Tab.0.left/1280.0.1920.1080/0.23.1280.777@1280.0.1920.1080" timestamp="1591975400082" />
-    <state width="1878" height="375" key="GridCell.Tab.0.left/1280.23.1920.1057/0.23.1280.777@1280.23.1920.1057" timestamp="1591976700585" />
-    <state width="1878" height="378" key="GridCell.Tab.0.right" timestamp="1591977578394">
-      <screen x="1280" y="0" width="1920" height="1080" />
+    <state width="1238" height="2" key="GridCell.Tab.0.left/1280.23.1920.1057/0.0.1280.800@0.0.1280.800" timestamp="1592356166222" />
+    <state width="1878" height="168" key="GridCell.Tab.0.left/1280.23.1920.1057/0.23.1280.777@1280.23.1920.1057" timestamp="1592350685253" />
+    <state width="1238" height="414" key="GridCell.Tab.0.right" timestamp="1592357341329">
+      <screen x="0" y="0" width="1280" height="800" />
     </state>
     <state width="1238" height="170" key="GridCell.Tab.0.right/-1920.0.1920.1080/0.0.1280.800@0.0.1280.800" timestamp="1591823686082" />
-    <state width="1238" height="304" key="GridCell.Tab.0.right/0.0.1280.800@0.0.1280.800" timestamp="1591917615841" />
+    <state width="1238" height="414" key="GridCell.Tab.0.right/0.0.1280.800@0.0.1280.800" timestamp="1592357341329" />
     <state width="1238" height="212" key="GridCell.Tab.0.right/0.23.1280.777@0.23.1280.777" timestamp="1591808759146" />
-    <state width="1878" height="378" key="GridCell.Tab.0.right/1280.0.1920.1080/0.0.1280.800@1280.0.1920.1080" timestamp="1591977578394" />
+    <state width="1238" height="227" key="GridCell.Tab.0.right/1280.0.1920.1080/0.0.1280.800@0.0.1280.800" timestamp="1592355343497" />
+    <state width="1878" height="449" key="GridCell.Tab.0.right/1280.0.1920.1080/0.0.1280.800@1280.0.1920.1080" timestamp="1592345601404" />
     <state width="1878" height="378" key="GridCell.Tab.0.right/1280.0.1920.1080/0.23.1280.777@1280.0.1920.1080" timestamp="1591975400090" />
-    <state width="1878" height="375" key="GridCell.Tab.0.right/1280.23.1920.1057/0.23.1280.777@1280.23.1920.1057" timestamp="1591976700589" />
+    <state width="1238" height="2" key="GridCell.Tab.0.right/1280.23.1920.1057/0.0.1280.800@0.0.1280.800" timestamp="1592356166226" />
+    <state width="1878" height="168" key="GridCell.Tab.0.right/1280.23.1920.1057/0.23.1280.777@1280.23.1920.1057" timestamp="1592350685262" />
     <state width="1878" height="375" key="GridCell.Tab.1.bottom" timestamp="1591977466164">
       <screen x="1280" y="0" width="1920" height="1080" />
     </state>
@@ -254,17 +257,5 @@
       <screen x="1280" y="0" width="1920" height="1080" />
     </state>
     <state width="600" height="424" key="javadoc.popup/1280.0.1920.1080/0.0.1280.800@1280.0.1920.1080" timestamp="1591910813910" />
-  </component>
-  <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" suspend="THREAD" type="kotlin-field">
-          <url>file://$PROJECT_DIR$/app/src/main/java/com/example/nami/adapter/OrdersAdapter.kt</url>
-          <line>26</line>
-          <properties myFieldName="mDataSet" myClassName="com.example.nami.adapter.OrdersAdapter" />
-          <option name="timeStamp" value="6" />
-        </line-breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
   </component>
 </project>
