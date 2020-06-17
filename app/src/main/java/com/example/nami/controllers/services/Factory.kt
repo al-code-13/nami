@@ -16,7 +16,7 @@ open class ServiceFactory {
     val serverUrl: String = "https://d1-dev-test.chefmenu.com.co:6443"
     val routeBase: String = "/api/v2"
     val routeAuth: String = "/auth"
-    val routePicker: String = "/picker"
+    val routePicker: String = "/pickers"
     val routeOrders: String = "/orders/"
     val routeLogin: String = "/login"
     val routeSections: String = "/sections"
@@ -27,6 +27,8 @@ open class ServiceFactory {
     val routeDeliverCourier: String = "/deliver-courier"
     val routeDeliverConsumer: String = "/deliver-customer"
     val routeFreeze: String = "freeze"
+    val routeMe: String = "/me"
+
 
 
     private val client: OkHttpClient = OkHttpClient().newBuilder().build()

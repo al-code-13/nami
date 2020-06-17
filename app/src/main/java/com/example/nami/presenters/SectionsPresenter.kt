@@ -1,31 +1,40 @@
 package com.example.nami.presenters
 
+import android.content.Context
+import android.content.Intent
+import android.content.SharedPreferences
 import android.util.Log
-import com.example.nami.db.models.SectionDB
+import androidx.core.content.ContextCompat.startActivity
+import com.example.nami.Login
+import com.example.nami.controllers.services.ServiceFactory
 import com.example.nami.models.sections.SectionsResponse
+import com.example.nami.models.user.UserResponse
 import io.realm.kotlin.where
 import kotlinx.coroutines.*
 
 interface SectionsUI {
-    fun showSection(data: SectionsResponse)
+    fun showSection(data: SectionsResponse, userData: UserResponse)
     fun showError(error: String)
+    fun exit()
 }
 
-class SectionsPresenter(private val ui: SectionsUI) : BasePresenter() {
+class SectionsPresenter(private val ui: SectionsUI,val context: Context) : BasePresenter() {
     private var viewModelJob: Job = Job()
     private val uiScope = CoroutineScope(Dispatchers.Main + viewModelJob)
+
     fun actionSections() {
         uiScope.launch {
             try {
-                val realmResponse = realm!!.where<SectionsResponse>().findFirst()
+                val realmResponse =
+                    realm!!.where<SectionsResponse>().equalTo("id", -1.toInt()).findFirst()
+                var userResponse = realm!!.where<UserResponse>().equalTo("id", "userId").findFirst()
                 if (realmResponse == null) {
-                    Log.i("no trae sections", "EL NULL")
                     interactor.getSections(
                         { data ->
                             interactor.getReasons({
 
                                 addDataToDB(data)
-                                ui.showSection(data)
+                                ui.showSection(data, userResponse!!)
                             }, { error ->
                                 ui.showError(error)
                             })
@@ -34,11 +43,10 @@ class SectionsPresenter(private val ui: SectionsUI) : BasePresenter() {
                             ui.showError(error)
                         })
                 } else {
-                    Log.i("si trae sections ", "ALGO")
-                    ui.showSection(realmResponse)
+                    ServiceFactory.data = realmResponse
+                    ui.showSection(realmResponse, userResponse!!)
                 }
             } catch (e: Exception) {
-                Log.i("ERROCOOO", e.message)
             }
         }
     }
@@ -46,17 +54,39 @@ class SectionsPresenter(private val ui: SectionsUI) : BasePresenter() {
     private fun addDataToDB(data: SectionsResponse) = runBlocking {
         launch(Dispatchers.Main) {
             try {
-                Log.i("HILOO", "I'm working in thread ${Thread.currentThread().name}")
                 realm!!.executeTransaction {
                     it.copyToRealmOrUpdate(data)
                 }
+
             } catch (e: Exception) {
-                Log.i("SE TOTIO", "AL GUARDAR")
-                Log.i("ErrorSErio", e.message)
             }
 
         }
 
 
     }
+
+
+    fun actionLogOut() {
+        val sharedPreference: SharedPreferences =
+            this.context.getSharedPreferences("localStorage", Context.MODE_PRIVATE)
+
+        uiScope.launch {
+            try {
+                Log.i("SO ME JUI","XDXDXDXDXD")
+                realm!!.executeTransaction {
+                    it.deleteAll()
+                }
+                sharedPreference.edit()
+                    .clear()
+                    .apply()
+                ui.exit()
+
+            } catch (e: Exception) {
+                Log.i("SE BOROO", "EL REALM")
+            }
+
+        }
+    }
+
 }

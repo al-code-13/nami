@@ -7,6 +7,7 @@ import com.example.nami.models.detailModels.*
 import com.example.nami.models.sections.ReasonsResponse
 import com.example.nami.models.sections.SectionResponse
 import com.example.nami.models.sections.SectionsResponse
+import com.example.nami.models.user.UserResponse
 import com.google.gson.Gson
 import com.google.gson.GsonBuilder
 import kotlinx.coroutines.*
@@ -156,7 +157,7 @@ class ServiceInteractor : ServiceFactory() {
         withContext(Dispatchers.IO) {
             get(url, token!!).enqueue(object : Callback {
                 override fun onResponse(call: Call, response: Response) {
-                    Log.i("ME LLAMARON","POS AQUI ESTOY")
+                    Log.i("ME LLAMARON", "POS AQUI ESTOY")
 
                     val body = response.body?.string()
                     val gson = GsonBuilder().create()
@@ -206,6 +207,7 @@ class ServiceInteractor : ServiceFactory() {
                         //Log.i("respuesta",response.message)
                     }
                 }
+
                 override fun onFailure(call: Call, e: IOException) {
                     error("Error en el servicio")
                 }
@@ -236,7 +238,7 @@ class ServiceInteractor : ServiceFactory() {
         val request = TakeOrderRequest(dataTake)
         val json = Gson().toJson(request)
         withContext(Dispatchers.IO) {
-            put( url,token!!, json).enqueue(object : Callback {
+            put(url, token!!, json).enqueue(object : Callback {
 
                 override fun onResponse(call: Call, response: Response) {
                     val body = response.body?.string()
@@ -249,6 +251,7 @@ class ServiceInteractor : ServiceFactory() {
                         //Log.i("respuesta",response.message)
                     }
                 }
+
                 override fun onFailure(call: Call, e: IOException) {
                     error("Error en el servicio")
                 }
@@ -339,7 +342,7 @@ class ServiceInteractor : ServiceFactory() {
         )
         val json = Gson().toJson(request)
         withContext(Dispatchers.IO) {
-            put(url, token!!,json).enqueue(object : Callback {
+            put(url, token!!, json).enqueue(object : Callback {
                 override fun onResponse(call: Call, response: Response) {
                     val body = response.body?.string()
 
@@ -352,6 +355,7 @@ class ServiceInteractor : ServiceFactory() {
                         //Log.i("respuesta",response.message)
                     }
                 }
+
                 override fun onFailure(call: Call, e: IOException) {
                     error("Error en el servicio")
                 }
@@ -359,6 +363,7 @@ class ServiceInteractor : ServiceFactory() {
         }
 
     }
+
     fun putDeliverCourier(
         idOrder: Int,
         then: (DeliverCourierResponse) -> Unit,
@@ -379,7 +384,7 @@ class ServiceInteractor : ServiceFactory() {
         val request = DeliverCourierRequest(idOrder)
         val json = Gson().toJson(request)
         withContext(Dispatchers.IO) {
-            put( url,token!!, json).enqueue(object : Callback {
+            put(url, token!!, json).enqueue(object : Callback {
                 override fun onResponse(call: Call, response: Response) {
                     val body = response.body?.string()
                     val gson = GsonBuilder().create()
@@ -418,7 +423,7 @@ class ServiceInteractor : ServiceFactory() {
         val request = DeliverConsumerRequest(idOrder)
         val json = Gson().toJson(request)
         withContext(Dispatchers.IO) {
-            put( url,token!!, json).enqueue(object : Callback {
+            put(url, token!!, json).enqueue(object : Callback {
                 override fun onResponse(call: Call, response: Response) {
                     val body = response.body?.string()
                     val gson = GsonBuilder().create()
@@ -478,4 +483,41 @@ class ServiceInteractor : ServiceFactory() {
         }
 
     }
+
+    fun getMe(
+        then: (UserResponse) -> Unit,
+        error: (String) -> Unit
+    ) {
+        uiScope.launch {
+            getMeCorutine(then, error)
+        }
+    }
+
+    private suspend fun getMeCorutine(
+        then: (UserResponse) -> Unit,
+        error: (String) -> Unit
+    ) {
+
+        val url = "$serverUrl$routeBase$routePicker$routeMe"
+        withContext(Dispatchers.IO) {
+            get(url, token!!).enqueue(object : Callback {
+                override fun onResponse(call: Call, response: Response) {
+                    val body = response.body?.string()
+                    val gson = GsonBuilder().create()
+                    val res = gson.fromJson(body, UserResponse::class.java)
+                    if (response.isSuccessful) {
+                        then(res)
+                    } else {
+                        error(res.message.toString())
+                    }
+                }
+
+                override fun onFailure(call: Call, e: IOException) {
+                    error("Error en el servicio")
+                }
+            })
+        }
+
+    }
+
 }
