@@ -40,11 +40,9 @@ class SectionFragment(
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-
         presenter.actionSection(
             sectionId
         )
-
         val v: View
         val orientation = activity?.resources?.configuration?.orientation
         v = if (orientation == Configuration.ORIENTATION_PORTRAIT) {
@@ -73,10 +71,9 @@ class SectionFragment(
             )
             itemsRefresh?.setColorSchemeColors(Color.WHITE)
             itemsRefresh?.setOnRefreshListener {
-                presenter.actionSection(
+                presenter.actionRefreshSection(
                     sectionId
                 )
-
                 reciclerView?.adapter = OrdersAdapter(mContext, data.orders!!,presenter)
                 gridView.adapter = adapter
                 itemsRefresh?.isRefreshing = false

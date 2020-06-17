@@ -1,36 +1,37 @@
 package com.example.nami.models.sections
 
+import io.realm.RealmList
 import io.realm.RealmObject
 
-data class SectionsResponse(
-    val actions: List<Action>,
-    val behaviors: List<Behavior>,
-    val sections: List<Section>,
-    val message: String?
+open class SectionsResponse(
+    var actions: RealmList<Action>?=null,
+    var behaviors: RealmList<Behavior>?=null,
+    var sections: RealmList<Section>?=null,
+    var message: String?=null
 
-)
+) : RealmObject()
 
-data class Action(
-    val id: Int,
-    val name: String,
-    val description: String? = null,
-    val destructive: Boolean
-)
+open class Action(
+    var id: Int?=null,
+    var name: String?=null,
+    var description: String? = null,
+    var destructive: Boolean?=null
+) : RealmObject()
 
-data class Behavior(
-    val id: Int,
-    val name: String,
-    val description: String? = null,
-    val color: String?=null,
-    val visible: Boolean,
-    val actions: List<Int>? = null,
-    val action: Int? = null
-)
+open class Behavior(
+    var id: Int?=null,
+    var name: String?=null,
+    var description: String? = null,
+    var color: String?=null,
+    var visible: Boolean?=null,
+    var actions: RealmList<Int>? = null,
+    var action: Int? = null
+) : RealmObject()
 
 
-data class Section(
-    val id: Int,
-    val name: String,
-    val color: String,
-    val behaviors: List<Int>
-)
+open class Section(
+    var id: Int?=null,
+    var name: String?=null,
+    var color: String?=null,
+    var behaviors: RealmList<Int>?=null
+) : RealmObject()

@@ -22,8 +22,8 @@ class SectionsAdapter(
     override fun getItem(position: Int): Fragment {
         return SectionFragment(
             myContext,
-            legendSection(sectionsList[position].behaviors),
-            sectionsList[position].id
+            legendSection(sectionsList[position].behaviors!!),
+            sectionsList[position].id!!
         )
     }
 
@@ -31,7 +31,7 @@ class SectionsAdapter(
         val newList = mutableListOf<Behavior>()
         var i: Int = 0
         indicators.forEach { _ ->
-            if (legendList[i].visible) {
+            if (legendList[i].visible!!) {
                 newList += legendList[i]
             }
             i++

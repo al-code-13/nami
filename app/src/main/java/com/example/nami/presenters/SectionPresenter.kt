@@ -14,7 +14,7 @@ interface SectionUI {
     fun actionSuccess(message: String)
 }
 
-class SectionPresenter(private val ui: SectionUI,val context: Context): BasePresenter() {
+class SectionPresenter(private val ui: SectionUI, val context: Context) : BasePresenter() {
 
     private var viewModelJob: Job = Job()
     private val uiScope = CoroutineScope(Dispatchers.Main + viewModelJob)
@@ -22,9 +22,9 @@ class SectionPresenter(private val ui: SectionUI,val context: Context): BasePres
     fun actionSection(idSection: Int) {
         uiScope.launch {
             try {
-                val realmResponse = realm!!.where<SectionDB>().equalTo("id",idSection).findFirst()
-                if(realmResponse == null){
-                    Log.i("SI VIENE NULL","EL NULL")
+                val realmResponse = realm!!.where<SectionDB>().equalTo("id", idSection).findFirst()
+                if (realmResponse == null) {
+                    Log.i("SI VIENE NULL", "EL NULL")
                     interactor.getSection(
                         idSection,
                         { data ->
@@ -37,20 +37,37 @@ class SectionPresenter(private val ui: SectionUI,val context: Context): BasePres
                         { error ->
                             ui.showError(error)
                         })
-                }else{
-                    Log.i("SI TRAE ","ALGO")
+                } else {
+                    Log.i("SI TRAE ", "ALGO")
                     ui.showData(realmResponse.data!!)
                 }
-            }catch (e: Exception){
-                Log.i("ERROCOOO",e.message)
+            } catch (e: Exception) {
+                Log.i("ERROCOOO", e.message)
             }
         }
     }
 
-    private fun addDataToDB(data: SectionDB)= runBlocking {
+    fun actionRefreshSection(idSection: Int) {
+        Log.i("se hace refresh","chi mamol")
+        interactor.getSection(
+            idSection,
+            { data ->
+                val newData = SectionDB()
+                newData.id = idSection
+                newData.data = data
+                addDataToDB(newData)
+                ui.showData(data)
+            },
+            { error ->
+                ui.showError(error)
+            })
+
+    }
+
+    private fun addDataToDB(data: SectionDB) = runBlocking {
         launch(Dispatchers.Main) {
             try {
-                Log.i("HILOO","I'm working in thread ${Thread.currentThread().name}")
+                Log.i("HILOO", "I'm working in thread ${Thread.currentThread().name}")
                 realm!!.executeTransaction {
                     it.copyToRealmOrUpdate(data)
                 }
@@ -60,7 +77,6 @@ class SectionPresenter(private val ui: SectionUI,val context: Context): BasePres
             }
 
         }
-
 
 
     }

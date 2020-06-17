@@ -38,7 +38,7 @@ class MainActivity : AppCompatActivity(), SectionsUI {
     override fun showSection(data: SectionsResponse) {
 
         runOnUiThread {
-            for (section in data.sections) {
+            for (section in data.sections!!) {
                 tabLayout!!.addTab(tabLayout!!.newTab().setText(section.name))
             }
             tabLayout?.tabGravity = TabLayout.GRAVITY_FILL
@@ -47,8 +47,8 @@ class MainActivity : AppCompatActivity(), SectionsUI {
                 this,
                 supportFragmentManager,
                 tabLayout!!.tabCount,
-                data.behaviors.toTypedArray(),
-                data.sections
+                data.behaviors!!.toTypedArray(),
+                data.sections!!
             )
 
             viewPager!!.adapter = adapter

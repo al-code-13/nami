@@ -99,7 +99,7 @@ class Detail : AppCompatActivity(), DetailUI {
             buttonsLinearLayout.removeAllViews()
 
             val actionsList =
-                ServiceFactory.data.behaviors.firstOrNull { it.id == newFunction }?.actions
+                ServiceFactory.data.behaviors!!.firstOrNull { it.id == newFunction }?.actions
 
             if (actionsList!!.contains(5) || actionsList.contains(4)) {
                 observationsView.visibility = View.VISIBLE
@@ -110,11 +110,11 @@ class Detail : AppCompatActivity(), DetailUI {
             for (i in actionsList) {
 
                 if (i != 2) {
-                    val action = ServiceFactory.data.actions.firstOrNull { it.id == i }
+                    val action = ServiceFactory.data.actions!!.firstOrNull { it.id == i }
                     val layoutNewButton = layoutInflater.inflate(R.layout.save_button, null)
                     val button = layoutNewButton.findViewById<Button>(R.id.pickButton)
                     Log.i("accion", action!!.name)
-                    if (action.destructive) {
+                    if (action?.destructive!!) {
                         button.setBackgroundColor(Color.parseColor("#ff0000"))
                     }
                     val param: ViewGroup.MarginLayoutParams =

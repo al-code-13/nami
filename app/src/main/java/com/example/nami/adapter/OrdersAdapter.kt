@@ -64,7 +64,7 @@ class OrdersAdapter(
             val items = mDataSet[pos]
 
             Log.i("elotrodata", mDataSet.toString())
-            val legend = ServiceFactory.data.behaviors.firstOrNull { it.id == items.behavior }
+            val legend = ServiceFactory.data.behaviors!!.firstOrNull { it.id == items.behavior }
             if (legend != null) {
                 if (legend.action != null) {
                     verDetalle(items!!)
@@ -191,7 +191,7 @@ class OrdersAdapter(
                         }
 
                         v.action.text =
-                            ServiceFactory.data.actions.firstOrNull { it.id == id }?.name
+                            ServiceFactory.data.actions!!.firstOrNull { it.id == id }?.name
 
                         when (id) {
                             4 -> {
@@ -285,7 +285,7 @@ class OrdersAdapter(
         position: Int
     ) {
 
-        holder.card.setCardBackgroundColor(Color.parseColor(ServiceFactory.data.behaviors.firstOrNull { it.id == mDataSet[position].behavior }!!.color))
+        holder.card.setCardBackgroundColor(Color.parseColor(ServiceFactory.data.behaviors!!.firstOrNull { it.id == mDataSet[position].behavior }!!.color))
 
         holder.names.text = mDataSet[position].name
 
