@@ -156,6 +156,7 @@ class ServiceInteractor : ServiceFactory() {
         withContext(Dispatchers.IO) {
             get(url, token!!).enqueue(object : Callback {
                 override fun onResponse(call: Call, response: Response) {
+                    Log.i("ME LLAMARON","POS AQUI ESTOY")
 
                     val body = response.body?.string()
                     val gson = GsonBuilder().create()

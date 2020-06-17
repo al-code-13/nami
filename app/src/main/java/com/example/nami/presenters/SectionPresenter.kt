@@ -4,9 +4,8 @@ import android.content.Context
 import android.util.Log
 import com.example.nami.db.models.SectionDB
 import com.example.nami.models.sections.SectionResponse
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.launch
-import kotlinx.coroutines.runBlocking
+import io.realm.kotlin.where
+import kotlinx.coroutines.*
 
 
 interface SectionUI {
@@ -17,71 +16,52 @@ interface SectionUI {
 
 class SectionPresenter(private val ui: SectionUI,val context: Context): BasePresenter() {
 
-    fun actionSection(idSection: Int) {
-        interactor.getSection(
-            idSection,
-            { data ->
-                val newData = SectionDB()
-                newData.id = idSection
-                newData.data = data
-                addDataToDB(newData)
-                ui.showData(data)
-            },
-            { error ->
-                ui.showError(error)
-            })
-    }
+    private var viewModelJob: Job = Job()
+    private val uiScope = CoroutineScope(Dispatchers.Main + viewModelJob)
 
+    fun actionSection(idSection: Int) {
+        uiScope.launch {
+            try {
+                val realmResponse = realm!!.where<SectionDB>().equalTo("id",idSection).findFirst()
+                if(realmResponse == null){
+                    Log.i("SI VIENE NULL","EL NULL")
+                    interactor.getSection(
+                        idSection,
+                        { data ->
+                            val newData = SectionDB()
+                            newData.id = idSection
+                            newData.data = data
+                            addDataToDB(newData)
+                            ui.showData(data)
+                        },
+                        { error ->
+                            ui.showError(error)
+                        })
+                }else{
+                    Log.i("SI TRAE ","ALGO")
+                    ui.showData(realmResponse.data!!)
+                }
+            }catch (e: Exception){
+                Log.i("ERROCOOO",e.message)
+            }
+        }
+    }
 
     private fun addDataToDB(data: SectionDB)= runBlocking {
         launch(Dispatchers.Main) {
             try {
                 Log.i("HILOO","I'm working in thread ${Thread.currentThread().name}")
-
                 realm!!.executeTransaction {
-
                     it.copyToRealmOrUpdate(data)
                 }
-
             } catch (e: Exception) {
-
                 Log.i("SE TOTIO", "AL GUARDAR")
                 Log.i("ErrorSErio", e.message)
             }
 
         }
 
-        /** launch(newSingleThreadContext(tag)){
-            try {
-                realm!!.beginTransaction()
-                realm.executeTransaction {  }
-                Log.i("Si guardo","GUARDADITO")
-                realm!!.copyToRealmOrUpdate(data)
-                realm!!.commitTransaction()
-               // Log.i("Si guardo","GUARDADITO")
 
-            } catch (e: Exception) {
-
-                Log.i("SE TOTIO", "AL GUARDAR")
-                Log.i("ErrorSErio", e.message)
-            }
-        }**/
-
-       /** launch(newSingleThreadContext(tag)){
-            try {
-                realm!!.beginTransaction()
-                realm.executeTransaction {  }
-                Log.i("Si guardo","GUARDADITO")
-                realm!!.copyToRealmOrUpdate(data)
-                realm!!.commitTransaction()
-               // Log.i("Si guardo","GUARDADITO")
-
-            } catch (e: Exception) {
-
-                Log.i("SE TOTIO", "AL GUARDAR")
-                Log.i("ErrorSErio", e.message)
-            }
-        }**/
 
     }
 

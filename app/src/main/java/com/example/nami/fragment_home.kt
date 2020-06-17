@@ -1,10 +1,10 @@
 package com.example.nami
 
 import android.content.Context
-import android.content.Intent
 import android.content.res.Configuration
 import android.graphics.Color
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -13,17 +13,13 @@ import android.widget.Toast
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
-import co.zsmb.materialdrawerkt.builders.accountHeader
 import com.example.nami.adapter.OrdersAdapter
 import com.example.nami.adapter.IndicatorsAdapter
 import com.example.nami.models.sections.Behavior
 import com.example.nami.presenters.SectionPresenter
-import co.zsmb.materialdrawerkt.builders.drawer
-import co.zsmb.materialdrawerkt.builders.footer
-import co.zsmb.materialdrawerkt.draweritems.badge
-import co.zsmb.materialdrawerkt.draweritems.badgeable.primaryItem
-import co.zsmb.materialdrawerkt.draweritems.profile.profile
+
 import com.example.nami.models.sections.SectionResponse
+import com.example.nami.presenters.BasePresenter
 import com.example.nami.presenters.SectionUI
 
 
@@ -48,6 +44,7 @@ class SectionFragment(
         presenter.actionSection(
             sectionId
         )
+
         val v: View
         val orientation = activity?.resources?.configuration?.orientation
         v = if (orientation == Configuration.ORIENTATION_PORTRAIT) {
