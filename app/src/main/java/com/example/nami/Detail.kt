@@ -47,7 +47,6 @@ class Detail : AppCompatActivity(), DetailUI {
         actionbar.setBackgroundDrawable(ColorDrawable(Color.RED))
         behavior = intent.getIntExtra("behavior", -1)
         userInfo = intent.getStringArrayExtra("userInfo")
-        Log.i("Id de la orden", userInfo.toString())
         presenter = DetailPresenter(orderId, this)
         name.text = userInfo[1] + " " + userInfo[2]
         idProduct.text = userInfo[0]
@@ -113,7 +112,6 @@ class Detail : AppCompatActivity(), DetailUI {
                     val action = ServiceFactory.data.actions!!.firstOrNull { it.id == i }
                     val layoutNewButton = layoutInflater.inflate(R.layout.save_button, null)
                     val button = layoutNewButton.findViewById<Button>(R.id.pickButton)
-                    Log.i("accion", action!!.name)
                     if (action?.destructive!!) {
                         button.setBackgroundColor(Color.parseColor("#ff0000"))
                     }

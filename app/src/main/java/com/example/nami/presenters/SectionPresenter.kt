@@ -1,7 +1,6 @@
 package com.example.nami.presenters
 
 import android.content.Context
-import android.util.Log
 import com.example.nami.db.models.SectionDB
 import com.example.nami.models.sections.SectionResponse
 import io.realm.kotlin.where
@@ -24,7 +23,6 @@ class SectionPresenter(private val ui: SectionUI, val context: Context) : BasePr
             try {
                 val realmResponse = realm!!.where<SectionDB>().equalTo("id", idSection).findFirst()
                 if (realmResponse == null) {
-                    Log.i("SI VIENE NULL", "EL NULL")
                     interactor.getSection(
                         idSection,
                         { data ->
@@ -38,17 +36,14 @@ class SectionPresenter(private val ui: SectionUI, val context: Context) : BasePr
                             ui.showError(error)
                         })
                 } else {
-                    Log.i("SI TRAE ", "ALGO")
                     ui.showData(realmResponse.data!!)
                 }
             } catch (e: Exception) {
-                Log.i("ERROCOOO", e.message)
             }
         }
     }
 
     fun actionRefreshSection(idSection: Int) {
-        Log.i("se hace refresh","chi mamol")
         interactor.getSection(
             idSection,
             { data ->
@@ -67,13 +62,10 @@ class SectionPresenter(private val ui: SectionUI, val context: Context) : BasePr
     private fun addDataToDB(data: SectionDB) = runBlocking {
         launch(Dispatchers.Main) {
             try {
-                Log.i("HILOO", "I'm working in thread ${Thread.currentThread().name}")
                 realm!!.executeTransaction {
                     it.copyToRealmOrUpdate(data)
                 }
             } catch (e: Exception) {
-                Log.i("SE TOTIO", "AL GUARDAR")
-                Log.i("ErrorSErio", e.message)
             }
 
         }

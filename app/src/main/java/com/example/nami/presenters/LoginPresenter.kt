@@ -42,19 +42,16 @@ class LoginPresenter(val context: Context, private val ui: LoginUI) : BasePresen
                     editor.commit()
                     ui.showLoad()
                     interactor.getMe({ data ->
-
                         addDataToDB(data)
-                        Log.i("si pude", "INFO PENDEJO")
-                        Log.i("DATAAAA PENDEJO", data.user.toString())
+                        ui.showHome()
                     }, { error ->
                         ui.showError(error)
                     })
-                    ui.showHome()
+
                 }, { error ->
                     ui.showError(error)
                 })
             } catch (e: Exception) {
-                Log.i("ERROCOOO", e.message)
             }
 
         }
@@ -62,13 +59,10 @@ class LoginPresenter(val context: Context, private val ui: LoginUI) : BasePresen
     private fun addDataToDB(data: UserResponse) = runBlocking {
         launch(Dispatchers.Main) {
             try {
-                Log.i("HILOO", "I'm working in thread ${Thread.currentThread().name}")
                 realm!!.executeTransaction {
                     it.copyToRealmOrUpdate(data)
                 }
             } catch (e: Exception) {
-                Log.i("SE TOTIO", "AL GUARDAR")
-                Log.i("ErrorSErio", e.message)
             }
 
         }

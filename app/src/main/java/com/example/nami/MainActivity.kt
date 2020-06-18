@@ -1,11 +1,9 @@
 package com.example.nami
 
-import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.content.ContextCompat
 import androidx.viewpager.widget.ViewPager
 import co.zsmb.materialdrawerkt.builders.accountHeader
 import co.zsmb.materialdrawerkt.builders.drawer
@@ -22,7 +20,7 @@ import com.google.android.material.tabs.TabLayout
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity(), SectionsUI {
-    private val presenter = SectionsPresenter(this,this)
+    private val presenter = SectionsPresenter(this, this)
     var tabLayout: TabLayout? = null
     var viewPager: ViewPager? = null
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -32,6 +30,7 @@ class MainActivity : AppCompatActivity(), SectionsUI {
         tabLayout = findViewById(R.id.tabLayout)
         viewPager = findViewById(R.id.viewPager)
     }
+
     override fun showSection(data: SectionsResponse, userData: UserResponse) {
         runOnUiThread {
             for (section in data.sections!!) {
@@ -39,6 +38,7 @@ class MainActivity : AppCompatActivity(), SectionsUI {
             }
             tabLayout?.tabGravity = TabLayout.GRAVITY_FILL
             toolbar3.title = "${userData.user!!.lastname}"
+            //setSupportActionBar(toolbar3)
             val adapter = SectionsAdapter(
                 this,
                 supportFragmentManager,
@@ -52,18 +52,21 @@ class MainActivity : AppCompatActivity(), SectionsUI {
                 override fun onTabSelected(tab: TabLayout.Tab) {
                     viewPager!!.currentItem = tab.position
                 }
+
                 override fun onTabUnselected(tab: TabLayout.Tab) {}
                 override fun onTabReselected(tab: TabLayout.Tab) {}
             })
 
             drawer {
+                this.closeOnClick = true
+                this.toolbar = toolbar3
                 accountHeader {
                     profile("${userData.user!!.name}", "${userData.user!!.role!!.name}") {
                         //icon = "http://some.site/samantha.png"
                     }
-                   // profile("Laura", "laura@gmail.com") {
-                        // icon = R.drawable.profile_laura
-                   // }
+                    // profile("Laura", "laura@gmail.com") {
+                    // icon = R.drawable.profile_laura
+                    // }
                 }
                 primaryItem("Home")
                 primaryItem("Recursos") {
@@ -87,7 +90,7 @@ class MainActivity : AppCompatActivity(), SectionsUI {
                         colorPressed = 0xFFCC99FF
                     }
                 }
-                primaryItem("Cerrar sesión"){
+                primaryItem("Cerrar sesión") {
                     onClick { _ ->
                         presenter.actionLogOut()
                         true
@@ -113,7 +116,7 @@ class MainActivity : AppCompatActivity(), SectionsUI {
     override fun showError(error: String) {
         runOnUiThread {
             if (error.contains("Error al autenticar el token")) {
-               presenter.actionLogOut()
+                presenter.actionLogOut()
             } else {
                 Toast.makeText(applicationContext, error, Toast.LENGTH_LONG).show()
             }

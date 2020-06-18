@@ -26,7 +26,7 @@ class SectionsPresenter(private val ui: SectionsUI,val context: Context) : BaseP
         uiScope.launch {
             try {
                 val realmResponse =
-                    realm!!.where<SectionsResponse>().equalTo("id", -1.toInt()).findFirst()
+                    realm!!.where<SectionsResponse>().equalTo("id", "sections").findFirst()
                 var userResponse = realm!!.where<UserResponse>().equalTo("id", "userId").findFirst()
                 if (realmResponse == null) {
                     interactor.getSections(
@@ -73,7 +73,6 @@ class SectionsPresenter(private val ui: SectionsUI,val context: Context) : BaseP
 
         uiScope.launch {
             try {
-                Log.i("SO ME JUI","XDXDXDXDXD")
                 realm!!.executeTransaction {
                     it.deleteAll()
                 }
@@ -83,7 +82,6 @@ class SectionsPresenter(private val ui: SectionsUI,val context: Context) : BaseP
                 ui.exit()
 
             } catch (e: Exception) {
-                Log.i("SE BOROO", "EL REALM")
             }
 
         }

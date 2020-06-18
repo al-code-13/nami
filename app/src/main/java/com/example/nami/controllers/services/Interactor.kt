@@ -54,12 +54,10 @@ class ServiceInteractor : ServiceFactory() {
                         then(res)
                     } else {
                         error(res.message.toString())
-                        //Log.i("respuesta",response.message)
                     }
                 }
 
                 override fun onFailure(call: Call, e: IOException) {
-                    Log.i("Error", e.message.toString())
                     error("Error en el servicio")
                 }
             })
@@ -127,7 +125,7 @@ class ServiceInteractor : ServiceFactory() {
                     then(res)
                 } else {
                     error(res.message.toString())
-                    //Log.i("respuesta",response.message)
+
                 }
             }
 
@@ -204,7 +202,6 @@ class ServiceInteractor : ServiceFactory() {
                         then(res)
                     } else {
                         error(res.message.toString())
-                        //Log.i("respuesta",response.message)
                     }
                 }
 
