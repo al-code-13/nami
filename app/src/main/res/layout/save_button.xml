@@ -10,7 +10,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="0dp"
-        android:padding="0dp"
+        android:padding="6dp"
         android:background="@drawable/button_blue_background"
         android:text="Guardar"
         android:textSize="@dimen/text_size_standard"

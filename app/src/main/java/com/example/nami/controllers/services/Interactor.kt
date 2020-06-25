@@ -337,6 +337,7 @@ class ServiceInteractor : ServiceFactory() {
             totalPicker,
             observations
         )
+        Log.i("ARTICLzzz",listDataPicker.toString())
         val json = Gson().toJson(request)
         withContext(Dispatchers.IO) {
             put(url, token!!, json).enqueue(object : Callback {
@@ -348,8 +349,8 @@ class ServiceInteractor : ServiceFactory() {
                     if (response.isSuccessful) {
                         then(res)
                     } else {
-                        error(res.message.toString())
-                        //Log.i("respuesta",response.message)
+                        error(res.message)
+
                     }
                 }
 

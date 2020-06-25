@@ -21,7 +21,7 @@
 
         <TextView
             android:id="@+id/name"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_alignParentStart="true"
             android:layout_alignParentLeft="true"
@@ -31,7 +31,6 @@
             android:layout_marginTop="8dp"
             android:drawableLeft="@drawable/person"
             android:drawablePadding="8dp"
-            android:gravity="center"
             android:text="NAME USER"
             android:textStyle="bold" />
 

@@ -71,174 +71,260 @@ class OrdersAdapter(
                     title.text = "Orden #${items.id}"
                     val layoutActions = dialogView.findViewById<LinearLayout>(R.id.listActions)
                     for (id in legend.actions!!) {
-                        val v: View =
-                            LayoutInflater.from(mContext).inflate(R.layout.action_item, null)
-                        v.setOnClickListener {
-                            if (id == 2 || id == 4) {//Ver detalle
-                                verDetalle(items)
-                            } else {
-                                when (id) {
-                                    3 -> {
-                                        presenter.actionTake(items.id!!)
-                                    }
-                                    5 -> {
-                                        val dialog = BottomSheetDialog(mContext)
-                                        val dialogView =
-                                            LayoutInflater.from(mContext)
-                                                .inflate(R.layout.activity_popup, null)
-                                        val title =
-                                            dialogView.findViewById<TextView>(R.id.titleOrderId)
-                                        title.text = "¿Esta seguro de liberar esta orden?"
-                                        val layoutActions =
-                                            dialogView.findViewById<LinearLayout>(R.id.listActions)
-                                        val v: View =
-                                            LayoutInflater.from(mContext)
-                                                .inflate(R.layout.action_item, null)
-                                        v.setOnClickListener {
-                                            val observations = null
-                                            presenter.actionRelease(items.id!!, observations)
-                                            dialog.dismiss()
+                        if (id != 8){
+                            val v: View =
+                                LayoutInflater.from(mContext).inflate(R.layout.action_item, null)
+                            v.setOnClickListener {
+                                if (id == 2 || id == 4) {//Ver detalle
+                                    verDetalle(items)
+                                } else {
+                                    when (id) {
+                                        3 -> {
+                                            presenter.actionTake(items.id!!)
                                         }
-                                        v.action.text = "Aceptar"
-                                        v.action.setCompoundDrawablesWithIntrinsicBounds(
-                                            R.drawable.yes_action,
-                                            0,
-                                            0,
-                                            0
-                                        )
-                                        layoutActions.addView(v)
-
-                                        val cancel: View =
-                                            LayoutInflater.from(mContext)
-                                                .inflate(R.layout.action_item, null)
-                                        cancel.setOnClickListener {
-                                            dialog.dismiss()
-                                        }
-                                        cancel.action.text = "Cancelar"
-                                        cancel.action.setCompoundDrawablesWithIntrinsicBounds(
-                                            R.drawable.cancel,
-                                            0,
-                                            0,
-                                            0
-                                        )
-                                        layoutActions.addView(cancel)
-
-                                        dialog.setContentView(dialogView)
-                                        dialog.show()
-                                    }
-                                    6 -> {
-                                        presenter.actionPutDeliverCourier(items.id!!)
-                                        dialog.show()
-
-                                    }
-                                    7 -> {
-                                        presenter.actionPutDeliverCustomer(items.id!!)
-                                        dialog.show()
-                                    }
-                                    8 -> {
-                                        val freezeActions = ServiceFactory.reasons.reasons.list
-                                        val dialog = BottomSheetDialog(mContext)
-                                        val dialogView =
-                                            LayoutInflater.from(mContext)
-                                                .inflate(R.layout.activity_popup, null)
-                                        val title =
-                                            dialogView.findViewById<TextView>(R.id.titleOrderId)
-                                        title.text = "¿Esta seguro de congelar esta orden?"
-                                        val layoutActions =
-                                            dialogView.findViewById<LinearLayout>(R.id.listActions)
-                                        for (i in freezeActions) {
+                                        5 -> {
+                                            val dialog = BottomSheetDialog(mContext)
+                                            val dialogView =
+                                                LayoutInflater.from(mContext)
+                                                    .inflate(R.layout.activity_popup, null)
+                                            val title =
+                                                dialogView.findViewById<TextView>(R.id.titleOrderId)
+                                            title.text = "¿Esta seguro de liberar esta orden?"
+                                            val layoutActions =
+                                                dialogView.findViewById<LinearLayout>(R.id.listActions)
                                             val v: View =
                                                 LayoutInflater.from(mContext)
                                                     .inflate(R.layout.action_item, null)
                                             v.setOnClickListener {
-                                                presenter.actionPutFreeze(items.id!!, i.id)
+                                                val observations = null
+                                                presenter.actionRelease(items.id!!, observations)
                                                 dialog.dismiss()
                                             }
-                                            v.action.text = i.description
+                                            v.action.text = "Aceptar"
                                             v.action.setCompoundDrawablesWithIntrinsicBounds(
-                                                R.drawable.freeze_icon,
+                                                R.drawable.yes_action,
                                                 0,
                                                 0,
                                                 0
                                             )
                                             layoutActions.addView(v)
+
+                                            val cancel: View =
+                                                LayoutInflater.from(mContext)
+                                                    .inflate(R.layout.action_item, null)
+                                            cancel.setOnClickListener {
+                                                dialog.dismiss()
+                                            }
+                                            cancel.action.text = "Cancelar"
+                                            cancel.action.setCompoundDrawablesWithIntrinsicBounds(
+                                                R.drawable.cancel,
+                                                0,
+                                                0,
+                                                0
+                                            )
+                                            layoutActions.addView(cancel)
+
+                                            dialog.setContentView(dialogView)
+                                            dialog.show()
                                         }
-                                        val cancel: View =
-                                            LayoutInflater.from(mContext)
-                                                .inflate(R.layout.action_item, null)
-                                        cancel.setOnClickListener {
-                                            dialog.dismiss()
+                                        6 -> {
+
+                                            val dialog = BottomSheetDialog(mContext)
+                                            val dialogView =
+                                                LayoutInflater.from(mContext)
+                                                    .inflate(R.layout.activity_popup, null)
+                                            val title =
+                                                dialogView.findViewById<TextView>(R.id.titleOrderId)
+                                            title.text = "¿Esta seguro de entregar esta orden a un domiciliario?"
+                                            val layoutActions =
+                                                dialogView.findViewById<LinearLayout>(R.id.listActions)
+                                            val v: View =
+                                                LayoutInflater.from(mContext)
+                                                    .inflate(R.layout.action_item, null)
+                                            v.setOnClickListener {
+                                                presenter.actionPutDeliverCourier(items.id!!)
+                                                dialog.dismiss()
+                                            }
+                                            v.action.text = "Aceptar"
+                                            v.action.setCompoundDrawablesWithIntrinsicBounds(
+                                                R.drawable.yes_action,
+                                                0,
+                                                0,
+                                                0
+                                            )
+                                            layoutActions.addView(v)
+
+                                            val cancel: View =
+                                                LayoutInflater.from(mContext)
+                                                    .inflate(R.layout.action_item, null)
+                                            cancel.setOnClickListener {
+                                                dialog.dismiss()
+                                            }
+                                            cancel.action.text = "Cancelar"
+                                            cancel.action.setCompoundDrawablesWithIntrinsicBounds(
+                                                R.drawable.cancel,
+                                                0,
+                                                0,
+                                                0
+                                            )
+                                            layoutActions.addView(cancel)
+
+                                            dialog.setContentView(dialogView)
+                                            dialog.show()
+
                                         }
-                                        cancel.action.text = "Cancelar"
-                                        cancel.action.setCompoundDrawablesWithIntrinsicBounds(
-                                            R.drawable.cancel,
-                                            0,
-                                            0,
-                                            0
-                                        )
-                                        layoutActions.addView(cancel)
-                                        dialog.setContentView(dialogView)
-                                        dialog.show()
+                                        7 -> {
+
+                                            val dialog = BottomSheetDialog(mContext)
+                                            val dialogView =
+                                                LayoutInflater.from(mContext)
+                                                    .inflate(R.layout.activity_popup, null)
+                                            val title =
+                                                dialogView.findViewById<TextView>(R.id.titleOrderId)
+                                            title.text = "¿Esta seguro de entregar esta orden al cliente?"
+                                            val layoutActions =
+                                                dialogView.findViewById<LinearLayout>(R.id.listActions)
+                                            val v: View =
+                                                LayoutInflater.from(mContext)
+                                                    .inflate(R.layout.action_item, null)
+                                            v.setOnClickListener {
+                                                presenter.actionPutDeliverCustomer(items.id!!)
+                                                dialog.dismiss()
+                                            }
+                                            v.action.text = "Aceptar"
+                                            v.action.setCompoundDrawablesWithIntrinsicBounds(
+                                                R.drawable.yes_action,
+                                                0,
+                                                0,
+                                                0
+                                            )
+                                            layoutActions.addView(v)
+
+                                            val cancel: View =
+                                                LayoutInflater.from(mContext)
+                                                    .inflate(R.layout.action_item, null)
+                                            cancel.setOnClickListener {
+                                                dialog.dismiss()
+                                            }
+                                            cancel.action.text = "Cancelar"
+                                            cancel.action.setCompoundDrawablesWithIntrinsicBounds(
+                                                R.drawable.cancel,
+                                                0,
+                                                0,
+                                                0
+                                            )
+                                            layoutActions.addView(cancel)
+
+                                            dialog.setContentView(dialogView)
+                                            dialog.show()
+                                        }
+
+                                        8 -> {
+                                            val freezeActions = ServiceFactory.reasons.reasons.list
+                                            val dialog = BottomSheetDialog(mContext)
+                                            val dialogView =
+                                                LayoutInflater.from(mContext)
+                                                    .inflate(R.layout.activity_popup, null)
+                                            val title =
+                                                dialogView.findViewById<TextView>(R.id.titleOrderId)
+                                            title.text = "¿Esta seguro de congelar esta orden?"
+                                            val layoutActions =
+                                                dialogView.findViewById<LinearLayout>(R.id.listActions)
+                                            for (i in freezeActions) {
+                                                val v: View =
+                                                    LayoutInflater.from(mContext)
+                                                        .inflate(R.layout.action_item, null)
+                                                v.setOnClickListener {
+                                                    presenter.actionPutFreeze(items.id!!, i.id)
+                                                    dialog.dismiss()
+                                                }
+                                                v.action.text = i.description
+                                                v.action.setCompoundDrawablesWithIntrinsicBounds(
+                                                    R.drawable.freeze_icon,
+                                                    0,
+                                                    0,
+                                                    0
+                                                )
+                                                layoutActions.addView(v)
+                                            }
+                                            val cancel: View =
+                                                LayoutInflater.from(mContext)
+                                                    .inflate(R.layout.action_item, null)
+                                            cancel.setOnClickListener {
+                                                dialog.dismiss()
+                                            }
+                                            cancel.action.text = "Cancelar"
+                                            cancel.action.setCompoundDrawablesWithIntrinsicBounds(
+                                                R.drawable.cancel,
+                                                0,
+                                                0,
+                                                0
+                                            )
+                                            layoutActions.addView(cancel)
+                                            dialog.setContentView(dialogView)
+                                            dialog.show()
+                                        }
                                     }
                                 }
+                                dialog.dismiss()
                             }
-                            dialog.dismiss()
+
+                            v.action.text =
+                                ServiceFactory.data.actions!!.firstOrNull { it.id == id }?.name
+
+                            when (id) {
+                                4 -> {
+                                    v.action.setCompoundDrawablesWithIntrinsicBounds(
+                                        R.drawable.save_icon,
+                                        0,
+                                        0,
+                                        0
+                                    )
+                                }
+                                5 -> {
+                                    v.action.setCompoundDrawablesWithIntrinsicBounds(
+                                        R.drawable.release,
+                                        0,
+                                        0,
+                                        0
+                                    )
+                                }
+                                8 -> {
+                                    v.action.setCompoundDrawablesWithIntrinsicBounds(
+                                        R.drawable.freeze_icon,
+                                        0,
+                                        0,
+                                        0
+                                    )
+                                }
+                                6 -> {
+                                    v.action.setCompoundDrawablesWithIntrinsicBounds(
+                                        R.drawable.car,
+                                        0,
+                                        0,
+                                        0
+                                    )
+                                }
+                                6 -> {
+                                    v.action.setCompoundDrawablesWithIntrinsicBounds(
+                                        R.drawable.persons,
+                                        0,
+                                        0,
+                                        0
+                                    )
+                                }
+                                8 -> {
+                                    v.action.setCompoundDrawablesWithIntrinsicBounds(
+                                        R.drawable.freeze_icon,
+                                        0,
+                                        0,
+                                        0
+                                    )
+                                }
+                            }
+                            layoutActions.addView(v)
                         }
 
-                        v.action.text =
-                            ServiceFactory.data.actions!!.firstOrNull { it.id == id }?.name
-
-                        when (id) {
-                            4 -> {
-                                v.action.setCompoundDrawablesWithIntrinsicBounds(
-                                    R.drawable.save_icon,
-                                    0,
-                                    0,
-                                    0
-                                )
-                            }
-                            5 -> {
-                                v.action.setCompoundDrawablesWithIntrinsicBounds(
-                                    R.drawable.release,
-                                    0,
-                                    0,
-                                    0
-                                )
-                            }
-                            8 -> {
-                                v.action.setCompoundDrawablesWithIntrinsicBounds(
-                                    R.drawable.freeze_icon,
-                                    0,
-                                    0,
-                                    0
-                                )
-                            }
-                            6 -> {
-                                v.action.setCompoundDrawablesWithIntrinsicBounds(
-                                    R.drawable.car,
-                                    0,
-                                    0,
-                                    0
-                                )
-                            }
-                            6 -> {
-                                v.action.setCompoundDrawablesWithIntrinsicBounds(
-                                    R.drawable.persons,
-                                    0,
-                                    0,
-                                    0
-                                )
-                            }
-                            8 -> {
-                                v.action.setCompoundDrawablesWithIntrinsicBounds(
-                                    R.drawable.freeze_icon,
-                                    0,
-                                    0,
-                                    0
-                                )
-                            }
-                        }
-                        layoutActions.addView(v)
                     }
 
                     dialog.window?.setBackgroundDrawable(ColorDrawable(android.R.color.black))
@@ -282,7 +368,7 @@ class OrdersAdapter(
 
         holder.card.setCardBackgroundColor(Color.parseColor(ServiceFactory.data.behaviors!!.firstOrNull { it.id == mDataSet[position].behavior }!!.color))
 
-        holder.names.text = mDataSet[position].name
+        holder.names.text = mDataSet[position].name + " " + mDataSet[position].lastname
 
         holder.idOrder.text = mDataSet[position].id.toString()
 

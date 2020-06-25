@@ -1,10 +1,11 @@
 package com.example.nami.presenters
 
+import android.util.Log
 import com.example.nami.controllers.services.ServiceInteractor
-import com.example.nami.models.detailModels.CompareListElement
+
 import com.example.nami.models.detailModels.DetailResponse
 import com.example.nami.models.detailModels.ListDataPicker
-import com.example.nami.models.detailModels.ListElement
+
 
 interface DetailUI {
     fun showDetailInfo(data: DetailResponse)
@@ -48,12 +49,13 @@ class DetailPresenter(private val orderId: Int, private val ui: DetailUI) {
         articleList: List<String>,
         observations: String?
     ) {
+
         val productsok=data.order.detailOrder.list==articleList
         var totalPicker=0.0
         var listDataPicker:MutableList<ListDataPicker> = mutableListOf<ListDataPicker>()
         for(i in data.order.detailOrder.list){
             totalPicker += i.valueTotalArticle.toDouble()
-            listDataPicker.add(ListDataPicker(i.id,i.quantityArticle))
+            listDataPicker.add(ListDataPicker(i.id,articleList[data.order.detailOrder.list.indexOf(i)]))
         }
         interactor.putPickingOrder(
             listDataPicker,
