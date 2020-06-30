@@ -31,7 +31,9 @@ class Detail : AppCompatActivity(), DetailUI {
     lateinit var data: DetailResponse
     var articleList: MutableList<String> = mutableListOf<String>()
     private lateinit var observationsView: EditText
-    var adjustvalue: Double = 0.0
+    companion object{
+        var adjustvalue: Double = 0.0
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -54,10 +56,8 @@ class Detail : AppCompatActivity(), DetailUI {
         adress.text = userInfo[3]
         adjustvalue = userInfo[4].toDouble()
         Log.i("ERRORR",adjustvalue.toString())
-        adjustTotal.text = adjustvalue.toString()
         date.text = userInfo[6]
         time.text = userInfo[9].substring(0, userInfo[9].length - 13)
-
         observationsView = findViewById(R.id.editObservations)
         recyclerItemsDetail = findViewById(R.id.layoutArticles)
         presenter!!.actionDetail()
@@ -72,15 +72,13 @@ class Detail : AppCompatActivity(), DetailUI {
                 data.order.detailOrder.list,
                 newFunction,
                 this.articleList,
-                adjustvalue
+                adjustTotal
             )
 
     }
 
     override fun showDetailInfo(data: DetailResponse) {
         runOnUiThread {
-            pay.text = data.order.turns
-
             if (data.order.service == "D") {
                 type.text = "Domicilio"
             }
@@ -89,8 +87,8 @@ class Detail : AppCompatActivity(), DetailUI {
             delivered.text = data.order.deliveryValue
             totalValue.text = userInfo[4]
             comments.text = data.order.comments
+            pay.text = data.order.turns
             change.text = (data.order.turns.toInt() - adjustvalue.toInt()).toString()
-            // pay.text =
             this.data = data
             for (i in data.order.detailOrder.list) {
                 articleList.add(
@@ -154,7 +152,7 @@ class Detail : AppCompatActivity(), DetailUI {
                                 v.setOnClickListener {
                                     observations = observationsView.text.toString()
                                     observationsView.text = null
-                                    presenter!!.actionPick(data, articleList, observations)
+                                    presenter!!.actionPick(data, adjustvalue,articleList,observations)
                                     dialog.dismiss()
                                 }
                                 v.action.text = "Aceptar"

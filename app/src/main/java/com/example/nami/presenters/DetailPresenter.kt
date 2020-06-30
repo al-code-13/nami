@@ -46,22 +46,22 @@ class DetailPresenter(private val orderId: Int, private val ui: DetailUI) {
 
     fun actionPick(
         data: DetailResponse,
+        adjustmentValue:Double,
         articleList: List<String>,
         observations: String?
     ) {
 
         val productsok=data.order.detailOrder.list==articleList
-        var totalPicker=0.0
         var listDataPicker:MutableList<ListDataPicker> = mutableListOf<ListDataPicker>()
         for(i in data.order.detailOrder.list){
-            totalPicker += i.valueTotalArticle.toDouble()
             listDataPicker.add(ListDataPicker(i.id,articleList[data.order.detailOrder.list.indexOf(i)]))
         }
+        Log.i("adjustemenscms",adjustmentValue.toString())
         interactor.putPickingOrder(
             listDataPicker,
             orderId,
             productsok,
-            totalPicker.toString(),
+            adjustmentValue.toString(),
             observations,
             { data ->
                 ui.showDetailFunctionPicked()

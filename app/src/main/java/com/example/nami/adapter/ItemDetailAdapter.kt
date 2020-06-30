@@ -18,7 +18,7 @@ class ItemsDetailAdapter(
     private var data: List<ListElement>,
     private val behavior: Int,
     private var compareList: MutableList<String>,
-   private var adjustValue: Double
+    private var tv:TextView
 ) : RecyclerView.Adapter<ItemsDetailAdapter.ViewHolder>() {
 
     class ViewHolder(v: View) : RecyclerView.ViewHolder(v) {
@@ -29,7 +29,6 @@ class ItemsDetailAdapter(
         var minusButton: ImageView? = v.findViewById(R.id.minusButton)
         var moreButton: ImageView? = v.findViewById(R.id.moreButton)
     }
-
 
     override fun onCreateViewHolder(
         parent: ViewGroup,
@@ -64,15 +63,15 @@ class ItemsDetailAdapter(
             v.minusButton?.setOnClickListener {
                 v.moreButton?.visibility = View.VISIBLE
                 compareList[position] = (compareList[position].toInt() - 1).toString()
-                adjustValue -= priceUnit
-                Log.i("ADJUSMKVALUE",adjustValue.toString())
+                Detail.adjustvalue -= priceUnit
+                Log.i("ADJUSMKVALUE",Detail.adjustvalue.toString())
                 Log.i("loquelequito",priceUnit.toString())
                 onBindViewHolder(v, position)
             }
             v.minusButton?.setOnLongClickListener {
                 v.moreButton?.visibility = View.VISIBLE
                 compareList[position] = "1"
-                adjustValue =0.0
+                Detail.adjustvalue =0.0
                 onBindViewHolder(v, position)
                 it.isActivated
             }
@@ -86,13 +85,13 @@ class ItemsDetailAdapter(
             v.moreButton?.visibility = View.VISIBLE
             v.moreButton?.setOnClickListener {
                 compareList[position] = (compareList[position].toInt() + 1).toString()
-                adjustValue+= priceUnit
+                Detail.adjustvalue+= priceUnit
                 onBindViewHolder(v, position)
 
             }
             v.moreButton?.setOnLongClickListener {
                 compareList[position] = (elements.quantityArticle.toInt() - 1).toString()
-                adjustValue += elements.valueTotalArticle.toInt()
+                Detail.adjustvalue += elements.valueTotalArticle.toInt()
                 onBindViewHolder(v, position)
                 it.isActivated
             }
@@ -100,6 +99,6 @@ class ItemsDetailAdapter(
             v.cant.setTypeface(v.cant.typeface, Typeface.BOLD)
             v.moreButton?.visibility = View.GONE
         }
-
+        tv.text= Detail.adjustvalue.toString()
     }
 }
