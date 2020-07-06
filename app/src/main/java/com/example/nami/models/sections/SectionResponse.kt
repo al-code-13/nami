@@ -2,8 +2,11 @@ package com.example.nami.models.sections
 
 import io.realm.RealmList
 import io.realm.RealmObject
+import io.realm.annotations.PrimaryKey
 
 open class SectionResponse(
+    @PrimaryKey
+    var id: Int? = null,
     var orders: RealmList<OrdersList>? = null,
     var message: String? = null
 ) : RealmObject()

@@ -3,7 +3,6 @@ package com.example.nami.presenters
 import android.content.Context
 import android.util.Log
 import com.example.nami.controllers.services.ServiceFactory
-import com.example.nami.db.models.SectionDB
 import com.example.nami.models.user.UserResponse
 import kotlinx.coroutines.*
 

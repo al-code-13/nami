@@ -6,19 +6,23 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.CheckBox
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.nami.Detail
 import com.example.nami.R
 import com.example.nami.models.detailModels.ListElement
+import kotlinx.android.synthetic.main.activity_detail.*
 
 class ItemsDetailAdapter(
     private val mContext: Context,
     private var data: List<ListElement>,
     private val behavior: Int,
     private var compareList: MutableList<String>,
-    private var tv:TextView
+    private var tv:TextView,
+    private val checkBox: CheckBox,
+    private val compareArticleList:List<String>
 ) : RecyclerView.Adapter<ItemsDetailAdapter.ViewHolder>() {
 
     class ViewHolder(v: View) : RecyclerView.ViewHolder(v) {
@@ -100,5 +104,6 @@ class ItemsDetailAdapter(
             v.moreButton?.visibility = View.GONE
         }
         tv.text= Detail.adjustvalue.toString()
+        checkBox.isChecked = compareArticleList.equals(compareList)
     }
-}
+}  

@@ -9,6 +9,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.GridView
+import android.widget.TextView
 import android.widget.Toast
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
@@ -21,6 +22,7 @@ import com.example.nami.presenters.SectionPresenter
 import com.example.nami.models.sections.SectionResponse
 import com.example.nami.presenters.BasePresenter
 import com.example.nami.presenters.SectionUI
+import kotlinx.android.synthetic.main.fragment_home.*
 
 
 class SectionFragment(
@@ -54,6 +56,9 @@ class SectionFragment(
         gridView = v.findViewById<GridView>(R.id.gridItems)
         adapter = IndicatorsAdapter(mContext, legendList)
         gridView.adapter = adapter
+        if(legendList.size<=0){
+            gridView.visibility=View.GONE
+        }
         itemsRefresh = v.findViewById(R.id.itemsswipetorefresh)
 
         return v
@@ -62,6 +67,17 @@ class SectionFragment(
 
     override fun showData(data: SectionResponse) {
         activity?.runOnUiThread {
+            if(data.orders!!.size<=0){
+                val nothing=layoutInflater.inflate(R.layout.action_item,null)
+                nothing.findViewById<TextView>(R.id.action).text="¯\\_(ツ)_/¯"
+                itemsswipetorefresh.addView(nothing)
+                Log.i("¯\\_(ツ)_/¯","¯\\_(ツ)_/¯")
+                reciclerView?.visibility=View.GONE
+            }
+            else{
+
+
+
             reciclerView?.adapter = OrdersAdapter(mContext, data.orders!!,presenter)
             itemsRefresh?.setProgressBackgroundColorSchemeColor(
                 ContextCompat.getColor(
@@ -78,7 +94,7 @@ class SectionFragment(
                 gridView.adapter = adapter
                 itemsRefresh?.isRefreshing = false
             }
-
+            }
         }
     }
 

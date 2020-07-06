@@ -1,7 +1,6 @@
 package com.example.nami.presenters
 
 import android.content.Context
-import com.example.nami.db.models.SectionDB
 import com.example.nami.models.sections.SectionResponse
 import io.realm.kotlin.where
 import kotlinx.coroutines.*
@@ -21,22 +20,20 @@ class SectionPresenter(private val ui: SectionUI, val context: Context) : BasePr
     fun actionSection(idSection: Int) {
         uiScope.launch {
             try {
-                val realmResponse = realm!!.where<SectionDB>().equalTo("id", idSection).findFirst()
+                val realmResponse = realm!!.where<SectionResponse>().equalTo("id", idSection).findFirst()
                 if (realmResponse == null) {
                     interactor.getSection(
                         idSection,
                         { data ->
-                            val newData = SectionDB()
-                            newData.id = idSection
-                            newData.data = data
-                            addDataToDB(newData)
+                            data.id=idSection
+                            addDataToDB(data)
                             ui.showData(data)
                         },
                         { error ->
                             ui.showError(error)
                         })
                 } else {
-                    ui.showData(realmResponse.data!!)
+                    ui.showData(realmResponse!!)
                 }
             } catch (e: Exception) {
             }
@@ -47,10 +44,8 @@ class SectionPresenter(private val ui: SectionUI, val context: Context) : BasePr
         interactor.getSection(
             idSection,
             { data ->
-                val newData = SectionDB()
-                newData.id = idSection
-                newData.data = data
-                addDataToDB(newData)
+                data.id=idSection
+                addDataToDB(data)
                 ui.showData(data)
             },
             { error ->
@@ -59,7 +54,7 @@ class SectionPresenter(private val ui: SectionUI, val context: Context) : BasePr
 
     }
 
-    private fun addDataToDB(data: SectionDB) = runBlocking {
+    private fun addDataToDB(data: SectionResponse) = runBlocking {
         launch(Dispatchers.Main) {
             try {
                 realm!!.executeTransaction {

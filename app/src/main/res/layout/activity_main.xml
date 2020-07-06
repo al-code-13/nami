@@ -7,11 +7,12 @@
     android:orientation="vertical"
     android:fitsSystemWindows="true"
     tools:context=".MainActivity">
+
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolbar3"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/colorPrimaryDark"
+        android:background="@color/primaryColor"
         android:minHeight="?attr/actionBarSize"
         android:theme="?attr/actionBarTheme" />
 
@@ -19,7 +20,10 @@
         android:id="@+id/tabLayout"
         android:layout_width="match_parent"
         android:layout_height="60dp"
-        app:tabIndicatorColor="#FF0000">
+        android:background="#FF0000"
+        app:tabIndicatorColor="#FFFFFF"
+        app:tabRippleColor="#FFFFFF"
+        app:tabTextColor="#FFFFFF">
 
 
     </com.google.android.material.tabs.TabLayout>
