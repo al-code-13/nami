@@ -108,6 +108,7 @@ class MainActivity : AppCompatActivity(), SectionsUI {
 
                 footer {
                     primaryItem("Ayuda") {
+                        enabled=false
                         onClick { _ ->
                             val intent = Intent(this@MainActivity, HelpPage::class.java)
                             startActivity(intent)
@@ -124,7 +125,7 @@ class MainActivity : AppCompatActivity(), SectionsUI {
 
     override fun showError(error: String) {
         runOnUiThread {
-            if (error.contains("Error al autenticar el token")) {
+            if (error.contains("token")) {
                 presenter.actionLogOut()
             } else {
                 Toast.makeText(applicationContext, error, Toast.LENGTH_LONG).show()

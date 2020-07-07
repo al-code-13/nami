@@ -32,23 +32,13 @@ data class ListElement (
     val article: Article
 )
 
-data class CompareListElement (
-    val id: Int,
-    val description: Any? = null,
-    val quantityArticle: String,
-    val valueTotalArticle: String,
-    val codOptionalsExternals: Any? = null,
-    val codTamano: Any? = null,
-    val observations: Any? = null,
-    val picking: Any? = null,
-    val article: Article
-)
 
 data class Article (
-    val id: Int,
+    val id: Long,
     val name: String,
     val description: String,
     val value: String,
     val image: String,
-    val codSofware: String
+    val upc: String,
+    val sku: String
 )

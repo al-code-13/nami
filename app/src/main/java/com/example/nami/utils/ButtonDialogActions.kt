@@ -290,7 +290,7 @@ class ButtonDialogActions {
 
     fun actionsDetail(
         mContext: Context, presenter: DetailPresenter, id: Int, data: DetailResponse,
-        articleList: MutableList<String> = mutableListOf<String>(), observationsView: EditText
+        articleList: MutableList<String> = mutableListOf<String>()
     ) {
         var observations: String? = null
         when (id) {
@@ -308,13 +308,15 @@ class ButtonDialogActions {
                 val title = dialogView.findViewById<TextView>(R.id.titleOrderId)
                 title.text = "¿Esta seguro de guardar esta orden?"
 
+                dialogView.findViewById<EditText>(R.id.editObservations).visibility=View.VISIBLE
+
                 val layoutActions =
                     dialogView.findViewById<LinearLayout>(R.id.listActions)
                 val v: View =
                     LayoutInflater.from(mContext).inflate(R.layout.action_item, null)
                 v.setOnClickListener {
-                    observations = observationsView.text.toString()
-                    observationsView.text = null
+                    observations = dialogView.findViewById<EditText>(R.id.editObservations).text.toString()
+                    dialogView.findViewById<EditText>(R.id.editObservations).text = null
                     presenter.actionPick(
                         data,
                         Detail.adjustvalue,
@@ -356,13 +358,14 @@ class ButtonDialogActions {
                 val title = dialogView.findViewById<TextView>(R.id.titleOrderId)
                 title.text = "¿Esta seguro de liberar esta orden?"
 
+                dialogView.findViewById<EditText>(R.id.editObservations).visibility=View.VISIBLE
                 val layoutActions =
                     dialogView.findViewById<LinearLayout>(R.id.listActions)
                 val v: View =
                     LayoutInflater.from(mContext).inflate(R.layout.action_item, null)
                 v.setOnClickListener {
-                    observations = observationsView.text.toString()
-                    observationsView.text = null
+                    observations = dialogView.findViewById<EditText>(R.id.editObservations).text.toString()
+                    dialogView.findViewById<EditText>(R.id.editObservations).text = null
                     presenter.actionRelease(observations)
                     dialog.dismiss()
                 }

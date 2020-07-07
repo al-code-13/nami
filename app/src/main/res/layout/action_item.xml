@@ -1,15 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
-<TextView
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<TextView xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/action"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
-    android:layout_marginTop="8dp"
     android:layout_gravity="center"
+    android:layout_marginTop="8dp"
     android:drawableLeft="@drawable/info"
     android:drawablePadding="8dp"
-    android:text="TextView"
     android:padding="16dp"
-    android:textSize="24sp" >
+    android:text="TextView"
+    android:textSize="14sp">
 
 </TextView>

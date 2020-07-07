@@ -12,6 +12,7 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.nami.Detail
 import com.example.nami.R
+import com.example.nami.models.auth.LoginResponse
 import com.example.nami.models.detailModels.ListElement
 import kotlinx.android.synthetic.main.activity_detail.*
 import java.text.NumberFormat
@@ -22,7 +23,7 @@ class ItemsDetailAdapter(
     private var data: List<ListElement>,
     private val behavior: Int,
     private var compareList: MutableList<String>,
-    private var tv:TextView,
+    private val calculateAdjustValue: () -> Unit,
     private val checkBox: CheckBox,
     private val compareArticleList:List<String>
 ) : RecyclerView.Adapter<ItemsDetailAdapter.ViewHolder>() {
@@ -59,7 +60,7 @@ class ItemsDetailAdapter(
     ) {
         val elements = data[position]
         v.name.text = elements.article.name
-        v.idProduct.text = "${elements.article.codSofware}"
+        v.idProduct.text = "${elements.article.upc}"
         v.cant.text = "${compareList[position]}"
         v.cantTotal.text = elements.quantityArticle
 
@@ -69,15 +70,11 @@ class ItemsDetailAdapter(
             v.minusButton?.setOnClickListener {
                 v.moreButton?.visibility = View.VISIBLE
                 compareList[position] = (compareList[position].toInt() - 1).toString()
-                Detail.adjustvalue -= priceUnit
-                Log.i("ADJUSMKVALUE",Detail.adjustvalue.toString())
-                Log.i("loquelequito",priceUnit.toString())
                 onBindViewHolder(v, position)
             }
             v.minusButton?.setOnLongClickListener {
                 v.moreButton?.visibility = View.VISIBLE
                 compareList[position] = "1"
-                Detail.adjustvalue =0.0
                 onBindViewHolder(v, position)
                 it.isActivated
             }
@@ -92,13 +89,11 @@ class ItemsDetailAdapter(
             v.moreButton?.visibility = View.VISIBLE
             v.moreButton?.setOnClickListener {
                 compareList[position] = (compareList[position].toInt() + 1).toString()
-                Detail.adjustvalue+= priceUnit
                 onBindViewHolder(v, position)
 
             }
             v.moreButton?.setOnLongClickListener {
                 compareList[position] = (elements.quantityArticle.toInt() - 1).toString()
-                Detail.adjustvalue += elements.valueTotalArticle.toInt()
                 onBindViewHolder(v, position)
                 it.isActivated
             }
@@ -106,7 +101,7 @@ class ItemsDetailAdapter(
             v.cant.setTypeface(v.cant.typeface, Typeface.BOLD)
             v.moreButton?.visibility = View.GONE
         }
-        tv.text= NumberFormat.getCurrencyInstance(Locale("es","CO")).format(Detail.adjustvalue).toString()
+        calculateAdjustValue()
         checkBox.isChecked = compareArticleList.equals(compareList)
     }
 }  

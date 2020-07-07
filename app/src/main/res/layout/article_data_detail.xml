@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_marginTop="16dp"
+    android:layout_marginTop="8dp"
     tools:context=".Detail">
 
     <TextView
@@ -46,8 +46,8 @@
         android:textSize="16dp" />
 
     <LinearLayout
-        android:layout_width="90dp"
-        android:layout_height="30dp"
+        android:layout_width="120dp"
+        android:layout_height="40dp"
         android:layout_alignParentTop="true"
         android:layout_alignParentEnd="true"
         android:layout_alignParentRight="true"
@@ -58,22 +58,22 @@
 
         <ImageView
             android:id="@+id/minusButton"
-            android:layout_width="30dp"
-            android:layout_height="30dp"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
             app:srcCompat="@drawable/minusbox"
             tools:ignore="VectorDrawableCompat" />
 
         <TextView
             android:id="@+id/cant"
-            android:layout_width="30dp"
-            android:layout_height="30dp"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
             android:gravity="center"
             android:text="cant" />
 
         <ImageView
             android:id="@+id/moreButton"
-            android:layout_width="30dp"
-            android:layout_height="30dp"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
             app:srcCompat="@drawable/morebox"
             tools:ignore="VectorDrawableCompat" />
     </LinearLayout>
