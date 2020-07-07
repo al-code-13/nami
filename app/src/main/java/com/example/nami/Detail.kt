@@ -4,7 +4,6 @@ import android.content.Intent
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
-import android.util.Log
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
@@ -21,9 +20,10 @@ import com.example.nami.presenters.DetailUI
 import com.example.nami.utils.ButtonDialogActions
 import kotlinx.android.synthetic.main.activity_detail.*
 import java.text.NumberFormat
+import java.util.*
 
 class Detail : AppCompatActivity(), DetailUI {
-    private val numberFormat=NumberFormat.getCurrencyInstance()
+    private val numberFormat = NumberFormat.getCurrencyInstance(Locale("es", "CO"))
     private var presenter: DetailPresenter? = null
     var recyclerItemsDetail: RecyclerView? = null
     var userInfo = arrayOf<String>()
@@ -56,13 +56,13 @@ class Detail : AppCompatActivity(), DetailUI {
         phoneNumber.text = userInfo[5]
         method.text = userInfo[12]
         adress.text = userInfo[3]
-        Log.i("ERRORR", adjustvalue.toString())
         date.text = userInfo[6]
         time.text = userInfo[9].substring(0, userInfo[9].length - 13)
         observationsView = findViewById(R.id.editObservations)
         recyclerItemsDetail = findViewById(R.id.layoutArticles)
         presenter!!.actionDetail()
         checkBox.setOnClickListener { checkAll(checkBox.isChecked) }
+
     }
 
     private fun createArticleView(newFunction: Int) {
@@ -86,14 +86,22 @@ class Detail : AppCompatActivity(), DetailUI {
             if (data.order.service == "D") {
                 type.text = "Domicilio"
             }
+            if (userInfo[12] != "Datafono") {
+                pay.text = numberFormat.format(data.order.turns.toDouble()).toString()
+                change.text =
+                    numberFormat.format(data.order.turns.toDouble() - adjustvalue.toDouble())
+                        .toString()
+            } else {
+                pay.text = "No Aplica"
+                change.text = "No Aplica"
+            }
             orderValue.text =
-                (userInfo[4].toDouble() - data.order.deliveryValue.toDouble()).toString()
+                numberFormat.format(userInfo[4].toDouble() - data.order.deliveryValue.toDouble())
+                    .toString()
             delivered.text = numberFormat.format(data.order.deliveryValue.toDouble()).toString()
             adjustvalue = data.order.deliveryValue.toDouble()
             totalValue.text = numberFormat.format(userInfo[4].toDouble()).toString()
             comments.text = data.order.comments
-            pay.text = numberFormat.format(data.order.turns.toDouble()).toString()
-            change.text = numberFormat.format(data.order.turns.toDouble() - adjustvalue.toDouble()).toString()
             this.data = data
             for (i in data.order.detailOrder.list) {
                 articleList.add(
@@ -116,18 +124,27 @@ class Detail : AppCompatActivity(), DetailUI {
                 articleList[data.order.detailOrder.list.indexOf(i)] =
                     compareArticleList[data.order.detailOrder.list.indexOf(i)]
             }
+            adjustvalue = userInfo[4].toDouble()
             checkBox.isChecked = true
         } else {
             for (i in data.order.detailOrder.list) {
                 articleList[data.order.detailOrder.list.indexOf(i)] = "0"
             }
             checkBox.isChecked = false
+
+            adjustvalue = data.order.deliveryValue.toDouble()
         }
         createArticleView(behavior)
     }
 
     private fun createButtons(newFunction: Int) {
         runOnUiThread {
+            if (newFunction != 2) {
+                checkBox.visibility = View.GONE
+            }
+            else{
+                checkBox.visibility = View.VISIBLE
+            }
             buttonsLinearLayout.removeAllViews()
 
             val actionsList =

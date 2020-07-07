@@ -20,6 +20,8 @@ import com.example.nami.models.sections.OrdersList
 import com.example.nami.presenters.SectionPresenter
 import com.example.nami.utils.ButtonDialogActions
 import com.google.android.material.bottomsheet.BottomSheetDialog
+import java.text.NumberFormat
+import java.util.*
 
 class OrdersAdapter(
     private val mContext: Context,
@@ -131,7 +133,7 @@ class OrdersAdapter(
 
         holder.cell.text = mDataSet[position].phoneClient
 
-        holder.total.text = mDataSet[position].value
+        holder.total.text = NumberFormat.getCurrencyInstance(Locale("es","CO")).format(mDataSet[position].value?.toDouble())
 
     }
 

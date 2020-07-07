@@ -9,4 +9,7 @@
   <dimen name="item_margin_half">8dp</dimen>
 
   <dimen name="column_width">200dp</dimen>
+  <style name="body2">
+    <item name="android:textSize">14sp</item>
+  </style>
 </resources>

@@ -32,6 +32,7 @@
             android:drawableLeft="@drawable/person"
             android:drawablePadding="8dp"
             android:text="NAME USER"
+            android:textSize="16sp"
             android:textStyle="bold" />
 
         <TextView

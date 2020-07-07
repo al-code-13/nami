@@ -13,7 +13,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
 >
-        <activity android:name=".helpPage"
+        <activity android:name=".HelpPage"
             android:parentActivityName=".MainActivity" >
         </activity>
 

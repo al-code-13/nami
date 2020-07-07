@@ -5,7 +5,7 @@ import android.graphics.drawable.ColorDrawable
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 
-class helpPage : AppCompatActivity() {
+class HelpPage : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         val actionbar = supportActionBar
@@ -13,6 +13,6 @@ class helpPage : AppCompatActivity() {
         actionbar.setBackgroundDrawable(ColorDrawable(Color.RED))
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_help_page)
-
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
     }
 }

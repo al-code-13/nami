@@ -14,6 +14,8 @@ import com.example.nami.Detail
 import com.example.nami.R
 import com.example.nami.models.detailModels.ListElement
 import kotlinx.android.synthetic.main.activity_detail.*
+import java.text.NumberFormat
+import java.util.*
 
 class ItemsDetailAdapter(
     private val mContext: Context,
@@ -79,7 +81,8 @@ class ItemsDetailAdapter(
                 onBindViewHolder(v, position)
                 it.isActivated
             }
-        } else {
+        }
+        else {
             v.minusButton?.visibility = View.INVISIBLE
         }
 
@@ -103,7 +106,7 @@ class ItemsDetailAdapter(
             v.cant.setTypeface(v.cant.typeface, Typeface.BOLD)
             v.moreButton?.visibility = View.GONE
         }
-        tv.text= Detail.adjustvalue.toString()
+        tv.text= NumberFormat.getCurrencyInstance(Locale("es","CO")).format(Detail.adjustvalue).toString()
         checkBox.isChecked = compareArticleList.equals(compareList)
     }
 }  

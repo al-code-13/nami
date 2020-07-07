@@ -109,7 +109,7 @@ class MainActivity : AppCompatActivity(), SectionsUI {
                 footer {
                     primaryItem("Ayuda") {
                         onClick { _ ->
-                            val intent = Intent(this@MainActivity, helpPage::class.java)
+                            val intent = Intent(this@MainActivity, HelpPage::class.java)
                             startActivity(intent)
                             false
 
