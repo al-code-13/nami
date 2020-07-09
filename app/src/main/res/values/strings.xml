@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">nami</string>
+    <string name="app_name">Picking</string>
     <string name="user">Usuario</string>
     <string name="password">Contraseña</string>
     <string name="loginbutton">Ingresar</string>

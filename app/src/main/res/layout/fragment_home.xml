@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/fragmentContainer"
     android:layout_width="match_parent"
@@ -36,7 +37,22 @@
             android:layout_height="match_parent"
             android:clipToPadding="true"
             android:columnWidth="@dimen/column_width"
-            android:padding="@dimen/item_margin"></com.example.nami.AutofitRecyclerView>
+            android:padding="@dimen/item_margin"
+            android:visibility="gone"></com.example.nami.AutofitRecyclerView>
+
+        <LinearLayout
+            android:id="@+id/emptyImage"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:visibility="visible"
+            app:srcCompat="@drawable/empty"
+            android:contentDescription="Nada que ver por aqui"/>
+        </LinearLayout>
     </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
 
 

@@ -26,7 +26,8 @@ import java.util.*
 class OrdersAdapter(
     private val mContext: Context,
     private val mDataSet: List<OrdersList>,
-    private val presenter: SectionPresenter
+    private val presenter: SectionPresenter,
+    private val idSection:Int
 ) :
     RecyclerView.Adapter<OrdersAdapter.ViewHolder>() {
 
@@ -88,28 +89,10 @@ class OrdersAdapter(
     }
 
     fun verDetalle(items: OrdersList) {
-        var datos: Array<String?> = arrayOf(
-            items.id.toString(),
-            items.name,
-            items.lastname,
-            items.address,
-            items.value,
-            items.phoneClient,
-            items.date,
-            items.origin,
-            items.idCodBranch.toString(),
-            items.hour,
-            items.idState.toString(),
-            items.observations,
-            items.methodPay!!.name,
-            items.pickingOrder.toString(),
-            items.detailOrder!!.totalItems.toString(),
-            items.behavior.toString()
-        )
         val intent = Intent(mContext, Detail::class.java)
         intent.putExtra("orderId", items.id)
-        intent.putExtra("userInfo", datos)
         intent.putExtra("behavior", items.behavior)
+        intent.putExtra("idSection",idSection)
         startActivity(mContext, intent, null)
     }
 

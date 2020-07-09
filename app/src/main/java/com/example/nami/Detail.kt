@@ -19,6 +19,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.nami.adapter.ItemsDetailAdapter
 import com.example.nami.controllers.services.ServiceFactory
 import com.example.nami.models.detailModels.DetailResponse
+import com.example.nami.models.sections.OrdersList
 import com.example.nami.presenters.DetailPresenter
 import com.example.nami.presenters.DetailUI
 import com.example.nami.utils.ButtonDialogActions
@@ -31,12 +32,10 @@ class Detail : AppCompatActivity(), DetailUI {
     private val numberFormat = NumberFormat.getCurrencyInstance(Locale("es", "CO"))
     private var presenter: DetailPresenter? = null
     var recyclerItemsDetail: RecyclerView? = null
-    var userInfo = arrayOf<String>()
     var behavior = -1
     lateinit var data: DetailResponse
     var articleList: MutableList<String> = mutableListOf<String>()
     var compareArticleList: MutableList<String> = mutableListOf<String>()
-
     companion object {
         var adjustvalue: Double = 0.0
     }
@@ -45,22 +44,15 @@ class Detail : AppCompatActivity(), DetailUI {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_detail)
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
+        val actionbar = supportActionBar
 
         val intent: Intent = intent
         val orderId = intent.getIntExtra("orderId", -1)
-
-        val actionbar = supportActionBar
-        actionbar!!.title = "Orden #$orderId"
         behavior = intent.getIntExtra("behavior", -1)
-        userInfo = intent.getStringArrayExtra("userInfo")
-        presenter = DetailPresenter(orderId, this)
-        name.text = userInfo[1] + " " + userInfo[2]
-        idProduct.text = userInfo[0]
-        phoneNumber.text = userInfo[5]
-        method.text = userInfo[12]
-        adress.text = userInfo[3]
-        date.text = userInfo[6]
-        time.text = userInfo[9].substring(0, userInfo[9].length - 13)
+        val idSection = intent.getIntExtra("idSection", -1)
+        actionbar!!.title = "Orden #$orderId"
+        presenter = DetailPresenter(orderId, this,idSection)
+
         recyclerItemsDetail = findViewById(R.id.layoutArticles)
         presenter!!.actionDetail()
         checkBox.setOnClickListener { checkAll(checkBox.isChecked) }
@@ -239,17 +231,15 @@ class Detail : AppCompatActivity(), DetailUI {
                 checkBox,
                 compareArticleList
             )
-
         calculateAdjustTotal()
-        //checkBox.isChecked = compareArticleList.equals(articleList)
     }
 
-    override fun showDetailInfo(data: DetailResponse) {
+    override fun showDetailInfo(data: DetailResponse,order:OrdersList) {
         runOnUiThread {
             if (data.order.service == "D") {
                 type.text = "Domicilio"
             }
-            if (userInfo[12] != "Datafono") {
+            if (order.methodPay!!.name != "Datafono") {
                 pay.text = numberFormat.format(data.order.turns.toDouble()).toString()
                 change.text =
                     numberFormat.format(data.order.turns.toDouble() - adjustvalue.toDouble())
@@ -258,12 +248,19 @@ class Detail : AppCompatActivity(), DetailUI {
                 pay.text = "No Aplica"
                 change.text = "No Aplica"
             }
+            name.text = order.name+" "+order.lastname
+            idProduct.text = order.id.toString()
+            phoneNumber.text = order.phoneClient
+            method.text = order.methodPay!!.name.toString()
+            adress.text = order.address
+            date.text = order.date
+            time.text = order.hour!!.substring(0, order.hour!!.length - 13)
             orderValue.text =
-                numberFormat.format(userInfo[4].toDouble() - data.order.deliveryValue.toDouble())
+                numberFormat.format(order.value!!.toDouble() - data.order.deliveryValue.toDouble())
                     .toString()
             delivered.text = numberFormat.format(data.order.deliveryValue.toDouble()).toString()
             adjustvalue = data.order.deliveryValue.toDouble()
-            totalValue.text = numberFormat.format(userInfo[4].toDouble()).toString()
+            totalValue.text = numberFormat.format(order.value!!.toDouble()).toString()
             comments.text = data.order.comments
             this.data = data
             for (i in data.order.detailOrder.list) {
@@ -287,7 +284,6 @@ class Detail : AppCompatActivity(), DetailUI {
                 articleList[data.order.detailOrder.list.indexOf(i)] =
                     compareArticleList[data.order.detailOrder.list.indexOf(i)]
             }
-            adjustvalue = userInfo[4].toDouble()
             checkBox.isChecked = true
         } else {
             for (i in data.order.detailOrder.list) {
@@ -360,6 +356,7 @@ class Detail : AppCompatActivity(), DetailUI {
 
     override fun showDetailFunctionReleased() {
         runOnUiThread {
+            Toast.makeText(this,"Pedido liberado satisfactoriamente",Toast.LENGTH_SHORT).show()
             createArticleView(3)
             createButtons(3)
         }
@@ -367,6 +364,7 @@ class Detail : AppCompatActivity(), DetailUI {
 
     override fun showDetailFunctionPicked() {
         runOnUiThread {
+            Toast.makeText(this,"Pedido guardado satisfactoriamente",Toast.LENGTH_SHORT).show()
             createArticleView(7)
             createButtons(7)
         }
@@ -374,6 +372,7 @@ class Detail : AppCompatActivity(), DetailUI {
 
     override fun showDetailFunctionTaked() {
         runOnUiThread {
+            Toast.makeText(this,"Pedido tomado satisfactoriamente",Toast.LENGTH_SHORT).show()
             createArticleView(2)
             createButtons(2)
         }
@@ -381,6 +380,7 @@ class Detail : AppCompatActivity(), DetailUI {
 
     override fun showDetailFunctioDeliverCourier() {
         runOnUiThread {
+            Toast.makeText(this,"Pedido entregado satisfactoriamente",Toast.LENGTH_SHORT).show()
             createArticleView(8)
             createButtons(8)
         }
@@ -388,6 +388,7 @@ class Detail : AppCompatActivity(), DetailUI {
 
     override fun showDetailFunctionDeliverCustomer() {
         runOnUiThread {
+            Toast.makeText(this,"Pedido entregado satisfactoriamente",Toast.LENGTH_SHORT).show()
             createArticleView(9)
             createButtons(9)
         }
@@ -395,6 +396,7 @@ class Detail : AppCompatActivity(), DetailUI {
 
     override fun showDetailFunctionFreeze() {
         runOnUiThread {
+            Toast.makeText(this,"Pedido congelado satisfactoriamente",Toast.LENGTH_SHORT).show()
             createArticleView(behavior)
             createButtons(behavior)
         }

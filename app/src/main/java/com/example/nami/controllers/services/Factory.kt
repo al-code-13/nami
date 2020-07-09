@@ -8,6 +8,7 @@ import okhttp3.OkHttpClient
 import okhttp3.Request
 import okhttp3.RequestBody.Companion.toRequestBody
 import java.io.IOException
+import java.util.concurrent.TimeUnit
 
 open class ServiceFactory {
 
@@ -20,7 +21,7 @@ open class ServiceFactory {
     val routeOrders: String = "/orders/"
     val routeLogin: String = "/login"
     val routeSections: String = "/sections"
-    val routeReasons:String="/reasons"
+    val routeReasons: String = "/reasons"
     val routeTake: String = "/take"
     val routeRelease: String = "/release"
     val routePicking = "/checked"
@@ -29,9 +30,11 @@ open class ServiceFactory {
     val routeFreeze: String = "freeze"
     val routeMe: String = "/me"
 
+    var timeOut = 40L
 
-
-    private val client: OkHttpClient = OkHttpClient().newBuilder().build()
+    private val client: OkHttpClient =
+        OkHttpClient().newBuilder().connectTimeout(timeOut, TimeUnit.SECONDS)
+            .readTimeout(timeOut, TimeUnit.SECONDS).build()
 
 
     @Throws(IOException::class)
@@ -72,7 +75,7 @@ open class ServiceFactory {
 
     companion object {
         lateinit var data: SectionsResponse
-        var token: String?=null
+        var token: String? = null
         lateinit var reasons: ReasonsResponse
     }
 

@@ -1,14 +1,19 @@
 package com.example.nami.presenters
 
 import android.util.Log
-import com.example.nami.controllers.services.ServiceInteractor
-
 import com.example.nami.models.detailModels.DetailResponse
 import com.example.nami.models.detailModels.ListDataPicker
+import com.example.nami.models.sections.OrdersList
+import com.example.nami.models.sections.SectionResponse
+import io.realm.kotlin.where
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.Job
+import kotlinx.coroutines.launch
 
 
 interface DetailUI {
-    fun showDetailInfo(data: DetailResponse)
+    fun showDetailInfo(data: DetailResponse, order: OrdersList)
     fun showError(error: String)
     fun showDetailFunctionTaked()
     fun showDetailFunctionReleased()
@@ -18,11 +23,29 @@ interface DetailUI {
     fun showDetailFunctionFreeze()
 }
 
-class DetailPresenter(private val orderId: Int, private val ui: DetailUI) {
-    private val interactor = ServiceInteractor()
+class DetailPresenter(
+    private val orderId: Int,
+    private val ui: DetailUI,
+    private val idSection: Int
+) : BasePresenter() {
+
+    private var viewModelJob: Job = Job()
+    private val uiScope = CoroutineScope(Dispatchers.Main + viewModelJob)
+
     fun actionDetail() {
         interactor.getDetail(orderId, { data ->
-            ui.showDetailInfo(data)
+            uiScope.launch {
+                try {
+                    val realmResponse =
+                        realm!!.where<SectionResponse>().equalTo("id", idSection).findFirst()!!
+                    if (realmResponse != null) {
+                        val order = realmResponse.orders!!.first { it.id == orderId }
+                        ui.showDetailInfo(data, order)
+                    }
+                } catch (e: Exception) {
+                    Log.i("Errorbuscandobd", e.message)
+                }
+            }
         }, { error ->
             ui.showError(error)
         })
@@ -46,17 +69,22 @@ class DetailPresenter(private val orderId: Int, private val ui: DetailUI) {
 
     fun actionPick(
         data: DetailResponse,
-        adjustmentValue:Double,
+        adjustmentValue: Double,
         articleList: List<String>,
         observations: String?
     ) {
 
-        val productsok=data.order.detailOrder.list==articleList
-        var listDataPicker:MutableList<ListDataPicker> = mutableListOf<ListDataPicker>()
-        for(i in data.order.detailOrder.list){
-            listDataPicker.add(ListDataPicker(i.id,articleList[data.order.detailOrder.list.indexOf(i)]))
+        val productsok = data.order.detailOrder.list == articleList
+        var listDataPicker: MutableList<ListDataPicker> = mutableListOf<ListDataPicker>()
+        for (i in data.order.detailOrder.list) {
+            listDataPicker.add(
+                ListDataPicker(
+                    i.id,
+                    articleList[data.order.detailOrder.list.indexOf(i)]
+                )
+            )
         }
-        Log.i("adjustemenscms",adjustmentValue.toString())
+        Log.i("adjustemenscms", adjustmentValue.toString())
         interactor.putPickingOrder(
             listDataPicker,
             orderId,

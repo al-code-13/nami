@@ -9,18 +9,15 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.GridView
-import android.widget.TextView
 import android.widget.Toast
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
-import com.example.nami.adapter.OrdersAdapter
 import com.example.nami.adapter.IndicatorsAdapter
+import com.example.nami.adapter.OrdersAdapter
 import com.example.nami.models.sections.Behavior
-import com.example.nami.presenters.SectionPresenter
-
 import com.example.nami.models.sections.SectionResponse
-import com.example.nami.presenters.BasePresenter
+import com.example.nami.presenters.SectionPresenter
 import com.example.nami.presenters.SectionUI
 import kotlinx.android.synthetic.main.fragment_home.*
 
@@ -31,7 +28,7 @@ class SectionFragment(
     private val sectionId: Int
 
 ) : Fragment(), SectionUI {
-    private val presenter = SectionPresenter(this,mContext)
+    private val presenter = SectionPresenter(this, mContext)
     private var reciclerView: AutofitRecyclerView? = null
     private var adapter: IndicatorsAdapter? = null
     private var itemsRefresh: SwipeRefreshLayout? = null
@@ -56,8 +53,8 @@ class SectionFragment(
         gridView = v.findViewById<GridView>(R.id.gridItems)
         adapter = IndicatorsAdapter(mContext, legendList)
         gridView.adapter = adapter
-        if(legendList.size<=0){
-            gridView.visibility=View.GONE
+        if (legendList.isEmpty()) {
+            gridView.visibility = View.GONE
         }
         itemsRefresh = v.findViewById(R.id.itemsswipetorefresh)
 
@@ -67,33 +64,31 @@ class SectionFragment(
 
     override fun showData(data: SectionResponse) {
         activity?.runOnUiThread {
-            if(data.orders!!.size<=0){
-                val nothing=layoutInflater.inflate(R.layout.action_item,null)
-                nothing.findViewById<TextView>(R.id.action).text="¯\\_(ツ)_/¯"
-                itemsswipetorefresh.addView(nothing)
-                Log.i("¯\\_(ツ)_/¯","¯\\_(ツ)_/¯")
-                reciclerView?.visibility=View.GONE
-            }
-            else{
+            if (data.orders!!.size <= 0) {
+                my_grid_view_list.visibility = View.GONE
+                emptyImage.visibility = View.VISIBLE
+                reciclerView?.visibility = View.GONE
+            } else {
+                my_grid_view_list.visibility = View.VISIBLE
+                emptyImage.visibility = View.GONE
 
 
-
-            reciclerView?.adapter = OrdersAdapter(mContext, data.orders!!,presenter)
-            itemsRefresh?.setProgressBackgroundColorSchemeColor(
-                ContextCompat.getColor(
-                    mContext,
-                    R.color.colorPrimary
+                reciclerView?.adapter = OrdersAdapter(mContext, data.orders!!, presenter,sectionId)
+                itemsRefresh?.setProgressBackgroundColorSchemeColor(
+                    ContextCompat.getColor(
+                        mContext,
+                        R.color.colorPrimary
+                    )
                 )
-            )
-            itemsRefresh?.setColorSchemeColors(Color.WHITE)
-            itemsRefresh?.setOnRefreshListener {
-                presenter.actionRefreshSection(
-                    sectionId
-                )
-                reciclerView?.adapter = OrdersAdapter(mContext, data.orders!!,presenter)
-                gridView.adapter = adapter
-                itemsRefresh?.isRefreshing = false
-            }
+                itemsRefresh?.setColorSchemeColors(Color.WHITE)
+                itemsRefresh?.setOnRefreshListener {
+                    presenter.actionRefreshSection(
+                        sectionId
+                    )
+                    reciclerView?.adapter = OrdersAdapter(mContext, data.orders!!, presenter,sectionId)
+                    gridView.adapter = adapter
+                    itemsRefresh?.isRefreshing = false
+                }
             }
         }
     }

@@ -150,14 +150,15 @@ class ServiceInteractor : ServiceFactory() {
         then: (SectionResponse) -> Unit,
         error: (String) -> Unit
     ) {
-
         val url = "$serverUrl$routeBase$routeSections/$section"
+        Log.i("urlSection",url)
         withContext(Dispatchers.IO) {
             get(url, token!!).enqueue(object : Callback {
                 override fun onResponse(call: Call, response: Response) {
                     Log.i("ME LLAMARON", "POS AQUI ESTOY")
 
                     val body = response.body?.string()
+                    Log.i("bodySection",body)
                     val gson = GsonBuilder().create()
                     val res = gson.fromJson(body, SectionResponse::class.java)
                     if (response.isSuccessful) {
@@ -168,6 +169,7 @@ class ServiceInteractor : ServiceFactory() {
                 }
 
                 override fun onFailure(call: Call, e: IOException) {
+                    Log.i("timeout?",e.message)
                     error("Error en el servicio")
                 }
             })

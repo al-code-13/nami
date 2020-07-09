@@ -1,6 +1,7 @@
 package com.example.nami.presenters
 
 import android.content.Context
+import android.util.Log
 import com.example.nami.models.sections.SectionResponse
 import io.realm.kotlin.where
 import kotlinx.coroutines.*
@@ -41,6 +42,7 @@ class SectionPresenter(private val ui: SectionUI, val context: Context) : BasePr
     }
 
     fun actionRefreshSection(idSection: Int) {
+        Log.i("refresh section",idSection.toString())
         interactor.getSection(
             idSection,
             { data ->
