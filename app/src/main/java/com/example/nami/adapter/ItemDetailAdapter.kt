@@ -64,11 +64,13 @@ class ItemsDetailAdapter(
         if(behavior!=2){
             v.cant.text = elements.quantityArticle
         }
+        else if(behavior==7){
+            v.cant.text= elements.picking.toString()
+        }
         else {
             v.cant.text = "${compareList[position]}"
         }
             v.cantTotal.text = elements.quantityArticle
-        val priceUnit:Double=elements.valueTotalArticle.toDouble()/elements.quantityArticle.toDouble()
         if (compareList[position].toInt() > 0) {
             v.minusButton?.visibility = View.VISIBLE
             v.minusButton?.setOnClickListener {

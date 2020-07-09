@@ -69,7 +69,7 @@ class Detail : AppCompatActivity(), DetailUI {
     }
 
     private fun scannerFunction() {
-
+        if(behavior==2){
         var productScanned =
             data.order.detailOrder.list.firstOrNull { it.article.upc == edit_codecito.text.toString() }
         if (productScanned != null) {
@@ -213,7 +213,7 @@ class Detail : AppCompatActivity(), DetailUI {
         } else {
             Toast.makeText(this, "El producto no se encuentra en esta orden", Toast.LENGTH_SHORT)
                 .show()
-        }
+        }}
         edit_codecito.text.clear()
     }
 

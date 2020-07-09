@@ -67,10 +67,6 @@ class SectionFragment(
 
             spinner = v.findViewById(R.id.spinnerView) as Spinner
 
-            presenter.actionSection(
-                sectionId, today, today
-            )
-
             spinner.adapter =
                 ArrayAdapter<String>(mContext, R.layout.support_simple_spinner_dropdown_item, days)
             spinner.onItemSelectedListener = object :
@@ -114,37 +110,34 @@ class SectionFragment(
     override fun showData(data: SectionResponse) {
         activity?.runOnUiThread {
             if (data.orders!!.size <= 0) {
-                Toast.makeText(mContext, "No hay ordenes en esta seccion", Toast.LENGTH_SHORT)
-                    .show()
-
-//                my_grid_view_list.visibility = View.GONE
-                //              emptyImage.visibility = View.VISIBLE
-                //            reciclerView?.visibility = View.GONE
+                my_grid_view_list.visibility = View.GONE
+                emptyImage.visibility = View.VISIBLE
+                reciclerView?.visibility = View.GONE
             } else {
                 my_grid_view_list.visibility = View.VISIBLE
                 emptyImage.visibility = View.GONE
 
-
                 reciclerView?.adapter = OrdersAdapter(mContext, data.orders!!, presenter, sectionId)
-                itemsRefresh?.setProgressBackgroundColorSchemeColor(
-                    ContextCompat.getColor(
-                        mContext,
-                        R.color.colorPrimary
-                    )
-                )
-                itemsRefresh?.setColorSchemeColors(Color.WHITE)
-                itemsRefresh?.setOnRefreshListener {
-                    presenter.actionRefreshSection(
-                        sectionId,
-                        selectedDay,
-                        selectedDay
-                    )
-                    reciclerView?.adapter =
-                        OrdersAdapter(mContext, data.orders!!, presenter, sectionId)
-                    gridView.adapter = adapter
-                    itemsRefresh?.isRefreshing = false
-                }
             }
+            itemsRefresh?.setProgressBackgroundColorSchemeColor(
+                ContextCompat.getColor(
+                    mContext,
+                    R.color.colorPrimary
+                )
+            )
+            itemsRefresh?.setColorSchemeColors(Color.WHITE)
+            itemsRefresh?.setOnRefreshListener {
+                presenter.actionRefreshSection(
+                    sectionId,
+                    selectedDay,
+                    selectedDay
+                )
+                reciclerView?.adapter =
+                    OrdersAdapter(mContext, data.orders!!, presenter, sectionId)
+                gridView.adapter = adapter
+                itemsRefresh?.isRefreshing = false
+            }
+
         }
     }
 

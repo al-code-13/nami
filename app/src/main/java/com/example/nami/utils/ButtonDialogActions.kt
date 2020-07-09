@@ -48,13 +48,16 @@ class ButtonDialogActions {
                                 val title =
                                     dialogView.findViewById<TextView>(R.id.titleOrderId)
                                 title.text = "¿Esta seguro de liberar esta orden?"
+
+                                val observationsView=dialogView.findViewById<EditText>(R.id.editObservations)
+                                observationsView.visibility=View.VISIBLE
                                 val layoutActions =
                                     dialogView.findViewById<LinearLayout>(R.id.listActions)
                                 val v: View =
                                     LayoutInflater.from(mContext)
                                         .inflate(R.layout.action_item, null)
                                 v.setOnClickListener {
-                                    val observations = null
+                                    var observations =observationsView.text.toString()
                                     presenter.actionRelease(items.id!!, observations)
                                     dialog.dismiss()
                                 }

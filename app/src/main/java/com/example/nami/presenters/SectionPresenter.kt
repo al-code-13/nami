@@ -83,11 +83,22 @@ class SectionPresenter(private val ui: SectionUI, val context: Context) : BasePr
     }
 
     fun actionRelease(orderId: Int, observations: String?) {
-        interactor.putReleaseOrder(orderId, observations, { data ->
-            ui.actionSuccess(data.message)
-        }, { error ->
-            ui.showError(error)
-        })
+        if(observations.isNullOrEmpty()||observations.isNullOrBlank() ){
+
+            interactor.putReleaseOrder(orderId, null, { data ->
+                ui.actionSuccess(data.message)
+            }, { error ->
+                ui.showError(error)
+            })
+        }
+        else{
+            Log.i("observationsxddd", observations.toString())
+            interactor.putReleaseOrder(orderId, observations, { data ->
+                ui.actionSuccess(data.message)
+            }, { error ->
+                ui.showError(error)
+            })
+        }
     }
 
     fun actionPutDeliverCourier(orderId: Int) {

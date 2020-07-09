@@ -60,14 +60,21 @@ class DetailPresenter(
     }
 
     fun actionRelease(observations: String?) {
-        if (observations != null && observations.length <= 0) {
-            observations == null
+
+        if (observations.isNullOrEmpty() || observations.isNullOrBlank()) {
+            interactor.putReleaseOrder(orderId, null, { data ->
+                ui.showDetailFunctionReleased()
+            }, { error ->
+                ui.showError(error)
+            })
+        } else {
+            interactor.putReleaseOrder(orderId, observations, { data ->
+                ui.showDetailFunctionReleased()
+            }, { error ->
+                ui.showError(error)
+            })
         }
-        interactor.putReleaseOrder(orderId, observations, { data ->
-            ui.showDetailFunctionReleased()
-        }, { error ->
-            ui.showError(error)
-        })
+
     }
 
     fun actionPick(
@@ -101,18 +108,33 @@ class DetailPresenter(
         Log.i("articleList", articleList.toString())
         Log.i("adjustemenscms", adjustmentValue.toString())
         Log.i("listPicker", listDataPicker.toString())
-        interactor.putPickingOrder(
-            listDataPicker,
-            orderId,
-            productsok,
-            adjustmentValue.toString(),
-            observations,
-            { data ->
-                ui.showDetailFunctionPicked()
-            },
-            { error ->
-                ui.showError(error)
-            })
+        if (observations.isNullOrEmpty() || observations.isNullOrBlank()) {
+            interactor.putPickingOrder(
+                listDataPicker,
+                orderId,
+                productsok,
+                adjustmentValue.toString(),
+                null,
+                { data ->
+                    ui.showDetailFunctionPicked()
+                },
+                { error ->
+                    ui.showError(error)
+                })
+        } else {
+            interactor.putPickingOrder(
+                listDataPicker,
+                orderId,
+                productsok,
+                adjustmentValue.toString(),
+                observations,
+                { data ->
+                    ui.showDetailFunctionPicked()
+                },
+                { error ->
+                    ui.showError(error)
+                })
+        }
     }
 
     fun actionPutDeliverCourier() {
