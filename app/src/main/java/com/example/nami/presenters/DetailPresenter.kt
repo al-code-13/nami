@@ -60,6 +60,9 @@ class DetailPresenter(
     }
 
     fun actionRelease(observations: String?) {
+        if (observations != null && observations.length <= 0) {
+            observations == null
+        }
         interactor.putReleaseOrder(orderId, observations, { data ->
             ui.showDetailFunctionReleased()
         }, { error ->
@@ -70,21 +73,34 @@ class DetailPresenter(
     fun actionPick(
         data: DetailResponse,
         adjustmentValue: Double,
+        compareArticleList: List<String>,
         articleList: List<String>,
         observations: String?
     ) {
 
-        val productsok = data.order.detailOrder.list == articleList
+        val productsok = compareArticleList.equals(articleList)
         var listDataPicker: MutableList<ListDataPicker> = mutableListOf<ListDataPicker>()
-        for (i in data.order.detailOrder.list) {
-            listDataPicker.add(
-                ListDataPicker(
-                    i.id,
-                    articleList[data.order.detailOrder.list.indexOf(i)]
-                )
-            )
+        if (productsok != true) {
+            for (i in data.order.detailOrder.list) {
+                if (compareArticleList[data.order.detailOrder.list.indexOf(i)] != articleList[data.order.detailOrder.list.indexOf(
+                        i
+                    )]
+                ) {
+                    listDataPicker.add(
+                        ListDataPicker(
+                            i.id,
+                            articleList[data.order.detailOrder.list.indexOf(i)].toString()
+                        )
+                    )
+                }
+            }
         }
+        Log.i("observaciones", observations)
+        Log.i("productsOk", productsok.toString())
+        Log.i("prinarticleList", data.order.detailOrder.list.toString())
+        Log.i("articleList", articleList.toString())
         Log.i("adjustemenscms", adjustmentValue.toString())
+        Log.i("listPicker", listDataPicker.toString())
         interactor.putPickingOrder(
             listDataPicker,
             orderId,

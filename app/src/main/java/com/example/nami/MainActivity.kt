@@ -2,6 +2,7 @@ package com.example.nami
 
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.viewpager.widget.ViewPager
@@ -11,12 +12,15 @@ import co.zsmb.materialdrawerkt.builders.footer
 import co.zsmb.materialdrawerkt.draweritems.badge
 import co.zsmb.materialdrawerkt.draweritems.badgeable.primaryItem
 import co.zsmb.materialdrawerkt.draweritems.profile.profile
+import co.zsmb.materialdrawerkt.imageloader.drawerImageLoader
 import com.example.nami.adapter.SectionsAdapter
 import com.example.nami.models.sections.SectionsResponse
 import com.example.nami.models.user.UserResponse
 import com.example.nami.presenters.SectionsPresenter
 import com.example.nami.presenters.SectionsUI
 import com.google.android.material.tabs.TabLayout
+import com.mikepenz.materialdrawer.util.DrawerUIUtils
+import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity(), SectionsUI {
@@ -33,13 +37,28 @@ class MainActivity : AppCompatActivity(), SectionsUI {
         presenter.actionSections()
         tabLayout = findViewById(R.id.tabLayout)
         viewPager = findViewById(R.id.viewPager)
+        drawerImageLoader {
+            placeholder { ctx, _ ->
+                DrawerUIUtils.getPlaceHolder(ctx)
+            }
+            set { imageView, uri, placeholder, _ ->
+                Picasso.with(imageView.context)
+                    .load(uri)
+                    .placeholder(placeholder)
+                    .into(imageView)
+            }
+            cancel { imageView ->
+                Picasso.with(imageView.context)
+                    .cancelRequest(imageView)
+            }
+        }
     }
     //Funcion cuando responde el servicio
     override fun showSection(data: SectionsResponse, userData: UserResponse) {
         //Se corre en el hilo principal
         runOnUiThread {
             //por cada seccion se genera una pestaña
-            toolbar3.title = "${userData.user!!.lastname}"
+            toolbar3.title = "${userData.user!!.branchs?.get(0)!!.name}"
             for (section in data.sections!!) {
                 tabLayout!!.addTab(tabLayout!!.newTab().setText(section.name))
             }
@@ -69,8 +88,9 @@ class MainActivity : AppCompatActivity(), SectionsUI {
                 this.closeOnClick = true
                 this.toolbar = toolbar3
                 accountHeader {
-                    profile("${userData.user!!.name}", "${userData.user!!.role!!.name}") {
-                        //icon = "http://some.site/samantha.png"
+                    profile("${userData.user!!.name} ${userData.user!!.lastname}", "${userData.user!!.role!!.name} ${userData.user!!.branchs?.get(0)!!.name}") {
+                        iconUrl="${userData.user!!.branchs!!.get(0)!!.establishment!!.logo}"
+                        Log.i("iconUrl","${userData.user!!.branchs!![0]!!.establishment!!.logo}")
                     }
                     this.alternativeSwitching=false
                 }
@@ -138,4 +158,5 @@ class MainActivity : AppCompatActivity(), SectionsUI {
         val intent = Intent(this, Login::class.java)
         startActivity(intent)
     }
+
 }

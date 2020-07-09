@@ -23,7 +23,8 @@ class SectionsAdapter(
         return SectionFragment(
             myContext,
             legendSection(sectionsList[position].behaviors!!),
-            sectionsList[position].id!!
+            sectionsList[position].id!!,
+            sectionsList[position].filter
         )
     }
 

@@ -1,6 +1,7 @@
 package com.example.nami.models.detailModels
 
 data class PickingOrderRequest (
+    val idOrder :Int,
     val listDataPicker: List<ListDataPicker>,
     val productosok: Boolean,
     val totalPicker: String,

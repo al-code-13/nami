@@ -290,6 +290,7 @@ class ButtonDialogActions {
 
     fun actionsDetail(
         mContext: Context, presenter: DetailPresenter, id: Int, data: DetailResponse,
+        compareArticleList:List<String>,
         articleList: MutableList<String> = mutableListOf<String>()
     ) {
         var observations: String? = null
@@ -320,6 +321,7 @@ class ButtonDialogActions {
                     presenter.actionPick(
                         data,
                         Detail.adjustvalue,
+                        compareArticleList,
                         articleList,
                         observations
                     )

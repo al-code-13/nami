@@ -137,20 +137,24 @@ class ServiceInteractor : ServiceFactory() {
 
     fun getSection(
         section: Int,
+        initialDate:String?="null",
+        finalDate:String?="null",
         then: (SectionResponse) -> Unit,
         error: (String) -> Unit
     ) {
         uiScope.launch {
-            getSectionCorutine(section, then, error)
+            getSectionCorutine(section,initialDate,finalDate, then, error)
         }
     }
 
     private suspend fun getSectionCorutine(
         section: Int,
+        initialDate:String?="null",
+        finalDate:String?="null",
         then: (SectionResponse) -> Unit,
         error: (String) -> Unit
     ) {
-        val url = "$serverUrl$routeBase$routeSections/$section"
+        val url = "$serverUrl$routeBase$routeSections/$section/$initialDate/$finalDate"
         Log.i("urlSection",url)
         withContext(Dispatchers.IO) {
             get(url, token!!).enqueue(object : Callback {
@@ -334,6 +338,7 @@ class ServiceInteractor : ServiceFactory() {
     ) {
         val url = "$serverUrl$routeBase$routeOrders$idOrder$routePicking"
         val request = PickingOrderRequest(
+            idOrder,
             listDataPicker,
             productosok,
             totalPicker,

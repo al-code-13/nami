@@ -61,9 +61,13 @@ class ItemsDetailAdapter(
         val elements = data[position]
         v.name.text = elements.article.name
         v.idProduct.text = "${elements.article.upc}"
-        v.cant.text = "${compareList[position]}"
-        v.cantTotal.text = elements.quantityArticle
-
+        if(behavior!=2){
+            v.cant.text = elements.quantityArticle
+        }
+        else {
+            v.cant.text = "${compareList[position]}"
+        }
+            v.cantTotal.text = elements.quantityArticle
         val priceUnit:Double=elements.valueTotalArticle.toDouble()/elements.quantityArticle.toDouble()
         if (compareList[position].toInt() > 0) {
             v.minusButton?.visibility = View.VISIBLE

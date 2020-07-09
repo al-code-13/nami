@@ -273,6 +273,7 @@ class Detail : AppCompatActivity(), DetailUI {
                     i.quantityArticle
                 )
             }
+
             createArticleView(behavior)
             createButtons(behavior)
         }
@@ -329,6 +330,7 @@ class Detail : AppCompatActivity(), DetailUI {
                             presenter!!,
                             action.id!!,
                             data,
+                            compareArticleList,
                             articleList
                         )
                     }
@@ -338,13 +340,13 @@ class Detail : AppCompatActivity(), DetailUI {
         }
     }
 
+
     private fun calculateAdjustTotal() {
         adjustvalue = data.order.deliveryValue.toDouble()
         for (i in data.order.detailOrder.list) {
             var unitValue: Double = i.valueTotalArticle.toDouble() / i.quantityArticle.toDouble()
             adjustvalue += unitValue * articleList[data.order.detailOrder.list.indexOf(i)].toDouble()
-            Log.i("valor ajustao", adjustvalue.toString())
-        }
+            }
         adjustTotal.text= NumberFormat.getCurrencyInstance(Locale("es","CO")).format(Detail.adjustvalue).toString()
     }
 

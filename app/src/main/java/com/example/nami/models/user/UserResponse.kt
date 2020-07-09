@@ -15,19 +15,28 @@ open class User (
     var alias: String? = null,
     var name: String? = null,
     var lastname: String? = null,
-    var phone: String? = null,
+    var phone: Int? = null,
     var role: Role? = null,
-    var branchs: Branchs? = null
+    var branchs: RealmList<Branch>? = null
 ): RealmObject()
 
-open class Branchs (
-    var list: RealmList<ListElement>? = null
+
+open class Branch (
+    var id: Int? = null,
+    var name: String? = null,
+    var establishment: Establishment? = null
 ): RealmObject()
 
 open class ListElement (
     var branch: Int? = null,
     var establishment: Int? = null
 ): RealmObject()
+
+open class Establishment (
+    var id: Int? = null,
+    var name: String? = null,
+    var logo: String? = null
+):RealmObject()
 
 open class Role (
     var id: Int? = null,

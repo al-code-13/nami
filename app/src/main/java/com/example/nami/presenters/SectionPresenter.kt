@@ -18,13 +18,15 @@ class SectionPresenter(private val ui: SectionUI, val context: Context) : BasePr
     private var viewModelJob: Job = Job()
     private val uiScope = CoroutineScope(Dispatchers.Main + viewModelJob)
 
-    fun actionSection(idSection: Int) {
+    fun actionSection(idSection: Int,initialDate:String?="null",finalDate:String?="null") {
         uiScope.launch {
             try {
                 val realmResponse = realm!!.where<SectionResponse>().equalTo("id", idSection).findFirst()
                 if (realmResponse == null) {
                     interactor.getSection(
                         idSection,
+                        initialDate,
+                        finalDate,
                         { data ->
                             data.id=idSection
                             addDataToDB(data)
@@ -41,10 +43,12 @@ class SectionPresenter(private val ui: SectionUI, val context: Context) : BasePr
         }
     }
 
-    fun actionRefreshSection(idSection: Int) {
+    fun actionRefreshSection(idSection: Int,initialDate:String?="null",finalDate:String?="null") {
         Log.i("refresh section",idSection.toString())
         interactor.getSection(
             idSection,
+            initialDate,
+            finalDate,
             { data ->
                 data.id=idSection
                 addDataToDB(data)
