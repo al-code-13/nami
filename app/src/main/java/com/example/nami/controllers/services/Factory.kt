@@ -13,8 +13,10 @@ import java.util.concurrent.TimeUnit
 open class ServiceFactory {
 
     val JSON = "application/json; charset=utf-8".toMediaType()
-
-    val serverUrl: String = "https://d1-dev-test.chefmenu.com.co:6443"
+    //Desarrollo
+    //val serverUrl: String = "https://d1-dev-test.chefmenu.com.co:6443"
+    //Produccion
+    val serverUrl: String = "https://d1-picking-test.chefmenu.com.co"
     val routeBase: String = "/api/v2"
     val routeAuth: String = "/auth"
     val routePicker: String = "/pickers"

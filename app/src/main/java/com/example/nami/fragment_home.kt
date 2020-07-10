@@ -51,24 +51,24 @@ class SectionFragment(
             inflater.inflate(R.layout.home_fragment_landscape, container, false)
         }
         if (filter != null) {
-            val sdf = SimpleDateFormat("yyyy-M-dd")
+            val sdf = SimpleDateFormat("yyyy-MM-dd")
             var today = sdf.format(Calendar.getInstance().time).toString()
             var limiter: List<String> = filter.split("-")
             var days = mutableListOf<String>()
             var initDate: Calendar = Calendar.getInstance()
             initDate.add(Calendar.DAY_OF_YEAR, -limiter[1].toInt())
 
-            for (xd in 1..limiter[1].toInt() + 1) {
+            for (xd in 1..limiter[1].toInt()) {
                 Log.i("fecha en el bucle", initDate.time.toString())
-                days.add(sdf.format(initDate.time).toString())
                 initDate.add(Calendar.DAY_OF_YEAR, 1)
+                days.add(sdf.format(initDate.time).toString())
             }
 
 
             spinner = v.findViewById(R.id.spinnerView) as Spinner
-
             spinner.adapter =
-                ArrayAdapter<String>(mContext, R.layout.support_simple_spinner_dropdown_item, days)
+                ArrayAdapter<String>(mContext, R.layout.support_simple_spinner_dropdown_item, days.reversed())
+
             spinner.onItemSelectedListener = object :
                 AdapterView.OnItemSelectedListener {
                 override fun onNothingSelected(parent: AdapterView<*>?) {
@@ -81,7 +81,7 @@ class SectionFragment(
                     position: Int,
                     id: Long
                 ) {
-                    selectedDay = days[position]
+                    selectedDay = days.reversed()[position]
                     presenter.actionRefreshSection(
                         sectionId, selectedDay, selectedDay
                     )
@@ -110,12 +110,9 @@ class SectionFragment(
     override fun showData(data: SectionResponse) {
         activity?.runOnUiThread {
             if (data.orders!!.size <= 0) {
-                my_grid_view_list.visibility = View.GONE
-                emptyImage.visibility = View.VISIBLE
                 reciclerView?.visibility = View.GONE
             } else {
-                my_grid_view_list.visibility = View.VISIBLE
-                emptyImage.visibility = View.GONE
+                reciclerView?.visibility = View.VISIBLE
 
                 reciclerView?.adapter = OrdersAdapter(mContext, data.orders!!, presenter, sectionId)
             }

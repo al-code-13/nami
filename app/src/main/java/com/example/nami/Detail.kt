@@ -49,6 +49,7 @@ class Detail : AppCompatActivity(), DetailUI {
         val intent: Intent = intent
         val orderId = intent.getIntExtra("orderId", -1)
         behavior = intent.getIntExtra("behavior", -1)
+        Log.i("elbehavior",behavior.toString())
         val idSection = intent.getIntExtra("idSection", -1)
         actionbar!!.title = "Orden #$orderId"
         presenter = DetailPresenter(orderId, this,idSection)

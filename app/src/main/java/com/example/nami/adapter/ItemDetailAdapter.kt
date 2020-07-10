@@ -61,14 +61,14 @@ class ItemsDetailAdapter(
         val elements = data[position]
         v.name.text = elements.article.name
         v.idProduct.text = "${elements.article.upc}"
-        if(behavior!=2){
-            v.cant.text = elements.quantityArticle
+        if(behavior==2){
+            v.cant.text = "${compareList[position]}"
         }
-        else if(behavior==7){
+        else if((behavior==7||behavior==8||behavior==9)&&elements.picking!=null){
             v.cant.text= elements.picking.toString()
         }
         else {
-            v.cant.text = "${compareList[position]}"
+            v.cant.text = elements.quantityArticle
         }
             v.cantTotal.text = elements.quantityArticle
         if (compareList[position].toInt() > 0) {

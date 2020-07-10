@@ -118,7 +118,7 @@ class MainActivity : AppCompatActivity(), SectionsUI {
                         colorPressed = 0xFFCC99FF
                     }
                 }
-                primaryItem("Mis gancias") {
+                primaryItem("Mis ganancias") {
                     enabled = false
                     badge {
                         cornersDp = 0

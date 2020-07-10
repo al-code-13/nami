@@ -37,13 +37,13 @@
 
                 <ImageView
                     android:id="@+id/imageView"
-                    android:layout_width="313dp"
-                    android:layout_height="232dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="192dp"
                     app:srcCompat="@drawable/logoridder" />
 
                 <Space
                     android:layout_width="match_parent"
-                    android:layout_height="50dp" />
+                    android:layout_height="16dp" />
 
                 <androidx.cardview.widget.CardView
                     android:layout_width="320dp"
@@ -126,7 +126,15 @@
                     </LinearLayout>
                 </androidx.cardview.widget.CardView>
 
-
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="10sp"
+                    android:layout_marginTop="16dp"
+                    android:textColor="@color/md_white_1000"
+                    android:layout_gravity="center"
+                    android:gravity="center"
+                    android:text="Versión 0.3.0 Alpha Debug \nServices Pre-Production" />
             </LinearLayout>
         </ScrollView>
 
