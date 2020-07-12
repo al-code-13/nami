@@ -21,7 +21,26 @@
         android:textColorHint="#00FFFFFF"
         android:textColorLink="#00FFFFFF" />
 
+    <LinearLayout
+        android:id="@+id/loading"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_gravity="center"
+        android:gravity="center"
+        android:orientation="horizontal">
+
+        <ProgressBar
+            android:id="@+id/progressBar"
+            style="?android:attr/progressBarStyleLarge"
+            android:layout_width="wrap_content"
+            android:layout_height="53dp"
+            android:layout_below="@+id/closeButton"
+            android:layout_gravity="center"
+            android:progressDrawable="@drawable/circular_progress_bar" />
+    </LinearLayout>
     <androidx.core.widget.NestedScrollView
+        android:id="@+id/detailActivityContent"
+        android:visibility="gone"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:fillViewport="true">

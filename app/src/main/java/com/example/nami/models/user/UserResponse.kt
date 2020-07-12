@@ -15,7 +15,7 @@ open class User (
     var alias: String? = null,
     var name: String? = null,
     var lastname: String? = null,
-    var phone: Int? = null,
+    var phone: String? = null,
     var role: Role? = null,
     var branchs: RealmList<Branch>? = null
 ): RealmObject()

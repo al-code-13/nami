@@ -80,10 +80,9 @@ class SectionsPresenter(private val ui: SectionsUI,val context: Context) : BaseP
                     .clear()
                     .apply()
                 ui.exit()
-
             } catch (e: Exception) {
+                ui.showError("Error al cerrar sesión")
             }
-
         }
     }
 

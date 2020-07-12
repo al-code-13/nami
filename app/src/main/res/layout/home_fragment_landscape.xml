@@ -7,6 +7,31 @@
     android:orientation="vertical"
     tools:context=".SectionFragment">
 
+
+    <LinearLayout
+        android:id="@+id/loading"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_gravity="center"
+        android:gravity="center"
+        android:orientation="horizontal">
+
+        <ProgressBar
+            android:id="@+id/progressBar"
+            style="?android:attr/progressBarStyleLarge"
+            android:layout_width="wrap_content"
+            android:layout_height="53dp"
+            android:layout_below="@+id/closeButton"
+            android:layout_gravity="center"
+            android:progressDrawable="@drawable/circular_progress_bar" />
+    </LinearLayout>
+    <LinearLayout
+
+        android:id="@+id/fragmentContent"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
     <GridView
         android:id="@+id/gridItems"
         android:layout_width="match_parent"
@@ -41,4 +66,6 @@
         android:padding="@dimen/item_margin" >
 
     </com.example.nami.AutofitRecyclerView>˘
+
+    </LinearLayout>
 </LinearLayout>

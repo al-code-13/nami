@@ -2,7 +2,6 @@ package com.example.nami
 
 import android.content.Context
 import android.content.res.Configuration
-import android.graphics.Color
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -18,7 +17,6 @@ import com.example.nami.models.sections.Behavior
 import com.example.nami.models.sections.SectionResponse
 import com.example.nami.presenters.SectionPresenter
 import com.example.nami.presenters.SectionUI
-import kotlinx.android.synthetic.main.fragment_home.*
 import java.text.SimpleDateFormat
 import java.util.*
 
@@ -30,12 +28,14 @@ class SectionFragment(
     private val filter: String? = null
 ) : Fragment(), SectionUI {
     lateinit var spinner: Spinner
+    lateinit var loading: LinearLayout
     private val presenter = SectionPresenter(this, mContext)
     private var reciclerView: AutofitRecyclerView? = null
     private var adapter: IndicatorsAdapter? = null
     private var itemsRefresh: SwipeRefreshLayout? = null
     private lateinit var gridView: GridView
     private var selectedDay: String? = "null"
+    val sdf = SimpleDateFormat("yyyy-MM-dd")
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -50,9 +50,8 @@ class SectionFragment(
         } else {
             inflater.inflate(R.layout.home_fragment_landscape, container, false)
         }
+        loading = v.findViewById(R.id.loading)
         if (filter != null) {
-            val sdf = SimpleDateFormat("yyyy-MM-dd")
-            var today = sdf.format(Calendar.getInstance().time).toString()
             var limiter: List<String> = filter.split("-")
             var days = mutableListOf<String>()
             var initDate: Calendar = Calendar.getInstance()
@@ -67,7 +66,11 @@ class SectionFragment(
 
             spinner = v.findViewById(R.id.spinnerView) as Spinner
             spinner.adapter =
-                ArrayAdapter<String>(mContext, R.layout.support_simple_spinner_dropdown_item, days.reversed())
+                ArrayAdapter<String>(
+                    mContext,
+                    R.layout.support_simple_spinner_dropdown_item,
+                    days.reversed()
+                )
 
             spinner.onItemSelectedListener = object :
                 AdapterView.OnItemSelectedListener {
@@ -81,10 +84,10 @@ class SectionFragment(
                     position: Int,
                     id: Long
                 ) {
+                    loading.visibility = View.VISIBLE
+                    reciclerView?.visibility = View.GONE
                     selectedDay = days.reversed()[position]
-                    presenter.actionRefreshSection(
-                        sectionId, selectedDay, selectedDay
-                    )
+                    refresh(selectedDay, selectedDay)
                 }
 
             }
@@ -101,41 +104,45 @@ class SectionFragment(
         if (legendList.isEmpty()) {
             gridView.visibility = View.GONE
         }
+        itemsRefresh?.setProgressBackgroundColorSchemeColor(
+            ContextCompat.getColor(
+                mContext,
+                R.color.colorPrimary
+            )
+        )
         itemsRefresh = v.findViewById(R.id.itemsswipetorefresh)
-
+        //itemsRefresh?.setColorSchemeColors(Color.WHITE)
+        itemsRefresh?.setOnRefreshListener {
+            refresh(selectedDay, selectedDay)
+        }
+        loading.visibility = View.VISIBLE
+        reciclerView?.visibility = View.GONE
         return v
     }
-
 
     override fun showData(data: SectionResponse) {
         activity?.runOnUiThread {
             if (data.orders!!.size <= 0) {
+                loading.visibility = View.GONE
                 reciclerView?.visibility = View.GONE
             } else {
+                Log.i("aquidesaparece", "el loadingf")
+                loading.visibility = View.GONE
                 reciclerView?.visibility = View.VISIBLE
-
                 reciclerView?.adapter = OrdersAdapter(mContext, data.orders!!, presenter, sectionId)
             }
-            itemsRefresh?.setProgressBackgroundColorSchemeColor(
-                ContextCompat.getColor(
-                    mContext,
-                    R.color.colorPrimary
-                )
-            )
-            itemsRefresh?.setColorSchemeColors(Color.WHITE)
-            itemsRefresh?.setOnRefreshListener {
-                presenter.actionRefreshSection(
-                    sectionId,
-                    selectedDay,
-                    selectedDay
-                )
-                reciclerView?.adapter =
-                    OrdersAdapter(mContext, data.orders!!, presenter, sectionId)
-                gridView.adapter = adapter
-                itemsRefresh?.isRefreshing = false
-            }
-
         }
+    }
+
+    private fun refresh(initialDate: String? = "null", endlDate: String? = "null") {
+        loading.visibility = View.VISIBLE
+        reciclerView?.visibility = View.GONE
+        presenter.actionRefreshSection(
+            sectionId,
+            initialDate,
+            endlDate
+        )
+        itemsRefresh?.isRefreshing = false
     }
 
     override fun showError(error: String) {
@@ -147,6 +154,7 @@ class SectionFragment(
     override fun actionSuccess(message: String) {
         activity?.runOnUiThread {
             Toast.makeText(mContext, message, Toast.LENGTH_LONG).show()
+            refresh(selectedDay, selectedDay)
         }
     }
 }

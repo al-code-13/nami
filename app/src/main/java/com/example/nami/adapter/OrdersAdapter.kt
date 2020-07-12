@@ -103,7 +103,7 @@ class OrdersAdapter(
 
         holder.card.setCardBackgroundColor(Color.parseColor(ServiceFactory.data.behaviors!!.firstOrNull { it.id == mDataSet[position].behavior }!!.color))
 
-        holder.names.text = mDataSet[position].name + " " + mDataSet[position].lastname
+        holder.names.text = mDataSet[position].name!!.capitalize() + " " + mDataSet[position].lastname!!.capitalize()
 
         holder.idOrder.text = mDataSet[position].id.toString()
 

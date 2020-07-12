@@ -36,6 +36,7 @@ class Detail : AppCompatActivity(), DetailUI {
     lateinit var data: DetailResponse
     var articleList: MutableList<String> = mutableListOf<String>()
     var compareArticleList: MutableList<String> = mutableListOf<String>()
+    var methodString:String="Datafono"
     companion object {
         var adjustvalue: Double = 0.0
     }
@@ -67,6 +68,8 @@ class Detail : AppCompatActivity(), DetailUI {
             false
         })
 
+        loading.visibility=View.VISIBLE
+        detailActivityContent.visibility=View.GONE
     }
 
     private fun scannerFunction() {
@@ -237,10 +240,12 @@ class Detail : AppCompatActivity(), DetailUI {
 
     override fun showDetailInfo(data: DetailResponse,order:OrdersList) {
         runOnUiThread {
+            Log.i("data",data.toString())
             if (data.order.service == "D") {
                 type.text = "Domicilio"
             }
             if (order.methodPay!!.name != "Datafono") {
+                methodString=order.methodPay!!.name!!
                 pay.text = numberFormat.format(data.order.turns.toDouble()).toString()
                 change.text =
                     numberFormat.format(data.order.turns.toDouble() - adjustvalue.toDouble())
@@ -249,7 +254,7 @@ class Detail : AppCompatActivity(), DetailUI {
                 pay.text = "No Aplica"
                 change.text = "No Aplica"
             }
-            name.text = order.name+" "+order.lastname
+            name.text = order.name!!.capitalize()+" "+order.lastname!!.capitalize()
             idProduct.text = order.id.toString()
             phoneNumber.text = order.phoneClient
             method.text = order.methodPay!!.name.toString()
@@ -277,6 +282,9 @@ class Detail : AppCompatActivity(), DetailUI {
 
             createArticleView(behavior)
             createButtons(behavior)
+
+            loading.visibility=View.GONE
+            detailActivityContent.visibility=View.VISIBLE
         }
     }
 
@@ -321,8 +329,8 @@ class Detail : AppCompatActivity(), DetailUI {
                     }
                     val param: ViewGroup.MarginLayoutParams =
                         button.layoutParams as ViewGroup.MarginLayoutParams
-                    param.setMargins(6, 6, 6, 6)
-                    button.setPadding(6, 6, 6, 6)
+                    param.setMargins(8, 8, 8, 8)
+                    button.setPadding(8, 8, 8, 8)
                     button.layoutParams = param
                     button.text = "${action.name}"
                     button.setOnClickListener {
@@ -349,6 +357,11 @@ class Detail : AppCompatActivity(), DetailUI {
             adjustvalue += unitValue * articleList[data.order.detailOrder.list.indexOf(i)].toDouble()
             }
         adjustTotal.text= NumberFormat.getCurrencyInstance(Locale("es","CO")).format(Detail.adjustvalue).toString()
+        if(methodString!="Datafono"){
+            change.text =
+                numberFormat.format(data.order.turns.toDouble() - adjustvalue.toDouble())
+                    .toString()
+        }
     }
 
     override fun showError(error: String) {
@@ -362,6 +375,8 @@ class Detail : AppCompatActivity(), DetailUI {
             Toast.makeText(this,"Pedido liberado satisfactoriamente",Toast.LENGTH_SHORT).show()
             createArticleView(3)
             createButtons(3)
+            finish()
+            presenter!!.cleanDB()
         }
     }
 
@@ -370,6 +385,8 @@ class Detail : AppCompatActivity(), DetailUI {
             Toast.makeText(this,"Pedido guardado satisfactoriamente",Toast.LENGTH_SHORT).show()
             createArticleView(7)
             createButtons(7)
+            finish()
+            presenter!!.cleanDB()
         }
     }
 
@@ -386,6 +403,8 @@ class Detail : AppCompatActivity(), DetailUI {
             Toast.makeText(this,"Pedido entregado satisfactoriamente",Toast.LENGTH_SHORT).show()
             createArticleView(8)
             createButtons(8)
+            finish()
+            presenter!!.cleanDB()
         }
     }
 
@@ -394,6 +413,8 @@ class Detail : AppCompatActivity(), DetailUI {
             Toast.makeText(this,"Pedido entregado satisfactoriamente",Toast.LENGTH_SHORT).show()
             createArticleView(9)
             createButtons(9)
+            finish()
+            presenter!!.cleanDB()
         }
     }
 
@@ -402,6 +423,8 @@ class Detail : AppCompatActivity(), DetailUI {
             Toast.makeText(this,"Pedido congelado satisfactoriamente",Toast.LENGTH_SHORT).show()
             createArticleView(behavior)
             createButtons(behavior)
+            finish()
+            presenter!!.cleanDB()
         }
     }
 

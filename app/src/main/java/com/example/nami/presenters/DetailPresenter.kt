@@ -160,4 +160,17 @@ class DetailPresenter(
             ui.showError(error)
         })
     }
+    fun cleanDB(){
+        uiScope.launch {
+            try {
+                val realmResponse =
+                    realm!!.where<SectionResponse>().equalTo("id", idSection).findFirst()!!
+                realm!!.executeTransaction {
+                    realmResponse.deleteFromRealm()
+                }
+            } catch (e: Exception) {
+                ui.showError("Error al guardar")
+            }
+        }
+    }
 }
