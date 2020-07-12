@@ -12,7 +12,7 @@ class Config:Application() {
         val configuration = RealmConfiguration.Builder()
             .name("nami.db")
             .deleteRealmIfMigrationNeeded()
-            .schemaVersion(0)
+            .schemaVersion(1)
             .build()
         Realm.setDefaultConfiguration(configuration)
     }

@@ -34,15 +34,13 @@ class SectionFragment(
     private var adapter: IndicatorsAdapter? = null
     private var itemsRefresh: SwipeRefreshLayout? = null
     private lateinit var gridView: GridView
-    private var selectedDay: String? = "null"
+    private var selectedDay: String? = null
     val sdf = SimpleDateFormat("yyyy-MM-dd")
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-
-
         val v: View
         val orientation = activity?.resources?.configuration?.orientation
         v = if (orientation == Configuration.ORIENTATION_PORTRAIT) {
@@ -51,6 +49,7 @@ class SectionFragment(
             inflater.inflate(R.layout.home_fragment_landscape, container, false)
         }
         loading = v.findViewById(R.id.loading)
+        Log.i("SeCreofragmento",sectionId.toString())
         if (filter != null) {
             var limiter: List<String> = filter.split("-")
             var days = mutableListOf<String>()
@@ -87,14 +86,15 @@ class SectionFragment(
                     loading.visibility = View.VISIBLE
                     reciclerView?.visibility = View.GONE
                     selectedDay = days.reversed()[position]
-                    refresh(selectedDay, selectedDay)
+                    presenter.actionSection(sectionId,selectedDay,selectedDay)
                 }
 
             }
             spinner.visibility = View.VISIBLE
-        } else {
+        }
+        else {
             presenter.actionSection(
-                sectionId, "null", "null"
+                sectionId, null, null
             )
         }
         reciclerView = v.findViewById(R.id.my_grid_view_list)
@@ -134,7 +134,10 @@ class SectionFragment(
         }
     }
 
-    private fun refresh(initialDate: String? = "null", endlDate: String? = "null") {
+    fun forceRefresh(){
+        refresh(selectedDay,selectedDay)
+    }
+    fun refresh(initialDate: String? = null, endlDate: String? = null) {
         loading.visibility = View.VISIBLE
         reciclerView?.visibility = View.GONE
         presenter.actionRefreshSection(

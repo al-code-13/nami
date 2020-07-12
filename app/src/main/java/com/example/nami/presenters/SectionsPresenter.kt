@@ -32,7 +32,6 @@ class SectionsPresenter(private val ui: SectionsUI,val context: Context) : BaseP
                     interactor.getSections(
                         { data ->
                             interactor.getReasons({
-
                                 addDataToDB(data)
                                 ui.showSection(data, userResponse!!)
                             }, { error ->

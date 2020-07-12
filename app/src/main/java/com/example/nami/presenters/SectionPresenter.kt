@@ -18,46 +18,41 @@ class SectionPresenter(private val ui: SectionUI, val context: Context) : BasePr
     private var viewModelJob: Job = Job()
     private val uiScope = CoroutineScope(Dispatchers.Main + viewModelJob)
 
-    fun actionSection(idSection: Int,initialDate:String?="null",finalDate:String?="null") {
+    fun actionSection(idSection: Int, initialDate: String? = null, finalDate: String? = null) {
         uiScope.launch {
             try {
-                val realmResponse = realm!!.where<SectionResponse>().equalTo("id", idSection).findFirst()
+                val realmResponse = realm!!.where<SectionResponse>().equalTo("id", idSection)
+                    .equalTo("date", initialDate).findFirst()
                 if (realmResponse == null) {
-                    interactor.getSection(
-                        idSection,
-                        initialDate,
-                        finalDate,
-                        { data ->
-                            data.id=idSection
-                            addDataToDB(data)
-                            ui.showData(data)
-                        },
-                        { error ->
-                            ui.showError(error)
-                        })
+                    actionRefreshSection(idSection, initialDate, finalDate)
                 } else {
-                    ui.showData(realmResponse!!)
+                    ui.showData(realmResponse)
                 }
             } catch (e: Exception) {
+                Log.e("Se  rompio buscando ",e.message)
             }
         }
     }
 
-    fun actionRefreshSection(idSection: Int,initialDate:String?="null",finalDate:String?="null") {
-        Log.i("refresh section",idSection.toString())
+    fun actionRefreshSection(
+        idSection: Int,
+        initialDate: String? = null,
+        finalDate: String? = null
+    ) {
+        Log.i("refresh section", idSection.toString())
         interactor.getSection(
             idSection,
             initialDate,
             finalDate,
             { data ->
-                data.id=idSection
+                data.id = idSection
+                data.date=initialDate
                 addDataToDB(data)
                 ui.showData(data)
             },
             { error ->
                 ui.showError(error)
             })
-
     }
 
     private fun addDataToDB(data: SectionResponse) = runBlocking {
@@ -83,15 +78,14 @@ class SectionPresenter(private val ui: SectionUI, val context: Context) : BasePr
     }
 
     fun actionRelease(orderId: Int, observations: String?) {
-        if(observations.isNullOrEmpty()||observations.isNullOrBlank() ){
+        if (observations.isNullOrEmpty() || observations.isNullOrBlank()) {
 
             interactor.putReleaseOrder(orderId, null, { data ->
                 ui.actionSuccess(data.message)
             }, { error ->
                 ui.showError(error)
             })
-        }
-        else{
+        } else {
             Log.i("observationsxddd", observations.toString())
             interactor.putReleaseOrder(orderId, observations, { data ->
                 ui.actionSuccess(data.message)

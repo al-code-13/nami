@@ -4,6 +4,8 @@ import android.content.Context
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentPagerAdapter
+import androidx.fragment.app.FragmentStatePagerAdapter
+import androidx.viewpager.widget.PagerAdapter
 import com.example.nami.SectionFragment
 import com.example.nami.models.sections.Behavior
 import com.example.nami.models.sections.Section
@@ -18,6 +20,7 @@ class SectionsAdapter(
     private val sectionsList: List<Section>
 ) :
     FragmentPagerAdapter(fm) {
+    var refreshCount: Int = 0
 
     override fun getItem(position: Int): Fragment {
         return SectionFragment(
@@ -26,6 +29,21 @@ class SectionsAdapter(
             sectionsList[position].id!!,
             sectionsList[position].filter
         )
+    }
+
+    fun notifyDataSetChanged(position: Int) {
+        refreshCount = if (position == 0 || position == count - 1) 2 else 3
+        super.notifyDataSetChanged()
+    }
+
+    override fun getItemPosition(item: Any): Int {
+        val f = item as SectionFragment
+        if(refreshCount>0){
+            f.forceRefresh()
+            refreshCount--
+        }
+        return super.getItemPosition(item)
+        //return PagerAdapter.POSITION_NONE
     }
 
     private fun legendSection(indicators: List<Int>): List<Behavior> {

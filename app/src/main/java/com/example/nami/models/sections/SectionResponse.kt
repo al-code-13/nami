@@ -7,6 +7,7 @@ import io.realm.annotations.PrimaryKey
 open class SectionResponse(
     @PrimaryKey
     var id: Int? = null,
+    var date:String?=null,
     var orders: RealmList<OrdersList>? = null,
     var message: String? = null
 ) : RealmObject()

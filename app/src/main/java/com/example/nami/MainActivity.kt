@@ -32,6 +32,9 @@ class MainActivity : AppCompatActivity(), SectionsUI {
 
     //Declaracion del contenido de las pestañas
     var viewPager: ViewPager? = null
+
+    lateinit var adapter:SectionsAdapter
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
@@ -39,6 +42,9 @@ class MainActivity : AppCompatActivity(), SectionsUI {
         presenter.actionSections()
         tabLayout = findViewById(R.id.tabLayout)
         viewPager = findViewById(R.id.viewPager)
+        buttonprueba.setOnClickListener {
+            adapter.notifyDataSetChanged(viewPager!!.currentItem)
+        }
         drawerImageLoader {
             placeholder { ctx, _ ->
                 DrawerUIUtils.getPlaceHolder(ctx)
@@ -68,7 +74,7 @@ class MainActivity : AppCompatActivity(), SectionsUI {
             tabLayout?.tabGravity = TabLayout.GRAVITY_FILL
 
             //Se llama el adaptador de las secciones
-            val adapter = SectionsAdapter(
+            adapter = SectionsAdapter(
                 this,
                 supportFragmentManager,
                 tabLayout!!.tabCount,
@@ -151,6 +157,7 @@ class MainActivity : AppCompatActivity(), SectionsUI {
 
 
     override fun showError(error: String) {
+        Log.i("erordeltoken",error)
         runOnUiThread {
             if (error.contains("token")) {
                 presenter.actionLogOut()

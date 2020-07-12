@@ -21,14 +21,14 @@
     </shared>
   </component>
   <component name="AndroidLogFilters">
-    <option name="TOOL_WINDOW_CUSTOM_FILTER" value="elobservaarfva" />
+    <option name="TOOL_WINDOW_CUSTOM_FILTER" value="SeActualiza" />
     <option name="TOOL_WINDOW_LOG_LEVEL" value="verbose" />
     <option name="TOOL_WINDOW_CONFIGURED_FILTER" value="Show only selected application" />
     <option name="TOOL_WINDOW_REGEXP_FILTER" value="false" />
   </component>
   <component name="ChangeListManager">
     <list default="true" id="e2a19b41-8dcf-4555-9135-d65f83e40892" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/app/src/main/res/drawable/skeleton.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/java/com/example/nami/models/error/ErrorResponse.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/6.1.1/executionHistory/executionHistory.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/6.1.1/executionHistory/executionHistory.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/6.1.1/executionHistory/executionHistory.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/6.1.1/executionHistory/executionHistory.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/6.1.1/fileHashes/fileHashes.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/6.1.1/fileHashes/fileHashes.bin" afterDir="false" />
@@ -41,31 +41,25 @@
       <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/outputFiles.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/outputFiles.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/checksums/checksums.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/checksums/checksums.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/caches/build_file_checksums.ser" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/caches/build_file_checksums.ser" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/modules/app/app.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules/app/app.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/checksums/md5-checksums.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/checksums/md5-checksums.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/checksums/sha1-checksums.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/checksums/sha1-checksums.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/app/build.gradle" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/nami/Detail.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/nami/Detail.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/nami/adapter/OrdersAdapter.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/nami/adapter/OrdersAdapter.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/nami/controllers/services/Factory.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/nami/controllers/services/Factory.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/nami/MainActivity.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/nami/MainActivity.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/nami/adapter/SectionsAdapter.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/nami/adapter/SectionsAdapter.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/nami/controllers/services/Interactor.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/nami/controllers/services/Interactor.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/nami/db/Config.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/nami/db/Config.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/nami/fragment_home.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/nami/fragment_home.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/nami/models/user/UserResponse.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/nami/models/user/UserResponse.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/nami/presenters/DetailPresenter.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/nami/presenters/DetailPresenter.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/nami/models/sections/SectionResponse.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/nami/models/sections/SectionResponse.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/nami/presenters/SectionPresenter.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/nami/presenters/SectionPresenter.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/nami/presenters/SectionsPresenter.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/nami/presenters/SectionsPresenter.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/activity_detail.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_detail.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/activity_login.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_login.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/activity_main.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_main.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/article_data_detail.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/article_data_detail.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/fragment_home.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/fragment_home.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/home_fragment_landscape.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/home_fragment_landscape.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/values/colors.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/values/colors.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
-  <component name="ExecutionTargetManager" SELECTED_TARGET="2.7_QVGA_API_29" />
+  <component name="ExecutionTargetManager" SELECTED_TARGET="0123456789ABCDEF" />
   <component name="ExternalProjectsData">
     <projectState path="$PROJECT_DIR$">
       <ProjectState />
@@ -82,10 +76,10 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="Kotlin File" />
-        <option value="Kotlin Class" />
         <option value="valueResourceFile" />
         <option value="layoutResourceFile" />
         <option value="resourceFile" />
+        <option value="Kotlin Class" />
       </list>
     </option>
   </component>
@@ -247,11 +241,11 @@
       <screen x="1280" y="0" width="1920" height="1080" />
     </state>
     <state x="2096" y="312" key="AndroidProcessChooserDialog/1280.0.1920.1080/0.0.1280.800@1280.0.1920.1080" timestamp="1591977203131" />
-    <state width="1878" height="569" key="GridCell.Tab.0.bottom" timestamp="1594476018001">
-      <screen x="-1920" y="0" width="1920" height="1080" />
+    <state width="1238" height="267" key="GridCell.Tab.0.bottom" timestamp="1594573813569">
+      <screen x="0" y="0" width="1280" height="800" />
     </state>
     <state width="1878" height="569" key="GridCell.Tab.0.bottom/-1920.0.1920.1080/0.0.1280.800@-1920.0.1920.1080" timestamp="1594476018001" />
-    <state width="1238" height="391" key="GridCell.Tab.0.bottom/-1920.0.1920.1080/0.0.1280.800@0.0.1280.800" timestamp="1594401390741" />
+    <state width="1238" height="267" key="GridCell.Tab.0.bottom/-1920.0.1920.1080/0.0.1280.800@0.0.1280.800" timestamp="1594573813569" />
     <state width="1238" height="405" key="GridCell.Tab.0.bottom/-1920.23.1920.1057/0.0.1280.800@0.0.1280.800" timestamp="1594327517528" />
     <state width="1238" height="404" key="GridCell.Tab.0.bottom/0.0.1280.800@0.0.1280.800" timestamp="1594422834044" />
     <state width="1238" height="409" key="GridCell.Tab.0.bottom/0.23.1280.777@0.23.1280.777" timestamp="1593027909558" />
@@ -260,11 +254,11 @@
     <state width="1878" height="110" key="GridCell.Tab.0.bottom/1280.0.1920.1080/0.23.1280.777@1280.0.1920.1080" timestamp="1592435421406" />
     <state width="1238" height="2" key="GridCell.Tab.0.bottom/1280.23.1920.1057/0.0.1280.800@0.0.1280.800" timestamp="1592356166228" />
     <state width="1400" height="246" key="GridCell.Tab.0.bottom/1280.23.1920.1057/0.23.1280.777@1280.23.1920.1057" timestamp="1593107839383" />
-    <state width="1878" height="569" key="GridCell.Tab.0.center" timestamp="1594476017998">
-      <screen x="-1920" y="0" width="1920" height="1080" />
+    <state width="1238" height="267" key="GridCell.Tab.0.center" timestamp="1594573813568">
+      <screen x="0" y="0" width="1280" height="800" />
     </state>
     <state width="1878" height="569" key="GridCell.Tab.0.center/-1920.0.1920.1080/0.0.1280.800@-1920.0.1920.1080" timestamp="1594476017998" />
-    <state width="1238" height="391" key="GridCell.Tab.0.center/-1920.0.1920.1080/0.0.1280.800@0.0.1280.800" timestamp="1594401390739" />
+    <state width="1238" height="267" key="GridCell.Tab.0.center/-1920.0.1920.1080/0.0.1280.800@0.0.1280.800" timestamp="1594573813568" />
     <state width="1238" height="405" key="GridCell.Tab.0.center/-1920.23.1920.1057/0.0.1280.800@0.0.1280.800" timestamp="1594327517522" />
     <state width="1238" height="404" key="GridCell.Tab.0.center/0.0.1280.800@0.0.1280.800" timestamp="1594422834043" />
     <state width="1238" height="409" key="GridCell.Tab.0.center/0.23.1280.777@0.23.1280.777" timestamp="1593027909555" />
@@ -273,11 +267,11 @@
     <state width="1878" height="110" key="GridCell.Tab.0.center/1280.0.1920.1080/0.23.1280.777@1280.0.1920.1080" timestamp="1592435421402" />
     <state width="1238" height="2" key="GridCell.Tab.0.center/1280.23.1920.1057/0.0.1280.800@0.0.1280.800" timestamp="1592356166224" />
     <state width="1400" height="246" key="GridCell.Tab.0.center/1280.23.1920.1057/0.23.1280.777@1280.23.1920.1057" timestamp="1593107839374" />
-    <state width="1878" height="569" key="GridCell.Tab.0.left" timestamp="1594476017997">
-      <screen x="-1920" y="0" width="1920" height="1080" />
+    <state width="1238" height="267" key="GridCell.Tab.0.left" timestamp="1594573813565">
+      <screen x="0" y="0" width="1280" height="800" />
     </state>
     <state width="1878" height="569" key="GridCell.Tab.0.left/-1920.0.1920.1080/0.0.1280.800@-1920.0.1920.1080" timestamp="1594476017997" />
-    <state width="1238" height="391" key="GridCell.Tab.0.left/-1920.0.1920.1080/0.0.1280.800@0.0.1280.800" timestamp="1594401390737" />
+    <state width="1238" height="267" key="GridCell.Tab.0.left/-1920.0.1920.1080/0.0.1280.800@0.0.1280.800" timestamp="1594573813565" />
     <state width="1238" height="405" key="GridCell.Tab.0.left/-1920.23.1920.1057/0.0.1280.800@0.0.1280.800" timestamp="1594327517513" />
     <state width="1238" height="404" key="GridCell.Tab.0.left/0.0.1280.800@0.0.1280.800" timestamp="1594422834042" />
     <state width="1238" height="409" key="GridCell.Tab.0.left/0.23.1280.777@0.23.1280.777" timestamp="1593027909552" />
@@ -286,11 +280,11 @@
     <state width="1878" height="110" key="GridCell.Tab.0.left/1280.0.1920.1080/0.23.1280.777@1280.0.1920.1080" timestamp="1592435421400" />
     <state width="1238" height="2" key="GridCell.Tab.0.left/1280.23.1920.1057/0.0.1280.800@0.0.1280.800" timestamp="1592356166222" />
     <state width="1400" height="246" key="GridCell.Tab.0.left/1280.23.1920.1057/0.23.1280.777@1280.23.1920.1057" timestamp="1593107839373" />
-    <state width="1878" height="569" key="GridCell.Tab.0.right" timestamp="1594476018000">
-      <screen x="-1920" y="0" width="1920" height="1080" />
+    <state width="1238" height="267" key="GridCell.Tab.0.right" timestamp="1594573813568">
+      <screen x="0" y="0" width="1280" height="800" />
     </state>
     <state width="1878" height="569" key="GridCell.Tab.0.right/-1920.0.1920.1080/0.0.1280.800@-1920.0.1920.1080" timestamp="1594476018000" />
-    <state width="1238" height="391" key="GridCell.Tab.0.right/-1920.0.1920.1080/0.0.1280.800@0.0.1280.800" timestamp="1594401390740" />
+    <state width="1238" height="267" key="GridCell.Tab.0.right/-1920.0.1920.1080/0.0.1280.800@0.0.1280.800" timestamp="1594573813568" />
     <state width="1238" height="405" key="GridCell.Tab.0.right/-1920.23.1920.1057/0.0.1280.800@0.0.1280.800" timestamp="1594327517527" />
     <state width="1238" height="404" key="GridCell.Tab.0.right/0.0.1280.800@0.0.1280.800" timestamp="1594422834043" />
     <state width="1238" height="409" key="GridCell.Tab.0.right/0.23.1280.777@0.23.1280.777" timestamp="1593027909557" />
@@ -347,9 +341,10 @@
       <screen x="1280" y="23" width="1920" height="1057" />
     </state>
     <state x="1757" y="399" key="edit.logcat.filter.dialog.dimensions/1280.23.1920.1057/0.23.1280.777@1280.23.1920.1057" timestamp="1592414675505" />
-    <state x="1892" y="175" width="695" height="729" key="find.popup" timestamp="1592405682985">
-      <screen x="1280" y="0" width="1920" height="1080" />
+    <state x="408" y="130" width="852" height="550" key="find.popup" timestamp="1594562235438">
+      <screen x="0" y="0" width="1280" height="800" />
     </state>
+    <state x="408" y="130" width="852" height="550" key="find.popup/-1920.0.1920.1080/0.0.1280.800@0.0.1280.800" timestamp="1594562235438" />
     <state x="1892" y="175" width="695" height="729" key="find.popup/1280.0.1920.1080/0.0.1280.800@1280.0.1920.1080" timestamp="1592405682985" />
     <state width="600" height="424" key="javadoc.popup" timestamp="1591910813910">
       <screen x="1280" y="0" width="1920" height="1080" />

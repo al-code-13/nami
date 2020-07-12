@@ -137,8 +137,8 @@ class ServiceInteractor : ServiceFactory() {
 
     fun getSection(
         section: Int,
-        initialDate:String?="null",
-        finalDate:String?="null",
+        initialDate:String?=null,
+        finalDate:String?=null,
         then: (SectionResponse) -> Unit,
         error: (String) -> Unit
     ) {
