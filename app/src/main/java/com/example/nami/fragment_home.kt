@@ -25,7 +25,8 @@ class SectionFragment(
     private val mContext: Context,
     private val legendList: List<Behavior>,
     private val sectionId: Int,
-    private val filter: String? = null
+    private val filter: String? = null,
+    private val refreshAdapter:()->Unit
 ) : Fragment(), SectionUI {
     lateinit var spinner: Spinner
     lateinit var loading: LinearLayout
@@ -157,7 +158,8 @@ class SectionFragment(
     override fun actionSuccess(message: String) {
         activity?.runOnUiThread {
             Toast.makeText(mContext, message, Toast.LENGTH_LONG).show()
-            refresh(selectedDay, selectedDay)
+            refreshAdapter()
+            //refresh(selectedDay, selectedDay)
         }
     }
 }

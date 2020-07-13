@@ -29,7 +29,6 @@ class ButtonDialogActions {
         verDetalle: (OrdersList) -> Unit
     ) {
         for (id in actions!!) {
-            if (id != 8) {
                 val v: View =
                     LayoutInflater.from(mContext).inflate(R.layout.action_item, null)
                 v.setOnClickListener {
@@ -287,7 +286,7 @@ class ButtonDialogActions {
                 layoutActions.addView(v)
             }
 
-        }
+
 
     }
 

@@ -1,6 +1,7 @@
 package com.example.nami.adapter
 
 import android.annotation.SuppressLint
+import android.app.Activity
 import android.content.Context
 import android.content.Intent
 import android.graphics.Color
@@ -11,9 +12,11 @@ import android.view.ViewGroup
 import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.cardview.widget.CardView
+import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat.startActivity
 import androidx.recyclerview.widget.RecyclerView
 import com.example.nami.Detail
+import com.example.nami.MainActivity
 import com.example.nami.R
 import com.example.nami.controllers.services.ServiceFactory
 import com.example.nami.models.sections.OrdersList
@@ -93,7 +96,8 @@ class OrdersAdapter(
         intent.putExtra("orderId", items.id)
         intent.putExtra("behavior", items.behavior)
         intent.putExtra("idSection",idSection)
-        startActivity(mContext, intent, null)
+        //startActivity(mContext,intent,null)
+        ActivityCompat.startActivityForResult(mContext as Activity, intent,MainActivity.DETAIL_RESULT,null)
     }
 
     override fun onBindViewHolder(

@@ -4,8 +4,6 @@ import android.content.Context
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentPagerAdapter
-import androidx.fragment.app.FragmentStatePagerAdapter
-import androidx.viewpager.widget.PagerAdapter
 import com.example.nami.SectionFragment
 import com.example.nami.models.sections.Behavior
 import com.example.nami.models.sections.Section
@@ -17,7 +15,8 @@ class SectionsAdapter(
     fm: FragmentManager,
     private var totalTabs: Int,
     private val legendList: Array<Behavior>,
-    private val sectionsList: List<Section>
+    private val sectionsList: List<Section>,
+    private val refreshAdapter: () -> Unit
 ) :
     FragmentPagerAdapter(fm) {
     var refreshCount: Int = 0
@@ -27,7 +26,8 @@ class SectionsAdapter(
             myContext,
             legendSection(sectionsList[position].behaviors!!),
             sectionsList[position].id!!,
-            sectionsList[position].filter
+            sectionsList[position].filter,
+            refreshAdapter
         )
     }
 
@@ -38,7 +38,7 @@ class SectionsAdapter(
 
     override fun getItemPosition(item: Any): Int {
         val f = item as SectionFragment
-        if(refreshCount>0){
+        if (refreshCount > 0) {
             f.forceRefresh()
             refreshCount--
         }
