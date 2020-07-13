@@ -391,7 +391,8 @@ class Detail : AppCompatActivity(), DetailUI {
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        if (item.itemId == R.id.home) {
+        if (item.itemId == android.R.id.home) {
+            Log.i("SI me tocaron","HOMEE")
             finish()
             return false
             //setRefreshInResult()
