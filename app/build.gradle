@@ -15,8 +15,8 @@ android {
         applicationId "com.example.nami"
         minSdkVersion 16
         targetSdkVersion 29
-        versionCode 30
-        versionName "0.3.1"
+        versionCode 40
+        versionName "0.4.0"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
@@ -58,6 +58,7 @@ dependencies {
     implementation 'com.squareup.okhttp3:okhttp:4.7.1'
     implementation 'com.google.code.gson:gson:2.8.6'
     implementation 'androidx.swiperefreshlayout:swiperefreshlayout:1.1.0'
+
 
     kapt 'com.android.databinding:compiler:3.1.4'
 

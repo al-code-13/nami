@@ -58,7 +58,6 @@ class Detail : AppCompatActivity(), DetailUI {
         val idSection = intent.getIntExtra("idSection", -1)
         actionbar!!.title = "Orden #$orderId"
         presenter = DetailPresenter(orderId, this, idSection)
-
         recyclerItemsDetail = findViewById(R.id.layoutArticles)
         presenter!!.actionDetail()
         checkBox.setOnClickListener { checkAll(checkBox.isChecked) }
@@ -393,12 +392,15 @@ class Detail : AppCompatActivity(), DetailUI {
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         if (item.itemId == android.R.id.home) {
             Log.i("SI me tocaron","HOMEE")
-            finish()
-            return false
+            //setRefreshInResult()
+            // finish()
+            super.onBackPressed()
+            return true
             //setRefreshInResult()
         }
         return super.onOptionsItemSelected(item)
     }
+
 
     override fun showDetailFunctionReleased() {
         runOnUiThread {
