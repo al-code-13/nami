@@ -102,12 +102,6 @@ class DetailPresenter(
                 }
             }
         }
-        Log.i("observaciones", observations)
-        Log.i("productsOk", productsok.toString())
-        Log.i("prinarticleList", data.order.detailOrder.list.toString())
-        Log.i("articleList", articleList.toString())
-        Log.i("adjustemenscms", adjustmentValue.toString())
-        Log.i("listPicker", listDataPicker.toString())
         if (observations.isNullOrEmpty() || observations.isNullOrBlank()) {
             interactor.putPickingOrder(
                 listDataPicker,

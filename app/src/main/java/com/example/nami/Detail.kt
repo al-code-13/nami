@@ -1,5 +1,6 @@
 package com.example.nami
 
+import android.app.Activity
 import android.app.Dialog
 import android.content.Intent
 import android.graphics.Typeface
@@ -240,7 +241,6 @@ class Detail : AppCompatActivity(), DetailUI {
 
     override fun showDetailInfo(data: DetailResponse,order:OrdersList) {
         runOnUiThread {
-            Log.i("data",data.toString())
             if (data.order.service == "D") {
                 type.text = "Domicilio"
             }
@@ -385,8 +385,10 @@ class Detail : AppCompatActivity(), DetailUI {
             Toast.makeText(this,"Pedido guardado satisfactoriamente",Toast.LENGTH_SHORT).show()
             createArticleView(7)
             createButtons(7)
+            val refresh:Intent= Intent()
+            refresh.putExtra("datosp",true)
+            setResult(Activity.RESULT_OK,refresh)
             finish()
-            presenter!!.cleanDB()
         }
     }
 
@@ -404,7 +406,6 @@ class Detail : AppCompatActivity(), DetailUI {
             createArticleView(8)
             createButtons(8)
             finish()
-            presenter!!.cleanDB()
         }
     }
 
@@ -414,7 +415,6 @@ class Detail : AppCompatActivity(), DetailUI {
             createArticleView(9)
             createButtons(9)
             finish()
-            presenter!!.cleanDB()
         }
     }
 
@@ -424,7 +424,6 @@ class Detail : AppCompatActivity(), DetailUI {
             createArticleView(behavior)
             createButtons(behavior)
             finish()
-            presenter!!.cleanDB()
         }
     }
 

@@ -1,9 +1,12 @@
 package com.example.nami
 
+import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.widget.Toast
+import androidx.activity.result.ActivityResult
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
 import androidx.viewpager.widget.ViewPager
 import co.zsmb.materialdrawerkt.builders.accountHeader
@@ -33,7 +36,7 @@ class MainActivity : AppCompatActivity(), SectionsUI {
     //Declaracion del contenido de las pestañas
     var viewPager: ViewPager? = null
 
-    lateinit var adapter:SectionsAdapter
+    lateinit var adapter: SectionsAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -43,7 +46,11 @@ class MainActivity : AppCompatActivity(), SectionsUI {
         tabLayout = findViewById(R.id.tabLayout)
         viewPager = findViewById(R.id.viewPager)
         buttonprueba.setOnClickListener {
-            adapter.notifyDataSetChanged(viewPager!!.currentItem)
+            //adapter.notifyDataSetChanged(viewPager!!.currentItem)
+            val intent = Intent()
+            intent.putExtra("orderId", 112311)
+            intent.putExtra("idSection", 2)
+            startActivityForResult(intent, 1)
         }
         drawerImageLoader {
             placeholder { ctx, _ ->
@@ -60,6 +67,11 @@ class MainActivity : AppCompatActivity(), SectionsUI {
                     .cancelRequest(imageView)
             }
         }
+    }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+        Log.i("presult", resultCode.toString())
     }
 
     //Funcion cuando responde el servicio
@@ -155,9 +167,14 @@ class MainActivity : AppCompatActivity(), SectionsUI {
         }
     }
 
+    override fun onResume() {
+        Log.i("se ejecuta esta mierda?", startForResult.toString())
+        Log.i("se ejecuta esta mierda?", codigoResultado.toString())
+        super.onResume()
+    }
 
     override fun showError(error: String) {
-        Log.i("erordeltoken",error)
+        Log.i("erordeltoken", error)
         runOnUiThread {
             if (error.contains("token")) {
                 presenter.actionLogOut()
@@ -173,4 +190,16 @@ class MainActivity : AppCompatActivity(), SectionsUI {
         startActivity(intent)
     }
 
+    var codigoResultado:String="no hay ni vergas"
+    val startForResult =
+        registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result: ActivityResult ->
+            codigoResultado = result.resultCode.toString()
+            if (result.resultCode == Activity.RESULT_OK) {
+                Log.i("se recibe", result.toString())
+                Log.i("Result?", result.toString())
+            } else {
+                Log.i("Result?", result.toString())
+
+            }
+        }
 }
