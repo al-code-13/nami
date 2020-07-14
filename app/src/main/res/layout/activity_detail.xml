@@ -7,6 +7,16 @@
     android:orientation="vertical"
     tools:context=".Detail">
 
+    <com.facebook.shimmer.ShimmerFrameLayout
+        android:id="@+id/shimmer_view_container"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_gravity="center"
+        android:orientation="vertical">
+        <include layout="@layout/skeleton_detail"></include>
+    </com.facebook.shimmer.ShimmerFrameLayout>
+
+    <include layout="@layout/skeleton_detail_icons"></include>
     <EditText
         android:id="@+id/edit_codecito"
         android:layout_width="match_parent"
@@ -21,32 +31,15 @@
         android:textColorHint="#00FFFFFF"
         android:textColorLink="#00FFFFFF" />
 
-    <LinearLayout
-        android:id="@+id/loading"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_gravity="center"
-        android:gravity="center"
-        android:orientation="horizontal">
-
-        <ProgressBar
-            android:id="@+id/progressBar"
-            style="?android:attr/progressBarStyleLarge"
-            android:layout_width="wrap_content"
-            android:layout_height="53dp"
-            android:layout_below="@+id/closeButton"
-            android:layout_gravity="center"
-            android:progressDrawable="@drawable/circular_progress_bar" />
-    </LinearLayout>
     <androidx.core.widget.NestedScrollView
-        android:id="@+id/detailActivityContent"
+        android:id="@+id/contentDetailPage"
         android:visibility="gone"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:fillViewport="true">
 
         <LinearLayout
-            android:id="@+id/contentDetailPage"
+
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical">
@@ -130,6 +123,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="16dp"
+                    android:layout_marginRight="16dp"
                     android:layout_marginTop="16dp"
                     android:drawableLeft="@drawable/home"
                     android:drawablePadding="8dp"

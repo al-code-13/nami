@@ -26,6 +26,7 @@ import com.example.nami.presenters.DetailUI
 import com.example.nami.utils.ButtonDialogActions
 import kotlinx.android.synthetic.main.activity_detail.*
 import kotlinx.android.synthetic.main.code_scanner_popup.view.*
+import kotlinx.android.synthetic.main.skeleton_detail_icons.*
 import java.text.NumberFormat
 import java.util.*
 
@@ -71,8 +72,7 @@ class Detail : AppCompatActivity(), DetailUI {
             false
         })
 
-        loading.visibility = View.VISIBLE
-        detailActivityContent.visibility = View.GONE
+
     }
 
     private fun scannerFunction() {
@@ -251,6 +251,11 @@ class Detail : AppCompatActivity(), DetailUI {
     }
 
     override fun showDetailInfo(data: DetailResponse, order: OrdersList) {
+        // stop animating Shimmer and hide the layout
+        shimmer_view_container.stopShimmerAnimation()
+        shimmer_view_container.visibility = View.GONE
+        skeletonIcons.visibility = View.GONE
+        contentDetailPage.visibility  = View.VISIBLE
         runOnUiThread {
             if (data.order.service == "D") {
                 type.text = "Domicilio"
@@ -294,12 +299,11 @@ class Detail : AppCompatActivity(), DetailUI {
             createArticleView(behavior)
             createButtons(behavior)
 
-            loading.visibility = View.GONE
-            detailActivityContent.visibility = View.VISIBLE
+
         }
     }
 
-    fun checkAll(deliveryOk: Boolean) {
+    private fun checkAll(deliveryOk: Boolean) {
         if (deliveryOk) {
             for (i in data.order.detailOrder.list) {
                 articleList[data.order.detailOrder.list.indexOf(i)] =
