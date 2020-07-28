@@ -363,7 +363,15 @@ class Detail : AppCompatActivity(), DetailUI {
             }
         }
     }
+    override fun onResume() {
+        super.onResume()
+        shimmer_view_container.startShimmerAnimation()
+    }
 
+    override fun onPause() {
+        shimmer_view_container.stopShimmerAnimation()
+        super.onPause()
+    }
 
     private fun calculateAdjustTotal() {
         adjustvalue = data.order.deliveryValue.toDouble()

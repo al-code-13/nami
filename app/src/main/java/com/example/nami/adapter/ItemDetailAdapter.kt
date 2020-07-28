@@ -60,7 +60,7 @@ class ItemsDetailAdapter(
     ) {
         val elements = data[position]
         v.name.text = elements.article.name
-        v.idProduct.text = "${elements.article.upc}"
+        v.idProduct.text = "${elements.article.sku}"
         if(behavior==2){
             v.cant.text = "${compareList[position]}"
         }

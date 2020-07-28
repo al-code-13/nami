@@ -95,16 +95,24 @@ class SectionPresenter(private val ui: SectionUI, val context: Context) : BasePr
         }
     }
 
-    fun actionPutDeliverCourier(orderId: Int) {
-        interactor.putDeliverCourier(orderId, { data ->
+    fun actionPutDeliverCourier(orderId: Int,email:String?=null,phone:String?=null) {
+        interactor.putDeliverCourier(orderId, email,phone,{ data ->
             ui.actionSuccess(data.message)
         }, { error ->
             ui.showError(error)
         })
     }
 
-    fun actionPutDeliverCustomer(orderId: Int) {
-        interactor.putDeliverCustomer(orderId, { data ->
+    fun actionPutSendConfirmation(orderId: Int,email: String,phone: String){
+        interactor.putSendConfirmation(orderId,email,phone, { data ->
+            Log.i("todo salio correcto",data.toString())
+            //ui.showDetailFunctionDeliverCustomer()
+        }, { error ->
+            ui.showError(error)
+        })
+    }
+    fun actionPutConfirmDelivery(orderId: Int,code:String) {
+        interactor.putConfirmDelivery(orderId,code, { data ->
             ui.actionSuccess(data.message)
         }, { error ->
             ui.showError(error)

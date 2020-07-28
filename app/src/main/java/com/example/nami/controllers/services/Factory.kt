@@ -13,11 +13,6 @@ import java.util.concurrent.TimeUnit
 open class ServiceFactory {
 
     val JSON = "application/json; charset=utf-8".toMediaType()
-    //Desarrollo
-    val serverUrl: String = "https://d1-dev-test.chefmenu.com.co:6443"
-
-    //stage
-    //val serverUrl: String = "https://d1-picking-test.chefmenu.com.co"
     val routeBase: String = "/api/v2"
     val routeAuth: String = "/auth"
     val routePicker: String = "/pickers"
@@ -29,7 +24,8 @@ open class ServiceFactory {
     val routeRelease: String = "/release"
     val routePicking = "/checked"
     val routeDeliverCourier: String = "/deliver-courier"
-    val routeDeliverConsumer: String = "/deliver-customer"
+    val routeconfirmDelivery: String = "/confirm-delivery"
+    val routeSendConfirmation:String="/send-confirmation"
     val routeFreeze: String = "freeze"
     val routeMe: String = "/me"
 
@@ -77,9 +73,14 @@ open class ServiceFactory {
     }
 
     companion object {
+        //Desarrollo
+        val serverUrl: String = "https://d1-dev-test.chefmenu.com.co:6443"
+        //stage
+        //val serverUrl: String = "https://d1-picking-test.chefmenu.com.co"
         lateinit var data: SectionsResponse
         var token: String? = null
         lateinit var reasons: ReasonsResponse
+        var development:Boolean = this.serverUrl=="https://d1-dev-test.chefmenu.com.co:6443"
     }
 
 

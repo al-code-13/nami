@@ -131,17 +131,26 @@ class DetailPresenter(
         }
     }
 
-    fun actionPutDeliverCourier() {
-        interactor.putDeliverCourier(orderId, { data ->
+    fun actionPutDeliverCourier(email:String?=null,phone:String?=null) {
+        interactor.putDeliverCourier(orderId,email,phone, { data ->
             ui.showDetailFunctioDeliverCourier()
         }, { error ->
             ui.showError(error)
         })
     }
 
-    fun actionPutDeliverCustomer() {
-        interactor.putDeliverCustomer(orderId, { data ->
+    fun actionPutDeliverCustomer(code:String) {
+        interactor.putConfirmDelivery(orderId,code, { data ->
             ui.showDetailFunctionDeliverCustomer()
+        }, { error ->
+            ui.showError(error)
+        })
+    }
+
+    fun actionPutSendConfirmation(email: String,phone: String){
+        interactor.putSendConfirmation(orderId,email,phone, { data ->
+            Log.i("todo salio correcto",data.toString())
+            //ui.showDetailFunctionDeliverCustomer()
         }, { error ->
             ui.showError(error)
         })

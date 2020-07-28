@@ -1,8 +1,9 @@
 package com.example.nami.models.detailModels
 
-data class DeliverCourierRequest (
-    val idOrder: Int
+data class DeliveryCourierRequest (
+    val email:String?=null,
+    val phone:String?=null
 )
-data class DeliverCourierResponse (
+data class DeliveryCourierResponse (
     val message: String
 )

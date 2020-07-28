@@ -4,12 +4,12 @@ package com.example.nami
 import android.content.Intent
 import android.os.Bundle
 import android.view.View
-import android.widget.LinearLayout
 import android.widget.ProgressBar
 import android.widget.ScrollView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
+import com.example.nami.controllers.services.ServiceFactory
 import com.example.nami.presenters.LoginPresenter
 import com.example.nami.presenters.LoginUI
 import kotlinx.android.synthetic.main.activity_login.*
@@ -25,6 +25,18 @@ class Login : AppCompatActivity(), LoginUI {
         setTheme(R.style.SplashTheme)
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
+        val numVersion =
+            applicationContext.packageManager.getPackageInfo(
+                applicationContext.packageName,
+                0
+            ).versionName
+
+        if (ServiceFactory.development) {
+            version.text = "Versión $numVersion Alpha Debug\n Services Development"
+        } else {
+            version.text = "Versión $numVersion Alpha Debug\n Services Pre-Production"
+        }
+
         spinner = findViewById(R.id.progressBar)
         containerLogin = findViewById(R.id.containerLogin)
         spinner?.visibility = View.GONE

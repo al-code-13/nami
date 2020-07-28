@@ -137,32 +137,32 @@ class ServiceInteractor : ServiceFactory() {
 
     fun getSection(
         section: Int,
-        initialDate:String?=null,
-        finalDate:String?=null,
+        initialDate: String? = null,
+        finalDate: String? = null,
         then: (SectionResponse) -> Unit,
         error: (String) -> Unit
     ) {
         uiScope.launch {
-            getSectionCorutine(section,initialDate,finalDate, then, error)
+            getSectionCorutine(section, initialDate, finalDate, then, error)
         }
     }
 
     private suspend fun getSectionCorutine(
         section: Int,
-        initialDate:String?="null",
-        finalDate:String?="null",
+        initialDate: String? = "null",
+        finalDate: String? = "null",
         then: (SectionResponse) -> Unit,
         error: (String) -> Unit
     ) {
         val url = "$serverUrl$routeBase$routeSections/$section/$initialDate/$finalDate"
-        Log.i("urlSection",url)
+        Log.i("urlSection", url)
         withContext(Dispatchers.IO) {
             get(url, token!!).enqueue(object : Callback {
                 override fun onResponse(call: Call, response: Response) {
                     Log.i("ME LLAMARON", "POS AQUI ESTOY")
 
                     val body = response.body?.string()
-                    Log.i("bodySection",body)
+                    Log.i("bodySection", body)
                     val gson = GsonBuilder().create()
                     val res = gson.fromJson(body, SectionResponse::class.java)
                     if (response.isSuccessful) {
@@ -173,7 +173,7 @@ class ServiceInteractor : ServiceFactory() {
                 }
 
                 override fun onFailure(call: Call, e: IOException) {
-                    Log.i("timeout?",e.message)
+                    Log.i("timeout?", e.message)
                     error("Error en el servicio")
                 }
             })
@@ -280,7 +280,7 @@ class ServiceInteractor : ServiceFactory() {
         then: (ReleaseOrderResponse) -> Unit,
         error: (String) -> Unit
     ) {
-        Log.i("elobservaarfva",observations.toString())
+        Log.i("elobservaarfva", observations.toString())
         val url = "$serverUrl$routeBase$routeOrders/$idOrder$routeRelease"
         val request = ReleaseOrderRequest(observations)
         val json = Gson().toJson(request)
@@ -345,7 +345,7 @@ class ServiceInteractor : ServiceFactory() {
             totalPicker,
             observations
         )
-        Log.i("ARTICLzzz",listDataPicker.toString())
+        Log.i("ARTICLzzz", listDataPicker.toString())
         val json = Gson().toJson(request)
         withContext(Dispatchers.IO) {
             put(url, token!!, json).enqueue(object : Callback {
@@ -372,29 +372,38 @@ class ServiceInteractor : ServiceFactory() {
 
     fun putDeliverCourier(
         idOrder: Int,
-        then: (DeliverCourierResponse) -> Unit,
+        email: String? = null,
+        phone: String? = null,
+        then: (DeliveryCourierResponse) -> Unit,
         error: (String) -> Unit
     ) {
         uiScope.launch {
-            putDeliverCourierCorutine(idOrder, then, error)
+            putDeliverCourierCorutine(idOrder, email, phone, then, error)
         }
     }
 
 
     private suspend fun putDeliverCourierCorutine(
         idOrder: Int,
-        then: (DeliverCourierResponse) -> Unit,
+        email: String? = null,
+        phone: String? = null,
+        then: (DeliveryCourierResponse) -> Unit,
         error: (String) -> Unit
     ) {
         val url = "$serverUrl$routeBase$routeOrders$idOrder$routeDeliverCourier"
-        val request = DeliverCourierRequest(idOrder)
+        val request =
+            if (development && email != null && phone != null) DeliveryCourierRequest(
+                email,
+                phone
+            ) else DeliveryCourierRequest()
         val json = Gson().toJson(request)
         withContext(Dispatchers.IO) {
+            Log.i("request", json)
             put(url, token!!, json).enqueue(object : Callback {
                 override fun onResponse(call: Call, response: Response) {
                     val body = response.body?.string()
                     val gson = GsonBuilder().create()
-                    val res = gson.fromJson(body, DeliverCourierResponse::class.java)
+                    val res = gson.fromJson(body, DeliveryCourierResponse::class.java)
                     if (response.isSuccessful) {
                         then(res)
                     } else {
@@ -410,30 +419,76 @@ class ServiceInteractor : ServiceFactory() {
 
     }
 
-    fun putDeliverCustomer(
+    fun putConfirmDelivery(
         idOrder: Int,
-        then: (DeliverConsumerResponse) -> Unit,
+        code: String,
+        then: (ConfirmDeliveryResponse) -> Unit,
         error: (String) -> Unit
     ) {
         uiScope.launch {
-            putDeliverCustomerCorutine(idOrder, then, error)
+            putConfirmDeliveryCorutine(idOrder, code, then, error)
         }
     }
 
-    private suspend fun putDeliverCustomerCorutine(
+    private suspend fun putConfirmDeliveryCorutine(
         idOrder: Int,
-        then: (DeliverConsumerResponse) -> Unit,
+        code: String,
+        then: (ConfirmDeliveryResponse) -> Unit,
         error: (String) -> Unit
     ) {
-        val url = "$serverUrl$routeBase$routeOrders/$idOrder$routeDeliverConsumer"
-        val request = DeliverConsumerRequest(idOrder)
+        val url = "$serverUrl$routeBase$routeOrders/$idOrder$routeconfirmDelivery"
+        val request = ConfirmDeliveryRequest(code)
         val json = Gson().toJson(request)
         withContext(Dispatchers.IO) {
             put(url, token!!, json).enqueue(object : Callback {
                 override fun onResponse(call: Call, response: Response) {
                     val body = response.body?.string()
                     val gson = GsonBuilder().create()
-                    val res = gson.fromJson(body, DeliverConsumerResponse::class.java)
+                    val res = gson.fromJson(body, ConfirmDeliveryResponse::class.java)
+                    if (response.isSuccessful) {
+                        then(res)
+                    } else {
+                        error(res.message.toString())
+                    }
+                }
+
+                override fun onFailure(call: Call, e: IOException) {
+                    error("Error en el servicio")
+                }
+            })
+        }
+
+    }
+
+
+    fun putSendConfirmation(
+        idOrder: Int,
+        email:String,
+        phone:String,
+        then: (ConfirmDeliveryResponse) -> Unit,
+        error: (String) -> Unit
+    ) {
+        uiScope.launch {
+            putSendConfirmationCorutine(idOrder, email,phone, then, error)
+        }
+    }
+
+    private suspend fun putSendConfirmationCorutine(
+        idOrder: Int,
+        email:  String,
+        phone: String,
+        then: (ConfirmDeliveryResponse) -> Unit,
+        error: (String) -> Unit
+    ) {
+        val url = "$serverUrl$routeBase$routeOrders/$idOrder$routeSendConfirmation"
+        val request = SendConfirmationRequest(email,phone)
+        val json = Gson().toJson(request)
+        withContext(Dispatchers.IO) {
+            put(url, token!!, json).enqueue(object : Callback {
+                override fun onResponse(call: Call, response: Response) {
+                    val body = response.body?.string()
+                    val gson = GsonBuilder().create()
+                    val res = gson.fromJson(body, ConfirmDeliveryResponse::class.java)
                     if (response.isSuccessful) {
                         then(res)
                     } else {
