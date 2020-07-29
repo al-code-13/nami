@@ -7,6 +7,8 @@ import com.example.nami.models.detailModels.*
 import com.example.nami.models.sections.ReasonsResponse
 import com.example.nami.models.sections.SectionResponse
 import com.example.nami.models.sections.SectionsResponse
+import com.example.nami.models.user.Branch
+import com.example.nami.models.user.BranchsResponse
 import com.example.nami.models.user.UserResponse
 import com.google.gson.Gson
 import com.google.gson.GsonBuilder
@@ -65,21 +67,56 @@ class ServiceInteractor : ServiceFactory() {
 
     }
 
+    fun getBranchs(
+        then: (BranchsResponse) -> Unit,
+        error: (String) -> Unit
+    ) {
+        uiScope.launch {
+            getBranchsCorrutine(then, error)
+        }
+    }
+
+    fun getBranchsCorrutine(
+        then: (BranchsResponse) -> Unit,
+        error: (String) -> Unit
+    ) {
+
+        val url = "$serverUrl$routeBase$routeBranchs"
+        get(url, token!!).enqueue(object : Callback {
+            override fun onResponse(call: Call, response: Response) {
+
+                val body = response.body?.string()
+                val gson = GsonBuilder().create()
+                val res = gson.fromJson(body, BranchsResponse::class.java)
+                if (response.isSuccessful) {
+                    Log.i("body",body)
+                    then(res)
+                } else {
+                    error(res.message.toString())
+                }
+            }
+            override fun onFailure(call: Call, e: IOException) {
+                error("Error en el servicio")
+            }
+        })
+    }
     fun getSections(
+        branchId: Int,
         then: (SectionsResponse) -> Unit,
         error: (String) -> Unit
     ) {
         uiScope.launch {
-            getSectionsCorrutine(then, error)
+            getSectionsCorrutine(branchId, then, error)
         }
     }
 
     fun getSectionsCorrutine(
+        branchId: Int,
         then: (SectionsResponse) -> Unit,
         error: (String) -> Unit
     ) {
 
-        val url = serverUrl + routeBase + routeSections
+        val url = "$serverUrl$routeBase$routeBranchs/$branchId$routeSections"
         get(url, token!!).enqueue(object : Callback {
             override fun onResponse(call: Call, response: Response) {
 
@@ -137,24 +174,32 @@ class ServiceInteractor : ServiceFactory() {
 
     fun getSection(
         section: Int,
+        branchId: Int,
         initialDate: String? = null,
         finalDate: String? = null,
         then: (SectionResponse) -> Unit,
         error: (String) -> Unit
     ) {
         uiScope.launch {
-            getSectionCorutine(section, initialDate, finalDate, then, error)
+            getSectionCorutine(section, branchId, initialDate, finalDate, then, error)
         }
     }
 
     private suspend fun getSectionCorutine(
         section: Int,
+        branchId: Int,
         initialDate: String? = "null",
         finalDate: String? = "null",
         then: (SectionResponse) -> Unit,
         error: (String) -> Unit
     ) {
-        val url = "$serverUrl$routeBase$routeSections/$section/$initialDate/$finalDate"
+
+        val url = if (initialDate != null && finalDate != null) {
+            "$serverUrl$routeBase$routeBranchs/$branchId$routeSections/$section?start=$initialDate&end=$finalDate"
+        } else {
+            "$serverUrl$routeBase$routeBranchs/$branchId$routeSections/$section"
+        }
+
         Log.i("urlSection", url)
         withContext(Dispatchers.IO) {
             get(url, token!!).enqueue(object : Callback {
@@ -463,25 +508,25 @@ class ServiceInteractor : ServiceFactory() {
 
     fun putSendConfirmation(
         idOrder: Int,
-        email:String,
-        phone:String,
+        email: String,
+        phone: String,
         then: (ConfirmDeliveryResponse) -> Unit,
         error: (String) -> Unit
     ) {
         uiScope.launch {
-            putSendConfirmationCorutine(idOrder, email,phone, then, error)
+            putSendConfirmationCorutine(idOrder, email, phone, then, error)
         }
     }
 
     private suspend fun putSendConfirmationCorutine(
         idOrder: Int,
-        email:  String,
+        email: String,
         phone: String,
         then: (ConfirmDeliveryResponse) -> Unit,
         error: (String) -> Unit
     ) {
         val url = "$serverUrl$routeBase$routeOrders/$idOrder$routeSendConfirmation"
-        val request = SendConfirmationRequest(email,phone)
+        val request = SendConfirmationRequest(email, phone)
         val json = Gson().toJson(request)
         withContext(Dispatchers.IO) {
             put(url, token!!, json).enqueue(object : Callback {

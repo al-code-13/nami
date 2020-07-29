@@ -18,7 +18,7 @@ class SectionPresenter(private val ui: SectionUI, val context: Context) : BasePr
     private var viewModelJob: Job = Job()
     private val uiScope = CoroutineScope(Dispatchers.Main + viewModelJob)
 
-    fun actionSection(idSection: Int, initialDate: String? = null, finalDate: String? = null) {
+    fun actionSection(idSection: Int,initialDate: String? = null, finalDate: String? = null) {
         uiScope.launch {
             try {
                 val realmResponse = realm!!.where<SectionResponse>().equalTo("id", idSection)
@@ -39,9 +39,14 @@ class SectionPresenter(private val ui: SectionUI, val context: Context) : BasePr
         initialDate: String? = null,
         finalDate: String? = null
     ) {
+        val sharedPreference =
+        this.context.getSharedPreferences("localStorage", Context.MODE_PRIVATE)
+        val branchId = sharedPreference.getString("branchId", "null").toString()
+
         Log.i("refresh section", idSection.toString())
         interactor.getSection(
             idSection,
+            branchId.toInt(),
             initialDate,
             finalDate,
             { data ->

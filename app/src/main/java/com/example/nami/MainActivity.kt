@@ -4,7 +4,6 @@ import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.widget.Toast
-import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.viewpager.widget.ViewPager
 import co.zsmb.materialdrawerkt.builders.accountHeader
@@ -16,6 +15,7 @@ import co.zsmb.materialdrawerkt.draweritems.profile.profile
 import co.zsmb.materialdrawerkt.imageloader.drawerImageLoader
 import com.example.nami.adapter.SectionsAdapter
 import com.example.nami.models.sections.SectionsResponse
+import com.example.nami.models.user.BranchsResponse
 import com.example.nami.models.user.UserResponse
 import com.example.nami.presenters.SectionsPresenter
 import com.example.nami.presenters.SectionsUI
@@ -43,24 +43,25 @@ class MainActivity : AppCompatActivity(), SectionsUI {
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
-        Log.i("codigoResultante",resultCode.toString())
+        Log.i("codigoResultante", resultCode.toString())
         if (resultCode == DETAIL_RESULT) {
             val refresh: Boolean? = data?.getBooleanExtra("datosp", false)
-            Log.i("a ver que recibimos",refresh.toString())
+            Log.i("a ver que recibimos", refresh.toString())
             if (refresh == true) {
                 refreshSections()
             }
         }
     }
 
-    private fun refreshSections(){
+    private fun refreshSections() {
         adapter.notifyDataSetChanged(viewPager!!.currentItem)
     }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         //solicitud del primer servicio (secciones)
-        presenter.actionSections()
+        presenter.actionBranchs()
         tabLayout = findViewById(R.id.tabLayout)
         viewPager = findViewById(R.id.viewPager)
         drawerImageLoader {
@@ -80,50 +81,30 @@ class MainActivity : AppCompatActivity(), SectionsUI {
         }
     }
 
-    //Funcion cuando responde el servicio
-    override fun showSection(data: SectionsResponse, userData: UserResponse) {
-        //Se corre en el hilo principal
+    override fun showBranchs(data: BranchsResponse, userData: UserResponse) {
         runOnUiThread {
-            //por cada seccion se genera una pestaña
-            toolbar3.title = "${userData.user!!.branchs?.get(0)!!.name}"
-            for (section in data.sections!!) {
-                tabLayout!!.addTab(tabLayout!!.newTab().setText(section.name))
-            }
-            tabLayout?.tabGravity = TabLayout.GRAVITY_FILL
 
-            //Se llama el adaptador de las secciones
-            adapter = SectionsAdapter(
-                this,
-                supportFragmentManager,
-                tabLayout!!.tabCount,
-                data.behaviors!!.toTypedArray(),
-                data.sections!!
-            ) {refreshSections()}
-            //Se asigna el adaptador
-            viewPager!!.adapter = adapter
-            viewPager!!.addOnPageChangeListener(TabLayout.TabLayoutOnPageChangeListener(tabLayout))
-            tabLayout!!.addOnTabSelectedListener(object : TabLayout.OnTabSelectedListener {
-                override fun onTabSelected(tab: TabLayout.Tab) {
-                    viewPager!!.currentItem = tab.position
-                }
-
-                override fun onTabUnselected(tab: TabLayout.Tab) {}
-                override fun onTabReselected(tab: TabLayout.Tab) {}
-            })
-
+            toolbar3.title = "${data.branchs?.get(0)!!.name}"
             //Se creal el sidemenu
             drawer {
                 this.closeOnClick = true
                 this.toolbar = toolbar3
                 accountHeader {
-                    profile(
-                        "${userData.user!!.name} ${userData.user!!.lastname}",
-                        "${userData.user!!.branchs?.get(0)!!.name}"
-                    ) {
-                        iconUrl = "${userData.user!!.branchs!!.get(0)!!.establishment!!.logo}"
-                        Log.i("iconUrl", "${userData.user!!.branchs!![0]!!.establishment!!.logo}")
+                    for (i in data.branchs!!) {
+                        profile(
+                            "${i.city!!.name}",
+                            "${i!!.name}"
+
+                        ) {
+                            this.onClick { _, position, _ ->
+                                presenter.actionRefreshSections(i!!.id!!)
+                                toolbar3.title = "${i.name}"
+                                true
+                            }
+                            iconUrl = "${i.establishment!!.logo}"
+                            Log.i("iconUrl", "${i.establishment!!.logo}")
+                        }
                     }
-                    this.alternativeSwitching = false
                 }
                 primaryItem("Inicio")
                 primaryItem("Recursos") {
@@ -169,6 +150,40 @@ class MainActivity : AppCompatActivity(), SectionsUI {
                     }
                 }
             }
+        }
+    }
+
+
+    //Funcion cuando responde el servicio
+    override fun showSection(data: SectionsResponse) {
+        //Se corre en el hilo principal
+        runOnUiThread {
+            //por cada seccion se genera una pestaña
+            for (section in data.sections!!) {
+                tabLayout!!.addTab(tabLayout!!.newTab().setText(section.name))
+            }
+            tabLayout?.tabGravity = TabLayout.GRAVITY_FILL
+
+            //Se llama el adaptador de las secciones
+            adapter = SectionsAdapter(
+                this,
+                supportFragmentManager,
+                tabLayout!!.tabCount,
+                data.behaviors!!.toTypedArray(),
+                data.sections!!
+            ) { refreshSections() }
+            //Se asigna el adaptador
+            viewPager!!.adapter = adapter
+            viewPager!!.addOnPageChangeListener(TabLayout.TabLayoutOnPageChangeListener(tabLayout))
+            tabLayout!!.addOnTabSelectedListener(object : TabLayout.OnTabSelectedListener {
+                override fun onTabSelected(tab: TabLayout.Tab) {
+                    viewPager!!.currentItem = tab.position
+                }
+
+                override fun onTabUnselected(tab: TabLayout.Tab) {}
+                override fun onTabReselected(tab: TabLayout.Tab) {}
+            })
+
 
         }
     }
