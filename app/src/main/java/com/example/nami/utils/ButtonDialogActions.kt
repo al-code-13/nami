@@ -6,6 +6,7 @@ import android.view.View
 import android.widget.EditText
 import android.widget.LinearLayout
 import android.widget.TextView
+import com.example.nami.BuildConfig
 import com.example.nami.Detail
 import com.example.nami.R
 import com.example.nami.controllers.services.ServiceFactory
@@ -100,7 +101,7 @@ class ButtonDialogActions {
                             val emailEdit = dialogView.findViewById<EditText>(R.id.editEmail)
                             val phoneEdit = dialogView.findViewById<EditText>(R.id.editPhone)
 
-                            if (ServiceFactory.development) {
+                            if (BuildConfig.DEBUG) {
                                 emailEdit!!.visibility = View.VISIBLE
                                 phoneEdit!!.visibility = View.VISIBLE
                             }
@@ -111,7 +112,7 @@ class ButtonDialogActions {
                                 LayoutInflater.from(mContext)
                                     .inflate(R.layout.action_item, null)
                             v.setOnClickListener {
-                                if (ServiceFactory.development) {
+                                if (BuildConfig.DEBUG) {
                                     presenter.actionPutDeliverCourier(
                                         items.id!!,
                                         emailEdit.text.toString(),
@@ -166,7 +167,7 @@ class ButtonDialogActions {
                             val codeEdit = dialogView.findViewById<EditText>(R.id.editCode)
                             codeEdit!!.visibility = View.VISIBLE
 
-                            if (ServiceFactory.development) {
+                            if (BuildConfig.DEBUG) {
                                 emailEdit!!.visibility = View.VISIBLE
                                 phoneEdit!!.visibility = View.VISIBLE
 
@@ -192,7 +193,7 @@ class ButtonDialogActions {
                             )
                             layoutActions.addView(v)
 
-                            if (ServiceFactory.development) {
+                            if (BuildConfig.DEBUG) {
                                 val reSend: View =
                                     LayoutInflater.from(mContext).inflate(R.layout.action_item, null)
                                 reSend.setOnClickListener {
@@ -201,7 +202,7 @@ class ButtonDialogActions {
                                         emailEdit!!.text.toString(),
                                         phoneEdit!!.text.toString()
                                     )
-                                    dialog.dismiss()
+                                   // dialog.dismiss()
                                 }
                                 reSend.action.text = "Reenviar codigo"
                                 reSend.action.setCompoundDrawablesWithIntrinsicBounds(
@@ -458,7 +459,7 @@ class ButtonDialogActions {
                 val emailEdit = dialogView.findViewById<EditText>(R.id.editEmail)
                 val phoneEdit = dialogView.findViewById<EditText>(R.id.editPhone)
 
-                if (ServiceFactory.development) {
+                if (BuildConfig.DEBUG) {
                     emailEdit!!.visibility = View.VISIBLE
                     phoneEdit!!.visibility = View.VISIBLE
                 }
@@ -470,7 +471,7 @@ class ButtonDialogActions {
                 val v: View =
                     LayoutInflater.from(mContext).inflate(R.layout.action_item, null)
                 v.setOnClickListener {
-                    if (ServiceFactory.development) {
+                    if (BuildConfig.DEBUG) {
                         presenter.actionPutDeliverCourier(
                             emailEdit!!.text.toString(),
                             phoneEdit.text.toString()
@@ -517,7 +518,7 @@ class ButtonDialogActions {
                 val codeEdit = dialogView.findViewById<EditText>(R.id.editCode)
                 codeEdit!!.visibility = View.VISIBLE
 
-                if (ServiceFactory.development) {
+                if (BuildConfig.DEBUG) {
                     emailEdit!!.visibility = View.VISIBLE
                     phoneEdit!!.visibility = View.VISIBLE
                 }
@@ -537,7 +538,7 @@ class ButtonDialogActions {
                     0
                 )
                 layoutActions.addView(v)
-                if (ServiceFactory.development) {
+                if (BuildConfig.DEBUG) {
                     val reSend: View =
                         LayoutInflater.from(mContext).inflate(R.layout.action_item, null)
                     reSend.setOnClickListener {
@@ -545,7 +546,7 @@ class ButtonDialogActions {
                             emailEdit!!.text.toString(),
                             phoneEdit!!.text.toString()
                         )
-                        dialog.dismiss()
+                        // dialog.dismiss()
                     }
                     reSend.action.text = "Reenviar codigo"
                     reSend.action.setCompoundDrawablesWithIntrinsicBounds(

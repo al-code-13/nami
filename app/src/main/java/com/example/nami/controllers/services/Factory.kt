@@ -82,7 +82,7 @@ open class ServiceFactory {
         lateinit var data: SectionsResponse
         var token: String? = null
         lateinit var reasons: ReasonsResponse
-        var development:Boolean = this.serverUrl=="https://d1-dev-test.chefmenu.com.co:6443"
+      //  var development:Boolean = this.serverUrl=="https://d1-dev-test.chefmenu.com.co:6443"
     }
 
 

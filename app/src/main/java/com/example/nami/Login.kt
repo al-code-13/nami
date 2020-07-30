@@ -25,13 +25,9 @@ class Login : AppCompatActivity(), LoginUI {
         setTheme(R.style.SplashTheme)
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
-        val numVersion =
-            applicationContext.packageManager.getPackageInfo(
-                applicationContext.packageName,
-                0
-            ).versionName
+        val numVersion = BuildConfig.VERSION_NAME
 
-        if (ServiceFactory.development) {
+        if ( BuildConfig.DEBUG ) {
             version.text = "Versión $numVersion Alpha Debug\n Services Development"
         } else {
             version.text = "Versión $numVersion Alpha Debug\n Services Pre-Production"

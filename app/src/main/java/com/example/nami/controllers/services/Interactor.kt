@@ -1,6 +1,7 @@
 package com.example.nami.controllers.services
 
 import android.util.Log
+import com.example.nami.BuildConfig
 import com.example.nami.models.auth.LoginRequest
 import com.example.nami.models.auth.LoginResponse
 import com.example.nami.models.detailModels.*
@@ -437,7 +438,7 @@ class ServiceInteractor : ServiceFactory() {
     ) {
         val url = "$serverUrl$routeBase$routeOrders$idOrder$routeDeliverCourier"
         val request =
-            if (development && email != null && phone != null) DeliveryCourierRequest(
+            if (BuildConfig.DEBUG && email != null && phone != null) DeliveryCourierRequest(
                 email,
                 phone
             ) else DeliveryCourierRequest()

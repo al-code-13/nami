@@ -4,6 +4,7 @@ import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.widget.Toast
+import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.viewpager.widget.ViewPager
 import co.zsmb.materialdrawerkt.builders.accountHeader
@@ -15,6 +16,7 @@ import co.zsmb.materialdrawerkt.draweritems.profile.profile
 import co.zsmb.materialdrawerkt.imageloader.drawerImageLoader
 import com.example.nami.adapter.SectionsAdapter
 import com.example.nami.models.sections.SectionsResponse
+import com.example.nami.models.user.Branch
 import com.example.nami.models.user.BranchsResponse
 import com.example.nami.models.user.UserResponse
 import com.example.nami.presenters.SectionsPresenter
@@ -38,7 +40,6 @@ class MainActivity : AppCompatActivity(), SectionsUI {
 
     companion object {
         val DETAIL_RESULT = 338
-
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
@@ -61,6 +62,7 @@ class MainActivity : AppCompatActivity(), SectionsUI {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         //solicitud del primer servicio (secciones)
+        presenter.actionSections()
         presenter.actionBranchs()
         tabLayout = findViewById(R.id.tabLayout)
         viewPager = findViewById(R.id.viewPager)
@@ -81,71 +83,166 @@ class MainActivity : AppCompatActivity(), SectionsUI {
         }
     }
 
-    override fun showBranchs(data: BranchsResponse, userData: UserResponse) {
+    override fun showBranchs(
+        data: BranchsResponse,
+        userData: UserResponse,
+        selectedBranch: Branch?
+    ) {
         runOnUiThread {
+            if (data.branchs!!.size <= 0) {
+                val dialog = AlertDialog.Builder(this)
+                dialog.setTitle("No tienes ninguna sucursal asignada")
+                dialog.setPositiveButton("Ok") { _, _ ->
+                    finish()
+                    presenter.actionLogOut()
+                }
+            } else {
+                if (selectedBranch != null) {
+                    val index: Int = data!!.branchs!!.indexOf(selectedBranch)
+                    data.branchs!!.removeAt(index)
+                    data!!.branchs!!.add(0, selectedBranch)
+                    toolbar3.title = "${selectedBranch.name}"
+                    //Se creal el sidemenu
+                    drawer {
+                        this.showOnFirstLaunch = true
+                        this.closeOnClick = true
+                        this.keepStickyItemsVisible = true
+                        this.toolbar = toolbar3
+                        accountHeader {
+                            for (i in data.branchs!!) {
+                                profile(
+                                    "${i.city!!.name}",
+                                    "${i!!.name}"
+                                ) {
+                                    this.onClick { _, position, _ ->
+                                        presenter.actionRefreshSections(i.id!!)
+                                        toolbar3.title = "${i.name}"
+                                        true
+                                    }
+                                    iconUrl = "${i.establishment!!.logo}"
+                                    Log.i("iconUrl", "${i.establishment!!.logo}")
+                                }
+                                this.onlyMainProfileImageVisible = true
+                                this.onlySmallProfileImagesVisible = false
 
-            toolbar3.title = "${data.branchs?.get(0)!!.name}"
-            //Se creal el sidemenu
-            drawer {
-                this.closeOnClick = true
-                this.toolbar = toolbar3
-                accountHeader {
-                    for (i in data.branchs!!) {
-                        profile(
-                            "${i.city!!.name}",
-                            "${i!!.name}"
-
-                        ) {
-                            this.onClick { _, position, _ ->
-                                presenter.actionRefreshSections(i!!.id!!)
-                                toolbar3.title = "${i.name}"
+                            }
+                        }
+                        primaryItem("Inicio")
+                        primaryItem("Recursos") {
+                            enabled = false
+                            badge {
+                                cornersDp = 0
+                                text = ">"
+                                colorPressed = 0xFFCC99FF
+                            }
+                        }
+                        primaryItem("Zonas") {
+                            enabled = false
+                            badge {
+                                cornersDp = 0
+                                text = ">"
+                                colorPressed = 0xFFCC99FF
+                            }
+                        }
+                        primaryItem("Mis ganancias") {
+                            enabled = false
+                            badge {
+                                cornersDp = 0
+                                text = ">"
+                                colorPressed = 0xFFCC99FF
+                            }
+                        }
+                        primaryItem("Cerrar sesión") {
+                            onClick { _ ->
+                                finish()
+                                presenter.actionLogOut()
                                 true
                             }
-                            iconUrl = "${i.establishment!!.logo}"
-                            Log.i("iconUrl", "${i.establishment!!.logo}")
+                        }
+
+                        footer {
+                            primaryItem("Ayuda") {
+                                enabled = false
+                                onClick { _ ->
+                                    val intent = Intent(this@MainActivity, HelpPage::class.java)
+                                    startActivity(intent)
+                                    false
+
+                                }
+                            }
                         }
                     }
-                }
-                primaryItem("Inicio")
-                primaryItem("Recursos") {
-                    enabled = false
-                    badge {
-                        cornersDp = 0
-                        text = ">"
-                        colorPressed = 0xFFCC99FF
-                    }
-                }
-                primaryItem("Zonas") {
-                    enabled = false
-                    badge {
-                        cornersDp = 0
-                        text = ">"
-                        colorPressed = 0xFFCC99FF
-                    }
-                }
-                primaryItem("Mis ganancias") {
-                    enabled = false
-                    badge {
-                        cornersDp = 0
-                        text = ">"
-                        colorPressed = 0xFFCC99FF
-                    }
-                }
-                primaryItem("Cerrar sesión") {
-                    onClick { _ ->
-                        presenter.actionLogOut()
-                        true
-                    }
-                }
+                } else {
+                    presenter.actionRefreshSections(data.branchs?.get(0)!!.id!!)
+                    toolbar3.title = "${data.branchs?.get(0)!!.name}"
+                    //Se creal el sidemenu
+                    drawer {
+                        this.showOnFirstLaunch = true
+                        this.closeOnClick = true
+                        this.keepStickyItemsVisible = true
+                        this.toolbar = toolbar3
+                        accountHeader {
+                            for (i in data.branchs!!) {
+                                profile(
+                                    "${i.city!!.name}",
+                                    "${i!!.name}"
 
-                footer {
-                    primaryItem("Ayuda") {
-                        enabled = false
-                        onClick { _ ->
-                            val intent = Intent(this@MainActivity, HelpPage::class.java)
-                            startActivity(intent)
-                            false
+                                ) {
+                                    this.onClick { _, position, _ ->
+                                        presenter.actionRefreshSections(i.id!!)
+                                        toolbar3.title = "${i.name}"
+                                        true
+                                    }
+                                    iconUrl = "${i.establishment!!.logo}"
+                                    Log.i("iconUrl", "${i.establishment!!.logo}")
+                                }
+                                this.onlyMainProfileImageVisible = true
+                                this.onlySmallProfileImagesVisible = false
+                            }
+                        }
+                        primaryItem("Inicio")
+                        primaryItem("Recursos") {
+                            enabled = false
+                            badge {
+                                cornersDp = 0
+                                text = ">"
+                                colorPressed = 0xFFCC99FF
+                            }
+                        }
+                        primaryItem("Zonas") {
+                            enabled = false
+                            badge {
+                                cornersDp = 0
+                                text = ">"
+                                colorPressed = 0xFFCC99FF
+                            }
+                        }
+                        primaryItem("Mis ganancias") {
+                            enabled = false
+                            badge {
+                                cornersDp = 0
+                                text = ">"
+                                colorPressed = 0xFFCC99FF
+                            }
+                        }
+                        primaryItem("Cerrar sesión") {
+                            onClick { _ ->
+                                finish()
+                                presenter.actionLogOut()
+                                true
+                            }
+                        }
 
+                        footer {
+                            primaryItem("Ayuda") {
+                                enabled = false
+                                onClick { _ ->
+                                    val intent = Intent(this@MainActivity, HelpPage::class.java)
+                                    startActivity(intent)
+                                    false
+
+                                }
+                            }
                         }
                     }
                 }
@@ -159,6 +256,7 @@ class MainActivity : AppCompatActivity(), SectionsUI {
         //Se corre en el hilo principal
         runOnUiThread {
             //por cada seccion se genera una pestaña
+            tabLayout!!.removeAllTabs()
             for (section in data.sections!!) {
                 tabLayout!!.addTab(tabLayout!!.newTab().setText(section.name))
             }

@@ -70,8 +70,6 @@ class SectionPresenter(private val ui: SectionUI, val context: Context) : BasePr
             }
 
         }
-
-
     }
 
     fun actionTake(orderId: Int) {
@@ -81,7 +79,6 @@ class SectionPresenter(private val ui: SectionUI, val context: Context) : BasePr
             ui.showError(error)
         })
     }
-
     fun actionRelease(orderId: Int, observations: String?) {
         if (observations.isNullOrEmpty() || observations.isNullOrBlank()) {
 
@@ -99,7 +96,6 @@ class SectionPresenter(private val ui: SectionUI, val context: Context) : BasePr
             })
         }
     }
-
     fun actionPutDeliverCourier(orderId: Int,email:String?=null,phone:String?=null) {
         interactor.putDeliverCourier(orderId, email,phone,{ data ->
             ui.actionSuccess(data.message)
@@ -107,11 +103,10 @@ class SectionPresenter(private val ui: SectionUI, val context: Context) : BasePr
             ui.showError(error)
         })
     }
-
     fun actionPutSendConfirmation(orderId: Int,email: String,phone: String){
         interactor.putSendConfirmation(orderId,email,phone, { data ->
             Log.i("todo salio correcto",data.toString())
-            //ui.showDetailFunctionDeliverCustomer()
+            ui.actionSuccess("Mensaje Reenviado satisfactoriamente")
         }, { error ->
             ui.showError(error)
         })
@@ -123,7 +118,6 @@ class SectionPresenter(private val ui: SectionUI, val context: Context) : BasePr
             ui.showError(error)
         })
     }
-
     fun actionPutFreeze(orderId: Int, idReason: Int) {
         interactor.putFreeze(orderId, idReason, { data ->
             ui.actionSuccess(data.message)

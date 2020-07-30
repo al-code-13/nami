@@ -6,6 +6,7 @@ import android.util.Log
 import com.example.nami.controllers.services.ServiceFactory
 import com.example.nami.models.sections.SectionResponse
 import com.example.nami.models.sections.SectionsResponse
+import com.example.nami.models.user.Branch
 import com.example.nami.models.user.BranchsResponse
 import com.example.nami.models.user.UserResponse
 import io.realm.Realm
@@ -15,7 +16,7 @@ import kotlinx.coroutines.*
 
 
 interface SectionsUI {
-    fun showBranchs(data: BranchsResponse, userData: UserResponse)
+    fun showBranchs(data: BranchsResponse, userData: UserResponse,selectedBranch:Branch?=null)
     fun showSection(data: SectionsResponse)
     fun showError(error: String)
     fun exit()
@@ -31,11 +32,21 @@ class SectionsPresenter(private val ui: SectionsUI, val context: Context) : Base
             try {
                 var userResponse = realm!!.where<UserResponse>().equalTo("id", "userId").findFirst()
                 Log.i("userResponse", userResponse.toString())
+                val sharedPreference =
+                    context.getSharedPreferences("localStorage", Context.MODE_PRIVATE)
+                val branchId = sharedPreference.getString("branchId", "null")?.toString()
+
                 interactor.getBranchs(
                     { data ->
                         Log.i("branchResponse", data.toString())
-
-                        ui.showBranchs(data, userResponse!!)
+                        if(branchId!="null"){
+                            val selectedBranch =
+                                data.branchs?.firstOrNull { it.id == branchId?.toInt() }
+                            ui.showBranchs(data, userResponse!!,selectedBranch)
+                        }
+                        else{
+                            ui.showBranchs(data, userResponse!!,null)
+                        }
                     },
                     { error ->
                         ui.showError(error)
@@ -46,20 +57,12 @@ class SectionsPresenter(private val ui: SectionsUI, val context: Context) : Base
         }
     }
 
-    fun actionSections(branchId: Int) {
+    fun actionSections() {
         uiScope.launch {
             try {
                 val realmResponse =
                     realm!!.where<SectionsResponse>().equalTo("id", "sections").findFirst()
-
-                val sharedPreference =
-                    context.getSharedPreferences("localStorage", Context.MODE_PRIVATE)
-                var editor = sharedPreference.edit()
-                editor.putString("branchId", branchId.toString())
-                editor.commit()
-                if (realmResponse == null) {
-                    actionRefreshSections(branchId)
-                } else {
+                if (realmResponse != null) {
                     ServiceFactory.data = realmResponse
                     ui.showSection(realmResponse)
                 }
