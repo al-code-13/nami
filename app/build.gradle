@@ -15,8 +15,8 @@ android {
         applicationId "com.example.nami"
         minSdkVersion 16
         targetSdkVersion 29
-        versionCode 50
-        versionName "0.5.0"
+        versionCode 51
+        versionName "0.5.1"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }

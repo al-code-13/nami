@@ -1,5 +1,6 @@
 package com.example.nami.utils
 
+import android.annotation.SuppressLint
 import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
@@ -46,11 +47,11 @@ class ButtonDialogActions {
                                     .inflate(R.layout.activity_popup, null)
                             val title =
                                 dialogView.findViewById<TextView>(R.id.titleOrderId)
-                            title.text = "¿Esta seguro de liberar esta orden?"
+                            title.text = "¿Esta seguro de liberar ${items.id}?"
 
                             val observationsView =
                                 dialogView.findViewById<EditText>(R.id.editObservations)
-                            observationsView.visibility = View.VISIBLE
+                            // observationsView.visibility = View.VISIBLE
                             val layoutActions =
                                 dialogView.findViewById<LinearLayout>(R.id.listActions)
                             val v: View =
@@ -97,7 +98,7 @@ class ButtonDialogActions {
                             val title =
                                 dialogView.findViewById<TextView>(R.id.titleOrderId)
                             title.text =
-                                "¿Esta seguro de entregar esta orden a un domiciliario?"
+                                "¿Esta seguro de entregar ${items.id} a un domiciliario?"
                             val emailEdit = dialogView.findViewById<EditText>(R.id.editEmail)
                             val phoneEdit = dialogView.findViewById<EditText>(R.id.editPhone)
 
@@ -161,7 +162,7 @@ class ButtonDialogActions {
                                     .inflate(R.layout.activity_popup, null)
                             val title =
                                 dialogView.findViewById<TextView>(R.id.titleOrderId)
-                            title.text = "¿Esta seguro de entregar esta orden al cliente?"
+                            title.text = "¿Esta seguro de entregar ${items.id} al cliente?"
                             val emailEdit = dialogView.findViewById<EditText>(R.id.editEmail)
                             val phoneEdit = dialogView.findViewById<EditText>(R.id.editPhone)
                             val codeEdit = dialogView.findViewById<EditText>(R.id.editCode)
@@ -240,7 +241,7 @@ class ButtonDialogActions {
                                     .inflate(R.layout.activity_popup, null)
                             val title =
                                 dialogView.findViewById<TextView>(R.id.titleOrderId)
-                            title.text = "¿Esta seguro de congelar esta orden?"
+                            title.text = "¿Esta seguro de congelar ${items.id}?"
                             val layoutActions =
                                 dialogView.findViewById<LinearLayout>(R.id.listActions)
                             for (i in freezeActions) {
@@ -341,6 +342,7 @@ class ButtonDialogActions {
 
     }
 
+    @SuppressLint("SetTextI18n")
     fun actionsDetail(
         mContext: Context, presenter: DetailPresenter, id: Int, data: DetailResponse,
         compareArticleList: List<String>,
@@ -359,7 +361,7 @@ class ButtonDialogActions {
                 val dialogView =
                     LayoutInflater.from(mContext).inflate(R.layout.activity_popup, null)
                 val title = dialogView.findViewById<TextView>(R.id.titleOrderId)
-                title.text = "¿Esta seguro de guardar esta orden?"
+                title.text = "¿Esta seguro de guardar ${data.order.id}?"
 
                 dialogView.findViewById<EditText>(R.id.editObservations).visibility = View.VISIBLE
 
@@ -411,9 +413,9 @@ class ButtonDialogActions {
                 val dialogView =
                     LayoutInflater.from(mContext).inflate(R.layout.activity_popup, null)
                 val title = dialogView.findViewById<TextView>(R.id.titleOrderId)
-                title.text = "¿Esta seguro de liberar esta orden?"
+                title.text = "¿Esta seguro de liberar ${data.order.id}?"
 
-                dialogView.findViewById<EditText>(R.id.editObservations).visibility = View.VISIBLE
+                // dialogView.findViewById<EditText>(R.id.editObservations).visibility = View.VISIBLE
                 val layoutActions =
                     dialogView.findViewById<LinearLayout>(R.id.listActions)
                 val v: View =
@@ -464,7 +466,7 @@ class ButtonDialogActions {
                     phoneEdit!!.visibility = View.VISIBLE
                 }
                 title.text =
-                    "¿Esta seguro de entregar esta orden a un domiciliario?"
+                    "¿Esta seguro de entregar ${data.order.id} a un domiciliario?"
 
                 val layoutActions =
                     dialogView.findViewById<LinearLayout>(R.id.listActions)
@@ -580,7 +582,7 @@ class ButtonDialogActions {
                 val dialogView =
                     LayoutInflater.from(mContext).inflate(R.layout.activity_popup, null)
                 val title = dialogView.findViewById<TextView>(R.id.titleOrderId)
-                title.text = "¿Esta seguro de congelar esta orden?"
+                title.text = "¿Esta seguro de congelar ${data.order.id}?"
                 val layoutActions =
                     dialogView.findViewById<LinearLayout>(R.id.listActions)
                 for (i in freezeActions) {
