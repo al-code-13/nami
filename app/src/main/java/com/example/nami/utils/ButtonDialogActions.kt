@@ -47,7 +47,7 @@ class ButtonDialogActions {
                                     .inflate(R.layout.activity_popup, null)
                             val title =
                                 dialogView.findViewById<TextView>(R.id.titleOrderId)
-                            title.text = "¿Esta seguro de liberar ${items.id}?"
+                            title.text = "¿Esta seguro de liberar la orden ${items.id}?"
 
                             val observationsView =
                                 dialogView.findViewById<EditText>(R.id.editObservations)
@@ -98,7 +98,7 @@ class ButtonDialogActions {
                             val title =
                                 dialogView.findViewById<TextView>(R.id.titleOrderId)
                             title.text =
-                                "¿Esta seguro de entregar ${items.id} a un domiciliario?"
+                                "¿Esta seguro de entregar la orden ${items.id} a un domiciliario?"
                             val emailEdit = dialogView.findViewById<EditText>(R.id.editEmail)
                             val phoneEdit = dialogView.findViewById<EditText>(R.id.editPhone)
 
@@ -162,7 +162,7 @@ class ButtonDialogActions {
                                     .inflate(R.layout.activity_popup, null)
                             val title =
                                 dialogView.findViewById<TextView>(R.id.titleOrderId)
-                            title.text = "¿Esta seguro de entregar ${items.id} al cliente?"
+                            title.text = "¿Esta seguro de entregar la orden ${items.id} al cliente?"
                             val emailEdit = dialogView.findViewById<EditText>(R.id.editEmail)
                             val phoneEdit = dialogView.findViewById<EditText>(R.id.editPhone)
                             val codeEdit = dialogView.findViewById<EditText>(R.id.editCode)
@@ -241,7 +241,7 @@ class ButtonDialogActions {
                                     .inflate(R.layout.activity_popup, null)
                             val title =
                                 dialogView.findViewById<TextView>(R.id.titleOrderId)
-                            title.text = "¿Esta seguro de congelar ${items.id}?"
+                            title.text = "¿Esta seguro de congelar la orden ${items.id}?"
                             val layoutActions =
                                 dialogView.findViewById<LinearLayout>(R.id.listActions)
                             for (i in freezeActions) {
@@ -361,7 +361,7 @@ class ButtonDialogActions {
                 val dialogView =
                     LayoutInflater.from(mContext).inflate(R.layout.activity_popup, null)
                 val title = dialogView.findViewById<TextView>(R.id.titleOrderId)
-                title.text = "¿Esta seguro de guardar ${data.order.id}?"
+                title.text = "¿Esta seguro de guardar la orden ${data.order.id}?"
 
                 dialogView.findViewById<EditText>(R.id.editObservations).visibility = View.VISIBLE
 
@@ -383,6 +383,7 @@ class ButtonDialogActions {
                     dialog.dismiss()
                 }
                 v.action.text = "Aceptar"
+
                 v.action.setCompoundDrawablesWithIntrinsicBounds(
                     R.drawable.yes_action,
                     0,
@@ -413,7 +414,7 @@ class ButtonDialogActions {
                 val dialogView =
                     LayoutInflater.from(mContext).inflate(R.layout.activity_popup, null)
                 val title = dialogView.findViewById<TextView>(R.id.titleOrderId)
-                title.text = "¿Esta seguro de liberar ${data.order.id}?"
+                title.text = "¿Esta seguro de liberar la orden ${data.order.id}?"
 
                 // dialogView.findViewById<EditText>(R.id.editObservations).visibility = View.VISIBLE
                 val layoutActions =
@@ -466,7 +467,7 @@ class ButtonDialogActions {
                     phoneEdit!!.visibility = View.VISIBLE
                 }
                 title.text =
-                    "¿Esta seguro de entregar ${data.order.id} a un domiciliario?"
+                    "¿Esta seguro de entregar la orden ${data.order.id} a un domiciliario?"
 
                 val layoutActions =
                     dialogView.findViewById<LinearLayout>(R.id.listActions)
@@ -514,7 +515,7 @@ class ButtonDialogActions {
                 val dialogView =
                     LayoutInflater.from(mContext).inflate(R.layout.activity_popup, null)
                 val title = dialogView.findViewById<TextView>(R.id.titleOrderId)
-                title.text = "¿Esta seguro de entregar la orden al Cliente?"
+                title.text = "¿Esta seguro de entregar la orden ${data.order.id} al Cliente?"
                 val emailEdit = dialogView.findViewById<EditText>(R.id.editEmail)
                 val phoneEdit = dialogView.findViewById<EditText>(R.id.editPhone)
                 val codeEdit = dialogView.findViewById<EditText>(R.id.editCode)
@@ -582,7 +583,7 @@ class ButtonDialogActions {
                 val dialogView =
                     LayoutInflater.from(mContext).inflate(R.layout.activity_popup, null)
                 val title = dialogView.findViewById<TextView>(R.id.titleOrderId)
-                title.text = "¿Esta seguro de congelar ${data.order.id}?"
+                title.text = "¿Esta seguro de congelar la orden ${data.order.id}?"
                 val layoutActions =
                     dialogView.findViewById<LinearLayout>(R.id.listActions)
                 for (i in freezeActions) {

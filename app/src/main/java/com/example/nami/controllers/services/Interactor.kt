@@ -486,6 +486,7 @@ class ServiceInteractor : ServiceFactory() {
         val request = ConfirmDeliveryRequest(code)
         val json = Gson().toJson(request)
         withContext(Dispatchers.IO) {
+            Log.i("LOQUE ENVIAMOS",request.toString())
             put(url, token!!, json).enqueue(object : Callback {
                 override fun onResponse(call: Call, response: Response) {
                     val body = response.body?.string()
@@ -499,7 +500,7 @@ class ServiceInteractor : ServiceFactory() {
                 }
 
                 override fun onFailure(call: Call, e: IOException) {
-                    error("Error en el servicio")
+                    error("Codigo incorrecto")
                 }
             })
         }

@@ -3,6 +3,7 @@ package com.example.nami.presenters
 import android.content.Context
 import android.content.SharedPreferences
 import android.util.Log
+import androidx.appcompat.app.AlertDialog
 import com.example.nami.controllers.services.ServiceFactory
 import com.example.nami.models.sections.SectionResponse
 import com.example.nami.models.sections.SectionsResponse
@@ -35,10 +36,11 @@ class SectionsPresenter(private val ui: SectionsUI, val context: Context) : Base
                 val sharedPreference =
                     context.getSharedPreferences("localStorage", Context.MODE_PRIVATE)
                 val branchId = sharedPreference.getString("branchId", "null")?.toString()
-
                 interactor.getBranchs(
                     { data ->
-                        Log.i("branchResponse", data.toString())
+                        // TODO CUIDADO SOLO PRUEBAS
+                        //data.branchs!!.clear()
+                        // TODO CUIDADO SOLO PRUEBAS
                         if(branchId!="null"){
                             val selectedBranch =
                                 data.branchs?.firstOrNull { it.id == branchId?.toInt() }

@@ -113,8 +113,11 @@ class SectionPresenter(private val ui: SectionUI, val context: Context) : BasePr
     }
     fun actionPutConfirmDelivery(orderId: Int,code:String) {
         interactor.putConfirmDelivery(orderId,code, { data ->
+
             ui.actionSuccess(data.message)
+
         }, { error ->
+            Log.i("SE TOTEA",error)
             ui.showError(error)
         })
     }

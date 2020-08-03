@@ -89,13 +89,15 @@ class MainActivity : AppCompatActivity(), SectionsUI {
         selectedBranch: Branch?
     ) {
         runOnUiThread {
-            if (data.branchs!!.size <= 0) {
+            if (data.branchs!!.size <= 0 || data.branchs == null) {
                 val dialog = AlertDialog.Builder(this)
-                dialog.setTitle("No tienes ninguna sucursal asignada")
+                dialog.setTitle("No tienes ninguna sucursal asignada, comunicate con tu administrador. gracias")
+                dialog.setCancelable(false)
                 dialog.setPositiveButton("Ok") { _, _ ->
                     finish()
                     presenter.actionLogOut()
                 }
+                dialog.show()
             } else {
                 if (selectedBranch != null) {
                     val index: Int = data!!.branchs!!.indexOf(selectedBranch)
