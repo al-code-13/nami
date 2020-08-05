@@ -1,6 +1,8 @@
 package com.example.nami.presenters
 
+import android.app.Activity
 import android.content.Context
+import android.content.SharedPreferences
 import android.util.Log
 import com.example.nami.models.sections.SectionResponse
 import io.realm.kotlin.where
@@ -111,13 +113,14 @@ class SectionPresenter(private val ui: SectionUI, val context: Context) : BasePr
             ui.showError(error)
         })
     }
-    fun actionPutConfirmDelivery(orderId: Int,code:String) {
+    fun actionPutConfirmDelivery(orderId: Int,code:String,showDialog:()->Unit) {
         interactor.putConfirmDelivery(orderId,code, { data ->
 
             ui.actionSuccess(data.message)
 
         }, { error ->
             Log.i("SE TOTEA",error)
+            showDialog()
             ui.showError(error)
         })
     }
@@ -127,5 +130,25 @@ class SectionPresenter(private val ui: SectionUI, val context: Context) : BasePr
         }, { error ->
             ui.showError(error)
         })
+    }
+
+    fun actionLogOut() {
+        val sharedPreference: SharedPreferences =
+            this.context.getSharedPreferences("localStorage", Context.MODE_PRIVATE)
+
+        uiScope.launch {
+            try {
+                realm!!.executeTransaction {
+                    it.deleteAll()
+                }
+                sharedPreference.edit()
+                    .clear()
+                    .apply()
+                val activity= context as Activity
+                activity.finish()
+            } catch (e: Exception) {
+                ui.showError("Error al cerrar sesión")
+            }
+        }
     }
 }

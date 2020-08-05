@@ -139,10 +139,11 @@ class DetailPresenter(
         })
     }
 
-    fun actionPutDeliverCustomer(code:String) {
+    fun actionPutDeliverCustomer(code:String,showDialog:()->Unit) {
         interactor.putConfirmDelivery(orderId,code, { data ->
             ui.showDetailFunctionDeliverCustomer()
         }, { error ->
+            showDialog()
             ui.showError(error)
         })
     }

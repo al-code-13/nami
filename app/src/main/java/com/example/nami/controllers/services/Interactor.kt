@@ -2,6 +2,8 @@ package com.example.nami.controllers.services
 
 import android.util.Log
 import com.example.nami.BuildConfig
+import com.example.nami.models.UpdateProfileRequest
+import com.example.nami.models.UpdateProfileResponse
 import com.example.nami.models.auth.LoginRequest
 import com.example.nami.models.auth.LoginResponse
 import com.example.nami.models.detailModels.*
@@ -620,6 +622,45 @@ class ServiceInteractor : ServiceFactory() {
                     }
                 }
 
+                override fun onFailure(call: Call, e: IOException) {
+                    error("Error en el servicio")
+                }
+            })
+        }
+
+    }
+
+
+    fun putMe(
+        phone:String,
+        then: (UpdateProfileResponse) -> Unit,
+        error: (String) -> Unit
+    ) {
+        uiScope.launch {
+            putMeCorutine(phone,then, error)
+        }
+    }
+
+    private suspend fun putMeCorutine(
+        phone: String,
+        then: (UpdateProfileResponse) -> Unit,
+        error: (String) -> Unit
+    ) {
+        val url = "$serverUrl$routeBase$routePicker$routeMe"
+        val request = UpdateProfileRequest(phone)
+        val json = Gson().toJson(request)
+        withContext(Dispatchers.IO) {
+            put(url, token!!,json).enqueue(object : Callback {
+                override fun onResponse(call: Call, response: Response) {
+                    val body = response.body?.string()
+                    val gson = GsonBuilder().create()
+                    val res = gson.fromJson(body, UpdateProfileResponse::class.java)
+                    if (response.isSuccessful) {
+                        then(res)
+                    } else {
+                        error(res.message.toString())
+                    }
+                }
                 override fun onFailure(call: Call, e: IOException) {
                     error("Error en el servicio")
                 }

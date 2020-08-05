@@ -152,6 +152,11 @@ class SectionFragment(
     override fun showError(error: String) {
         activity?.runOnUiThread {
             Toast.makeText(mContext, error, Toast.LENGTH_LONG).show()
+            if (error.contains("token")) {
+                presenter.actionLogOut()
+            } else {
+                Toast.makeText(mContext, error, Toast.LENGTH_LONG).show()
+            }
         }
     }
 

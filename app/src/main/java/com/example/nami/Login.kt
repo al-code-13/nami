@@ -9,7 +9,6 @@ import android.widget.ScrollView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
-import com.example.nami.controllers.services.ServiceFactory
 import com.example.nami.presenters.LoginPresenter
 import com.example.nami.presenters.LoginUI
 import kotlinx.android.synthetic.main.activity_login.*

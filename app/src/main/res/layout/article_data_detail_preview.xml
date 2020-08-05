@@ -17,7 +17,7 @@
         android:layout_marginLeft="24dp"
         android:layout_marginTop="16dp"
         android:text="id"
-        android:textColor="@color/md_red_A700"
+        android:textColor="@color/utilColor"
         android:textSize="16dp" />
 
     <TextView
