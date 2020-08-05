@@ -130,6 +130,14 @@ class MainActivity : AppCompatActivity(), SectionsUI {
                             }
                         }
                         primaryItem("Inicio")
+                        primaryItem("Perfil") {
+                            enabled = true
+                            this.onClick {_->
+                                val intent = Intent(this@MainActivity, ProfileActivity::class.java)
+                                startActivity(intent)
+                                false
+                            }
+                        }
                         primaryItem("Recursos") {
                             enabled = false
                             badge {
@@ -138,14 +146,7 @@ class MainActivity : AppCompatActivity(), SectionsUI {
                                 colorPressed = 0xFFCC99FF
                             }
                         }
-                        primaryItem("Perfil") {
-                            enabled = true
-                           this.onClick {_->
-                               val intent = Intent(this@MainActivity, ProfileActivity::class.java)
-                               startActivity(intent)
-                               false
-                           }
-                        }
+
                         primaryItem("Zonas") {
                             enabled = false
                             badge {
@@ -211,14 +212,6 @@ class MainActivity : AppCompatActivity(), SectionsUI {
                             }
                         }
                         primaryItem("Inicio")
-                        primaryItem("Recursos") {
-                            enabled = false
-                            badge {
-                                cornersDp = 0
-                                text = ">"
-                                colorPressed = 0xFFCC99FF
-                            }
-                        }
                         primaryItem("Perfil") {
                             enabled = true
                             this.onClick {_->
@@ -228,6 +221,15 @@ class MainActivity : AppCompatActivity(), SectionsUI {
 
                             }
                         }
+                        primaryItem("Recursos") {
+                            enabled = false
+                            badge {
+                                cornersDp = 0
+                                text = ">"
+                                colorPressed = 0xFFCC99FF
+                            }
+                        }
+
                         primaryItem("Zonas") {
                             enabled = false
                             badge {

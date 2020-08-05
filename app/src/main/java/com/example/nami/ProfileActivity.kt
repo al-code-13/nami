@@ -17,6 +17,7 @@ class ProfileActivity : AppCompatActivity(), ProfileUI {
     override fun onCreate(savedInstanceState: Bundle?) {
         val actionbar = supportActionBar
         actionBar?.setHomeButtonEnabled(true)
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
         actionbar!!.title = "Perfil"
         //actionbar!!.setBackgroundDrawable(ColorDrawable(Color.parseColor("#01bd8a")))
         super.onCreate(savedInstanceState)

@@ -119,7 +119,6 @@ class SectionPresenter(private val ui: SectionUI, val context: Context) : BasePr
             ui.actionSuccess(data.message)
 
         }, { error ->
-            Log.i("SE TOTEA",error)
             showDialog()
             ui.showError(error)
         })
