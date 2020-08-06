@@ -3,7 +3,9 @@ apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
 apply plugin: 'kotlin-kapt'
 apply plugin: 'realm-android'
-
+apply plugin: 'com.google.gms.google-services'
+apply plugin: 'com.google.firebase.crashlytics'
+apply plugin: 'com.google.firebase.firebase-perf'
 
 android {
     compileSdkVersion 29
@@ -12,12 +14,12 @@ android {
         main.java.srcDirs += 'src/main/kotlin'
     }
     defaultConfig {
-        applicationId "com.example.nami"
+        applicationId "com.chefmenu.nami"
         minSdkVersion 16
         targetSdkVersion 29
-        versionCode 51
-        versionName "0.5.2"
-
+        versionCode 5300
+        versionName "0.5.3"
+        multiDexEnabled true
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
 
@@ -51,6 +53,11 @@ dependencies {
     implementation "androidx.lifecycle:lifecycle-livedata-ktx:$lifecycle_version"
     implementation "androidx.lifecycle:lifecycle-runtime-ktx:$lifecycle_version"
 
+    implementation 'com.google.firebase:firebase-config-ktx:19.2.0'
+    implementation 'com.google.firebase:firebase-analytics-ktx:17.4.4'
+    implementation 'com.google.firebase:firebase-crashlytics:17.1.1'
+    implementation 'com.google.firebase:firebase-perf:19.0.8'
+
     implementation 'co.zsmb:materialdrawer-kt:3.0.0'
     implementation "androidx.annotation:annotation:1.1.0"
     implementation 'com.squareup.picasso:picasso:2.5.2'
@@ -59,7 +66,7 @@ dependencies {
     implementation 'com.google.code.gson:gson:2.8.6'
     implementation 'androidx.swiperefreshlayout:swiperefreshlayout:1.1.0'
     implementation 'com.facebook.shimmer:shimmer:0.1.0@aar'
-
+    implementation 'com.android.support:multidex:1.0.3'
     kapt 'com.android.databinding:compiler:3.1.4'
 
     testImplementation 'junit:junit:4.12'

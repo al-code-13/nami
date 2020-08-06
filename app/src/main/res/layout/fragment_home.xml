@@ -65,14 +65,14 @@
             android:layout_width="wrap_content"
             android:layout_height="match_parent">
 
-            <com.example.nami.AutofitRecyclerView
+            <com.chefmenu.nami.AutofitRecyclerView
                 android:id="@+id/my_grid_view_list"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:clipToPadding="true"
                 android:columnWidth="@dimen/column_width"
                 android:padding="@dimen/item_margin"
-                android:visibility="gone"></com.example.nami.AutofitRecyclerView>
+                android:visibility="gone"></com.chefmenu.nami.AutofitRecyclerView>
 
             <LinearLayout
                 android:id="@+id/emptyImage"

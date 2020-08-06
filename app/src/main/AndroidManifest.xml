@@ -1,18 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.nami">
+    package="com.chefmenu.nami">
 
     <uses-permission android:name="android.permission.INTERNET" />
 
     <application
-        android:name=".db.Config"
+        android:name="com.chefmenu.nami.db.Config"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
-            android:name=".Login"
+            android:name="com.chefmenu.nami.Login"
             android:theme="@style/AppTheme">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -21,18 +21,18 @@
             </intent-filter>
         </activity>
 
-        <activity android:name=".ProfileActivity"
-            android:parentActivityName=".MainActivity"></activity>
+        <activity android:name="com.chefmenu.nami.ProfileActivity"
+            android:parentActivityName="com.chefmenu.nami.MainActivity"></activity>
         <activity
-            android:name=".Detail"
-            android:parentActivityName=".MainActivity"></activity>
+            android:name="com.chefmenu.nami.Detail"
+            android:parentActivityName="com.chefmenu.nami.MainActivity"></activity>
         <activity
-            android:name=".MainActivity"
+            android:name="com.chefmenu.nami.MainActivity"
             android:configChanges="orientation|screenSize"
             android:theme="@style/AppTheme.NoActionBar"></activity>
         <activity
-            android:name=".HelpPage"
-            android:parentActivityName=".MainActivity"></activity>
+            android:name="com.chefmenu.nami.HelpPage"
+            android:parentActivityName="com.chefmenu.nami.MainActivity"></activity>
     </application>
 
 </manifest>

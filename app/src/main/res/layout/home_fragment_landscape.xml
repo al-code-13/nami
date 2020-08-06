@@ -57,7 +57,7 @@
         android:background="?android:attr/listDivider" />
 
 
-    <com.example.nami.AutofitRecyclerView
+    <com.chefmenu.nami.AutofitRecyclerView
         android:id="@+id/my_grid_view_list"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -65,7 +65,7 @@
         android:columnWidth="@dimen/column_width"
         android:padding="@dimen/item_margin" >
 
-    </com.example.nami.AutofitRecyclerView>˘
+    </com.chefmenu.nami.AutofitRecyclerView>˘
 
     </LinearLayout>
 </LinearLayout>
