@@ -1,8 +1,7 @@
-package com.example.nami.adapter
+package com.chefmenu.nami.adapter
 
 import android.content.Context
 import android.graphics.Typeface
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -10,13 +9,8 @@ import android.widget.CheckBox
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
-import com.example.nami.Detail
-import com.example.nami.R
-import com.example.nami.models.auth.LoginResponse
-import com.example.nami.models.detailModels.ListElement
-import kotlinx.android.synthetic.main.activity_detail.*
-import java.text.NumberFormat
-import java.util.*
+import com.chefmenu.nami.R
+import com.chefmenu.nami.models.detailModels.ListElement
 
 class ItemsDetailAdapter(
     private val mContext: Context,

@@ -1,7 +1,7 @@
-package com.example.nami.presenters
+package com.chefmenu.nami.presenters
 
 import android.content.Context
-import com.example.nami.models.user.UserResponse
+import com.chefmenu.nami.models.user.UserResponse
 import kotlinx.coroutines.*
 
 interface ProfileUI {

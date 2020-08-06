@@ -1,4 +1,4 @@
-package com.example.nami.models.sections
+package com.chefmenu.nami.models.sections
 
 import io.realm.RealmList
 import io.realm.RealmObject

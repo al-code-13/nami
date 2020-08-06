@@ -1,4 +1,4 @@
-package com.example.nami.db
+package com.chefmenu.nami.db
 
 import android.app.Application
 import io.realm.Realm

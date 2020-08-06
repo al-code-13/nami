@@ -1,4 +1,4 @@
-package com.example.nami.adapter
+package com.chefmenu.nami.adapter
 
 import android.content.Context
 import android.graphics.Color
@@ -10,8 +10,8 @@ import android.widget.TextView
 import androidx.annotation.RequiresApi
 import androidx.appcompat.content.res.AppCompatResources
 import androidx.core.graphics.drawable.DrawableCompat
-import com.example.nami.R
-import com.example.nami.models.sections.Behavior
+import com.chefmenu.nami.R
+import com.chefmenu.nami.models.sections.Behavior
 
 
 class IndicatorsAdapter(

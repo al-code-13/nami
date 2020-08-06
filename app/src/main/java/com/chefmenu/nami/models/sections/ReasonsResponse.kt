@@ -1,4 +1,4 @@
-package com.example.nami.models.sections
+package com.chefmenu.nami.models.sections
 
 data class ReasonsResponse (
     val reasons: Reasons,

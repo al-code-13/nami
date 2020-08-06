@@ -1,9 +1,8 @@
-package com.example.nami.presenters
+package com.chefmenu.nami.presenters
 
 import android.content.Context
-import android.util.Log
-import com.example.nami.controllers.services.ServiceFactory
-import com.example.nami.models.user.UserResponse
+import com.chefmenu.nami.controllers.services.ServiceFactory
+import com.chefmenu.nami.models.user.UserResponse
 import kotlinx.coroutines.*
 
 interface LoginUI {

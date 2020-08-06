@@ -1,4 +1,4 @@
-package com.example.nami.models.detailModels
+package com.chefmenu.nami.models.detailModels
 
 data class ConfirmDeliveryRequest(
     val code: String

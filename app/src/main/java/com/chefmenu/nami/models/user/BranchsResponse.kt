@@ -1,4 +1,4 @@
-package com.example.nami.models.user
+package com.chefmenu.nami.models.user
 
 import io.realm.RealmList
 import io.realm.RealmObject

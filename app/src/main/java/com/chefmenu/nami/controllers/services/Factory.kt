@@ -1,7 +1,7 @@
-package com.example.nami.controllers.services
+package com.chefmenu.nami.controllers.services
 
-import com.example.nami.models.sections.ReasonsResponse
-import com.example.nami.models.sections.SectionsResponse
+import com.chefmenu.nami.models.sections.ReasonsResponse
+import com.chefmenu.nami.models.sections.SectionsResponse
 import okhttp3.Call
 import okhttp3.MediaType.Companion.toMediaType
 import okhttp3.OkHttpClient

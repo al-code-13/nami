@@ -1,15 +1,14 @@
-package com.example.nami.presenters
+package com.chefmenu.nami.presenters
 
 import android.content.Context
 import android.content.SharedPreferences
 import android.util.Log
-import androidx.appcompat.app.AlertDialog
-import com.example.nami.controllers.services.ServiceFactory
-import com.example.nami.models.sections.SectionResponse
-import com.example.nami.models.sections.SectionsResponse
-import com.example.nami.models.user.Branch
-import com.example.nami.models.user.BranchsResponse
-import com.example.nami.models.user.UserResponse
+import com.chefmenu.nami.controllers.services.ServiceFactory
+import com.chefmenu.nami.models.sections.SectionResponse
+import com.chefmenu.nami.models.sections.SectionsResponse
+import com.chefmenu.nami.models.user.Branch
+import com.chefmenu.nami.models.user.BranchsResponse
+import com.chefmenu.nami.models.user.UserResponse
 import io.realm.Realm
 import io.realm.RealmResults
 import io.realm.kotlin.where

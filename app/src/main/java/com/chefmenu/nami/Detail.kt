@@ -64,7 +64,7 @@ class Detail : AppCompatActivity(), DetailUI {
         checkBox.setOnClickListener { checkAll(checkBox.isChecked) }
         edit_codecito.inputType = InputType.TYPE_NULL
         edit_codecito.setImeActionLabel("OKis", KeyEvent.KEYCODE_ENTER)
-        edit_codecito.setOnKeyListener(View.OnKeyListener { v, keyCode, event ->
+        edit_codecito.setOnKeyListener(View.OnKeyListener { _, keyCode, event ->
             if (keyCode == KeyEvent.KEYCODE_ENTER && event.action == KeyEvent.ACTION_UP) {
                 scannerFunction()
                 return@OnKeyListener true
@@ -252,6 +252,7 @@ class Detail : AppCompatActivity(), DetailUI {
 
     override fun showDetailInfo(data: DetailResponse, order: OrdersList) {
         // stop animating Shimmer and hide the layout
+        Log.i("detail",data.order.detailOrder.list.toString())
         shimmer_view_container.stopShimmerAnimation()
         shimmer_view_container.visibility = View.GONE
         skeletonIcons.visibility = View.GONE
@@ -474,7 +475,7 @@ class Detail : AppCompatActivity(), DetailUI {
         }
     }
 
-    fun setRefreshInResult(isDataChanged: Boolean? = false) {
+    fun setRefreshInResult() {
         //if (dataChange || isDataChanged!!) {
             dataChange = true
             val refresh = Intent()

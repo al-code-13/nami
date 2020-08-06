@@ -100,9 +100,9 @@ class MainActivity : AppCompatActivity(), SectionsUI {
                 dialog.show()
             } else {
                 if (selectedBranch != null) {
-                    val index: Int = data!!.branchs!!.indexOf(selectedBranch)
+                    val index: Int = data.branchs!!.indexOf(selectedBranch)
                     data.branchs!!.removeAt(index)
-                    data!!.branchs!!.add(0, selectedBranch)
+                    data.branchs!!.add(0, selectedBranch)
                     toolbar3.title = "${selectedBranch.name}"
                     //Se creal el sidemenu
                     drawer {
@@ -116,7 +116,7 @@ class MainActivity : AppCompatActivity(), SectionsUI {
                                     "${i.city!!.name}",
                                     "${i!!.name}"
                                 ) {
-                                    this.onClick { _, position, _ ->
+                                    this.onClick { _, _, _ ->
                                         presenter.actionRefreshSections(i.id!!)
                                         toolbar3.title = "${i.name}"
                                         true
@@ -199,7 +199,7 @@ class MainActivity : AppCompatActivity(), SectionsUI {
                                     "${i!!.name}"
 
                                 ) {
-                                    this.onClick { _, position, _ ->
+                                    this.onClick { _, _, _ ->
                                         presenter.actionRefreshSections(i.id!!)
                                         toolbar3.title = "${i.name}"
                                         true

@@ -1,4 +1,4 @@
-package com.example.nami
+package com.chefmenu.nami
 
 import android.content.Context
 import android.content.res.Configuration
@@ -11,12 +11,12 @@ import android.widget.*
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
-import com.example.nami.adapter.IndicatorsAdapter
-import com.example.nami.adapter.OrdersAdapter
-import com.example.nami.models.sections.Behavior
-import com.example.nami.models.sections.SectionResponse
-import com.example.nami.presenters.SectionPresenter
-import com.example.nami.presenters.SectionUI
+import com.chefmenu.nami.adapter.IndicatorsAdapter
+import com.chefmenu.nami.adapter.OrdersAdapter
+import com.chefmenu.nami.models.sections.Behavior
+import com.chefmenu.nami.models.sections.SectionResponse
+import com.chefmenu.nami.presenters.SectionPresenter
+import com.chefmenu.nami.presenters.SectionUI
 import java.text.SimpleDateFormat
 import java.util.*
 

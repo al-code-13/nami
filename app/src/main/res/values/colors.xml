@@ -13,4 +13,6 @@
   <color name="secondaryTextColor">#ffffff</color>
   <color name="skeleton">#757373</color>
   <color name="placeholder_bg">#dddddd</color>
+  <color name="ic_launcher_background">#FFFFFF</color>
+
 </resources>

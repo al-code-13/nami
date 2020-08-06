@@ -1,10 +1,10 @@
-package com.example.nami.presenters
+package com.chefmenu.nami.presenters
 
 import android.util.Log
-import com.example.nami.models.detailModels.DetailResponse
-import com.example.nami.models.detailModels.ListDataPicker
-import com.example.nami.models.sections.OrdersList
-import com.example.nami.models.sections.SectionResponse
+import com.chefmenu.nami.models.detailModels.DetailResponse
+import com.chefmenu.nami.models.detailModels.ListDataPicker
+import com.chefmenu.nami.models.sections.OrdersList
+import com.chefmenu.nami.models.sections.SectionResponse
 import io.realm.kotlin.where
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers

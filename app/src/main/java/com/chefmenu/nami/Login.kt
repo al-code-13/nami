@@ -28,7 +28,7 @@ class Login : AppCompatActivity(), LoginUI {
     var firebaseVersion: Long = BuildConfig.VERSION_CODE.toLong()
     var storeUrl: String = ""
     override fun onCreate(savedInstanceState: Bundle?) {
-        setTheme(R.style.SplashTheme)
+        setTheme(R.style.AppTheme_NoActionBar)
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
         val numVersion = BuildConfig.VERSION_NAME

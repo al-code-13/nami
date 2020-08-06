@@ -27,7 +27,20 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="e2a19b41-8dcf-4555-9135-d65f83e40892" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/app/google-services.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/ic_launcher-playstore.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/res/mipmap-anydpi-v26/ic_launcher_round.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/res/mipmap-hdpi/ic_launcher_foreground.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/res/mipmap-hdpi/ic_launcher_round.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/res/mipmap-mdpi/ic_launcher_foreground.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/res/mipmap-mdpi/ic_launcher_round.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/res/mipmap-xhdpi/ic_launcher_foreground.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/res/mipmap-xhdpi/ic_launcher_round.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/res/mipmap-xxhdpi/ic_launcher_foreground.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/res/mipmap-xxhdpi/ic_launcher_round.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/res/mipmap-xxxhdpi/ic_launcher_foreground.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/res/mipmap-xxxhdpi/ic_launcher_round.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/res/values/ic_launcher_background.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/6.1.1/executionHistory/executionHistory.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/6.1.1/executionHistory/executionHistory.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/6.1.1/executionHistory/executionHistory.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/6.1.1/executionHistory/executionHistory.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/6.1.1/fileHashes/fileHashes.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/6.1.1/fileHashes/fileHashes.bin" afterDir="false" />
@@ -40,102 +53,50 @@
       <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/outputFiles.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/outputFiles.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/checksums/checksums.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/checksums/checksums.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/checksums/md5-checksums.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/checksums/md5-checksums.bin" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/checksums/sha1-checksums.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/checksums/sha1-checksums.bin" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/caches/build_file_checksums.ser" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/caches/build_file_checksums.ser" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_arch_core_core_runtime_2_1_0_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_arch_core_core_runtime_2_1_0_aar.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_asynclayoutinflater_asynclayoutinflater_1_0_0_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_asynclayoutinflater_asynclayoutinflater_1_0_0_aar.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_cardview_cardview_1_0_0_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_cardview_cardview_1_0_0_aar.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_coordinatorlayout_coordinatorlayout_1_1_0_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_coordinatorlayout_coordinatorlayout_1_1_0_aar.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_cursoradapter_cursoradapter_1_0_0_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_cursoradapter_cursoradapter_1_0_0_aar.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_documentfile_documentfile_1_0_0_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_documentfile_documentfile_1_0_0_aar.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_fragment_fragment_1_1_0_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_fragment_fragment_1_1_0_aar.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_gridlayout_gridlayout_1_0_0_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_gridlayout_gridlayout_1_0_0_aar.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_interpolator_interpolator_1_0_0_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_interpolator_interpolator_1_0_0_aar.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_legacy_legacy_support_core_ui_1_0_0_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_legacy_legacy_support_core_ui_1_0_0_aar.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_legacy_legacy_support_core_utils_1_0_0_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_legacy_legacy_support_core_utils_1_0_0_aar.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_legacy_legacy_support_v4_1_0_0_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_legacy_legacy_support_v4_1_0_0_aar.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_lifecycle_lifecycle_livedata_2_2_0_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_lifecycle_lifecycle_livedata_2_2_0_aar.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_lifecycle_lifecycle_livedata_core_2_2_0_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_lifecycle_lifecycle_livedata_core_2_2_0_aar.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_lifecycle_lifecycle_livedata_core_ktx_2_2_0_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_lifecycle_lifecycle_livedata_core_ktx_2_2_0_aar.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_lifecycle_lifecycle_livedata_ktx_2_2_0_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_lifecycle_lifecycle_livedata_ktx_2_2_0_aar.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_lifecycle_lifecycle_runtime_2_2_0_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_lifecycle_lifecycle_runtime_2_2_0_aar.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_lifecycle_lifecycle_runtime_ktx_2_2_0_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_lifecycle_lifecycle_runtime_ktx_2_2_0_aar.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_lifecycle_lifecycle_viewmodel_2_2_0_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_lifecycle_lifecycle_viewmodel_2_2_0_aar.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_lifecycle_lifecycle_viewmodel_ktx_2_2_0_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_lifecycle_lifecycle_viewmodel_ktx_2_2_0_aar.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_loader_loader_1_0_0_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_loader_loader_1_0_0_aar.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_localbroadcastmanager_localbroadcastmanager_1_0_0_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_localbroadcastmanager_localbroadcastmanager_1_0_0_aar.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_media_media_1_0_0_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_media_media_1_0_0_aar.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_print_print_1_0_0_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_print_print_1_0_0_aar.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_recyclerview_recyclerview_1_1_0_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_recyclerview_recyclerview_1_1_0_aar.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_savedstate_savedstate_1_0_0_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_savedstate_savedstate_1_0_0_aar.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_slidingpanelayout_slidingpanelayout_1_0_0_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_slidingpanelayout_slidingpanelayout_1_0_0_aar.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_swiperefreshlayout_swiperefreshlayout_1_1_0_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_swiperefreshlayout_swiperefreshlayout_1_1_0_aar.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_test_core_1_2_0_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_test_core_1_2_0_aar.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_test_espresso_espresso_core_3_2_0_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_test_espresso_espresso_core_3_2_0_aar.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_test_espresso_espresso_idling_resource_3_2_0_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_test_espresso_espresso_idling_resource_3_2_0_aar.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_test_ext_junit_1_1_1_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_test_ext_junit_1_1_1_aar.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_test_monitor_1_2_0_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_test_monitor_1_2_0_aar.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_test_runner_1_2_0_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_test_runner_1_2_0_aar.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_transition_transition_1_2_0_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_transition_transition_1_2_0_aar.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_vectordrawable_vectordrawable_1_1_0_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_vectordrawable_vectordrawable_1_1_0_aar.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_vectordrawable_vectordrawable_animated_1_1_0_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_vectordrawable_vectordrawable_animated_1_1_0_aar.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_versionedparcelable_versionedparcelable_1_1_0_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_versionedparcelable_versionedparcelable_1_1_0_aar.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_viewpager2_viewpager2_1_0_0_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_viewpager2_viewpager2_1_0_0_aar.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_viewpager_viewpager_1_0_0_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_viewpager_viewpager_1_0_0_aar.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__com_getkeepsafe_relinker_relinker_1_4_0_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_getkeepsafe_relinker_relinker_1_4_0_aar.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__com_google_android_material_material_1_1_0_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_google_android_material_material_1_1_0_aar.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__io_reactivex_rxjava2_rxandroid_2_1_1_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__io_reactivex_rxjava2_rxandroid_2_1_1_aar.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__io_realm_realm_android_kotlin_extensions_7_0_0_beta_SNAPSHOT_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__io_realm_realm_android_kotlin_extensions_7_0_0_beta_SNAPSHOT_aar.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__io_realm_realm_android_library_7_0_0_beta_SNAPSHOT_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__io_realm_realm_android_library_7_0_0_beta_SNAPSHOT_aar.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/assetWizardSettings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/assetWizardSettings.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/modules/app/app.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules/app/app.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/app/build.gradle" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/androidTest/java/com/example/nami/ExampleInstrumentedTest.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/androidTest/java/com/chefmenu/nami/ExampleInstrumentedTest.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/nami/AutofitRecyclerView.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/chefmenu/nami/AutofitRecyclerView.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/nami/Detail.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/chefmenu/nami/Detail.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/nami/HelpPage.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/chefmenu/nami/HelpPage.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/nami/Login.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/chefmenu/nami/Login.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/nami/MainActivity.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/chefmenu/nami/MainActivity.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/nami/ProfileActivity.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/chefmenu/nami/ProfileActivity.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/nami/adapter/IndicatorsAdapter.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/chefmenu/nami/adapter/IndicatorsAdapter.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/nami/adapter/ItemDetailAdapter.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/chefmenu/nami/adapter/ItemDetailAdapter.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/nami/adapter/OrdersAdapter.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/chefmenu/nami/adapter/OrdersAdapter.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/nami/adapter/SectionsAdapter.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/chefmenu/nami/adapter/SectionsAdapter.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/nami/controllers/services/Factory.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/chefmenu/nami/controllers/services/Factory.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/nami/controllers/services/Interactor.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/chefmenu/nami/controllers/services/Interactor.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/nami/db/Config.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/chefmenu/nami/db/Config.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/nami/fragment_home.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/chefmenu/nami/fragment_home.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/nami/models/UpdateProfile.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/chefmenu/nami/models/UpdateProfile.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/nami/models/auth/LoginRequest.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/chefmenu/nami/models/auth/LoginRequest.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/nami/models/auth/LoginResponse.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/chefmenu/nami/models/auth/LoginResponse.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/nami/models/detailModels/ConfirmDelivery.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/chefmenu/nami/models/detailModels/ConfirmDelivery.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/nami/models/detailModels/DeliverCourierModel.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/chefmenu/nami/models/detailModels/DeliverCourierModel.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/nami/models/detailModels/DetailModel.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/chefmenu/nami/models/detailModels/DetailModel.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/nami/models/detailModels/FreezeModel.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/chefmenu/nami/models/detailModels/FreezeModel.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/nami/models/detailModels/PickingModel.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/chefmenu/nami/models/detailModels/PickingModel.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/nami/models/detailModels/ReleaseModel.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/chefmenu/nami/models/detailModels/ReleaseModel.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/nami/models/detailModels/SendConfirmation.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/chefmenu/nami/models/detailModels/SendConfirmation.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/nami/models/detailModels/TakeModel.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/chefmenu/nami/models/detailModels/TakeModel.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/nami/models/error/ErrorResponse.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/chefmenu/nami/models/error/ErrorResponse.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/nami/models/sections/ReasonsResponse.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/chefmenu/nami/models/sections/ReasonsResponse.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/nami/models/sections/SectionResponse.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/chefmenu/nami/models/sections/SectionResponse.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/nami/models/sections/SectionsResponse.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/chefmenu/nami/models/sections/SectionsResponse.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/nami/models/user/BranchsResponse.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/chefmenu/nami/models/user/BranchsResponse.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/nami/models/user/UserResponse.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/chefmenu/nami/models/user/UserResponse.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/nami/presenters/BasePresenter.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/chefmenu/nami/presenters/BasePresenter.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/nami/presenters/DetailPresenter.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/chefmenu/nami/presenters/DetailPresenter.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/nami/presenters/LoginPresenter.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/chefmenu/nami/presenters/LoginPresenter.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/nami/presenters/ProfilePresenter.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/chefmenu/nami/presenters/ProfilePresenter.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/nami/presenters/SectionPresenter.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/chefmenu/nami/presenters/SectionPresenter.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/nami/presenters/SectionsPresenter.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/chefmenu/nami/presenters/SectionsPresenter.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/nami/utils/ButtonDialogActions.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/chefmenu/nami/utils/ButtonDialogActions.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/fragment_home.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/fragment_home.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/home_fragment_landscape.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/home_fragment_landscape.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/test/java/com/example/nami/ExampleUnitTest.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/test/java/com/chefmenu/nami/ExampleUnitTest.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/build.gradle" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/local.properties" beforeDir="false" afterPath="$PROJECT_DIR$/local.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/chefmenu/nami/Detail.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/chefmenu/nami/Detail.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/chefmenu/nami/Login.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/chefmenu/nami/Login.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/chefmenu/nami/MainActivity.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/chefmenu/nami/MainActivity.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/chefmenu/nami/adapter/IndicatorsAdapter.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/chefmenu/nami/adapter/IndicatorsAdapter.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/chefmenu/nami/adapter/ItemDetailAdapter.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/chefmenu/nami/adapter/ItemDetailAdapter.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/chefmenu/nami/adapter/OrdersAdapter.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/chefmenu/nami/adapter/OrdersAdapter.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/chefmenu/nami/adapter/SectionsAdapter.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/chefmenu/nami/adapter/SectionsAdapter.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/chefmenu/nami/controllers/services/Factory.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/chefmenu/nami/controllers/services/Factory.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/chefmenu/nami/controllers/services/Interactor.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/chefmenu/nami/controllers/services/Interactor.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/chefmenu/nami/db/Config.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/chefmenu/nami/db/Config.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/chefmenu/nami/fragment_home.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/chefmenu/nami/fragment_home.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/chefmenu/nami/models/UpdateProfile.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/chefmenu/nami/models/UpdateProfile.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/chefmenu/nami/models/auth/LoginRequest.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/chefmenu/nami/models/auth/LoginRequest.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/chefmenu/nami/models/auth/LoginResponse.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/chefmenu/nami/models/auth/LoginResponse.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/chefmenu/nami/models/detailModels/ConfirmDelivery.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/chefmenu/nami/models/detailModels/ConfirmDelivery.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/chefmenu/nami/models/detailModels/DeliverCourierModel.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/chefmenu/nami/models/detailModels/DeliverCourierModel.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/chefmenu/nami/models/detailModels/DetailModel.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/chefmenu/nami/models/detailModels/DetailModel.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/chefmenu/nami/models/detailModels/FreezeModel.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/chefmenu/nami/models/detailModels/FreezeModel.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/chefmenu/nami/models/detailModels/PickingModel.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/chefmenu/nami/models/detailModels/PickingModel.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/chefmenu/nami/models/detailModels/ReleaseModel.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/chefmenu/nami/models/detailModels/ReleaseModel.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/chefmenu/nami/models/detailModels/SendConfirmation.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/chefmenu/nami/models/detailModels/SendConfirmation.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/chefmenu/nami/models/detailModels/TakeModel.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/chefmenu/nami/models/detailModels/TakeModel.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/chefmenu/nami/models/error/ErrorResponse.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/chefmenu/nami/models/error/ErrorResponse.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/chefmenu/nami/models/sections/ReasonsResponse.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/chefmenu/nami/models/sections/ReasonsResponse.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/chefmenu/nami/models/sections/SectionResponse.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/chefmenu/nami/models/sections/SectionResponse.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/chefmenu/nami/models/sections/SectionsResponse.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/chefmenu/nami/models/sections/SectionsResponse.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/chefmenu/nami/models/user/BranchsResponse.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/chefmenu/nami/models/user/BranchsResponse.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/chefmenu/nami/models/user/UserResponse.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/chefmenu/nami/models/user/UserResponse.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/chefmenu/nami/presenters/BasePresenter.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/chefmenu/nami/presenters/BasePresenter.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/chefmenu/nami/presenters/DetailPresenter.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/chefmenu/nami/presenters/DetailPresenter.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/chefmenu/nami/presenters/LoginPresenter.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/chefmenu/nami/presenters/LoginPresenter.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/chefmenu/nami/presenters/ProfilePresenter.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/chefmenu/nami/presenters/ProfilePresenter.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/chefmenu/nami/presenters/SectionPresenter.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/chefmenu/nami/presenters/SectionPresenter.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/chefmenu/nami/presenters/SectionsPresenter.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/chefmenu/nami/presenters/SectionsPresenter.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/drawable/message.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/drawable/message.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/mipmap-hdpi/ic_launcher.png" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/mipmap-hdpi/ic_launcher.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/mipmap-mdpi/ic_launcher.png" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/mipmap-mdpi/ic_launcher.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/mipmap-xhdpi/ic_launcher.png" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/mipmap-xhdpi/ic_launcher.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/mipmap-xxhdpi/ic_launcher.png" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/mipmap-xxhdpi/ic_launcher.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/mipmap-xxxhdpi/ic_launcher.png" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/mipmap-xxxhdpi/ic_launcher.png" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -195,7 +156,7 @@
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="SHOW_ALL_PROCESSES" value="false" />
     <property name="android.sdk.path" value="$USER_HOME$/Library/Android/sdk" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/app/src/main/res/drawable" />
     <property name="settings.editor.selected.configurable" value="Errors" />
     <property name="show.migrate.to.gradle.popup" value="false" />
   </component>
@@ -343,7 +304,7 @@
       <screen x="1280" y="0" width="1920" height="1080" />
     </state>
     <state x="2096" y="312" key="AndroidProcessChooserDialog/1280.0.1920.1080/0.0.1280.800@1280.0.1920.1080" timestamp="1591977203131" />
-    <state width="1878" height="535" key="GridCell.Tab.0.bottom" timestamp="1596673024792">
+    <state width="1878" height="535" key="GridCell.Tab.0.bottom" timestamp="1596727359495">
       <screen x="1280" y="-280" width="1920" height="1080" />
     </state>
     <state width="1878" height="569" key="GridCell.Tab.0.bottom/-1920.0.1920.1080/0.0.1280.800@-1920.0.1920.1080" timestamp="1594476018001" />
@@ -353,7 +314,7 @@
     <state width="1238" height="379" key="GridCell.Tab.0.bottom/0.23.1280.777@0.23.1280.777" timestamp="1596668791267" />
     <state width="889" height="267" key="GridCell.Tab.0.bottom/1280.-257.1920.1057/0.0.1280.800@0.0.1280.800" timestamp="1595956092130" />
     <state width="1238" height="380" key="GridCell.Tab.0.bottom/1280.-280.1920.1080/0.0.1280.800@0.0.1280.800" timestamp="1596641696709" />
-    <state width="1878" height="535" key="GridCell.Tab.0.bottom/1280.-280.1920.1080/0.0.1280.800@1280.-280.1920.1080" timestamp="1596673024792" />
+    <state width="1878" height="535" key="GridCell.Tab.0.bottom/1280.-280.1920.1080/0.0.1280.800@1280.-280.1920.1080" timestamp="1596727359495" />
     <state width="1878" height="535" key="GridCell.Tab.0.bottom/1280.-280.1920.1080/0.23.1280.777@1280.-280.1920.1080" timestamp="1596671376257" />
     <state width="1238" height="123" key="GridCell.Tab.0.bottom/1280.0.1920.1080/0.0.1280.800@0.0.1280.800" timestamp="1596208211327" />
     <state width="1878" height="277" key="GridCell.Tab.0.bottom/1280.0.1920.1080/0.0.1280.800@1280.0.1920.1080" timestamp="1596650473638" />
@@ -361,7 +322,7 @@
     <state width="1238" height="2" key="GridCell.Tab.0.bottom/1280.23.1920.1057/0.0.1280.800@0.0.1280.800" timestamp="1592356166228" />
     <state width="1238" height="173" key="GridCell.Tab.0.bottom/1280.23.1920.1057/0.23.1280.777@0.23.1280.777" timestamp="1594674103698" />
     <state width="1400" height="246" key="GridCell.Tab.0.bottom/1280.23.1920.1057/0.23.1280.777@1280.23.1920.1057" timestamp="1593107839383" />
-    <state width="1878" height="535" key="GridCell.Tab.0.center" timestamp="1596673024790">
+    <state width="1878" height="535" key="GridCell.Tab.0.center" timestamp="1596727359493">
       <screen x="1280" y="-280" width="1920" height="1080" />
     </state>
     <state width="1878" height="569" key="GridCell.Tab.0.center/-1920.0.1920.1080/0.0.1280.800@-1920.0.1920.1080" timestamp="1594476017998" />
@@ -371,7 +332,7 @@
     <state width="1238" height="379" key="GridCell.Tab.0.center/0.23.1280.777@0.23.1280.777" timestamp="1596668791265" />
     <state width="889" height="267" key="GridCell.Tab.0.center/1280.-257.1920.1057/0.0.1280.800@0.0.1280.800" timestamp="1595956092111" />
     <state width="1238" height="380" key="GridCell.Tab.0.center/1280.-280.1920.1080/0.0.1280.800@0.0.1280.800" timestamp="1596641696705" />
-    <state width="1878" height="535" key="GridCell.Tab.0.center/1280.-280.1920.1080/0.0.1280.800@1280.-280.1920.1080" timestamp="1596673024790" />
+    <state width="1878" height="535" key="GridCell.Tab.0.center/1280.-280.1920.1080/0.0.1280.800@1280.-280.1920.1080" timestamp="1596727359493" />
     <state width="1878" height="535" key="GridCell.Tab.0.center/1280.-280.1920.1080/0.23.1280.777@1280.-280.1920.1080" timestamp="1596671376253" />
     <state width="1238" height="123" key="GridCell.Tab.0.center/1280.0.1920.1080/0.0.1280.800@0.0.1280.800" timestamp="1596208211326" />
     <state width="1238" height="173" key="GridCell.Tab.0.center/1280.0.1920.1080/0.0.1280.800@0.23.1280.777" timestamp="1594674103619" />
@@ -380,7 +341,7 @@
     <state width="1238" height="2" key="GridCell.Tab.0.center/1280.23.1920.1057/0.0.1280.800@0.0.1280.800" timestamp="1592356166224" />
     <state width="1238" height="167" key="GridCell.Tab.0.center/1280.23.1920.1057/0.23.1280.777@0.23.1280.777" timestamp="1594673277627" />
     <state width="1400" height="246" key="GridCell.Tab.0.center/1280.23.1920.1057/0.23.1280.777@1280.23.1920.1057" timestamp="1593107839374" />
-    <state width="1878" height="535" key="GridCell.Tab.0.left" timestamp="1596673024788">
+    <state width="1878" height="535" key="GridCell.Tab.0.left" timestamp="1596727359492">
       <screen x="1280" y="-280" width="1920" height="1080" />
     </state>
     <state width="1878" height="569" key="GridCell.Tab.0.left/-1920.0.1920.1080/0.0.1280.800@-1920.0.1920.1080" timestamp="1594476017997" />
@@ -390,7 +351,7 @@
     <state width="1238" height="379" key="GridCell.Tab.0.left/0.23.1280.777@0.23.1280.777" timestamp="1596668791264" />
     <state width="889" height="267" key="GridCell.Tab.0.left/1280.-257.1920.1057/0.0.1280.800@0.0.1280.800" timestamp="1595956092108" />
     <state width="1238" height="380" key="GridCell.Tab.0.left/1280.-280.1920.1080/0.0.1280.800@0.0.1280.800" timestamp="1596641696702" />
-    <state width="1878" height="535" key="GridCell.Tab.0.left/1280.-280.1920.1080/0.0.1280.800@1280.-280.1920.1080" timestamp="1596673024788" />
+    <state width="1878" height="535" key="GridCell.Tab.0.left/1280.-280.1920.1080/0.0.1280.800@1280.-280.1920.1080" timestamp="1596727359492" />
     <state width="1878" height="535" key="GridCell.Tab.0.left/1280.-280.1920.1080/0.23.1280.777@1280.-280.1920.1080" timestamp="1596671376249" />
     <state width="1238" height="123" key="GridCell.Tab.0.left/1280.0.1920.1080/0.0.1280.800@0.0.1280.800" timestamp="1596208211325" />
     <state width="1878" height="277" key="GridCell.Tab.0.left/1280.0.1920.1080/0.0.1280.800@1280.0.1920.1080" timestamp="1596650473632" />
@@ -398,7 +359,7 @@
     <state width="1238" height="2" key="GridCell.Tab.0.left/1280.23.1920.1057/0.0.1280.800@0.0.1280.800" timestamp="1592356166222" />
     <state width="1238" height="167" key="GridCell.Tab.0.left/1280.23.1920.1057/0.23.1280.777@0.23.1280.777" timestamp="1594673277625" />
     <state width="1400" height="246" key="GridCell.Tab.0.left/1280.23.1920.1057/0.23.1280.777@1280.23.1920.1057" timestamp="1593107839373" />
-    <state width="1878" height="535" key="GridCell.Tab.0.right" timestamp="1596673024791">
+    <state width="1878" height="535" key="GridCell.Tab.0.right" timestamp="1596727359494">
       <screen x="1280" y="-280" width="1920" height="1080" />
     </state>
     <state width="1878" height="569" key="GridCell.Tab.0.right/-1920.0.1920.1080/0.0.1280.800@-1920.0.1920.1080" timestamp="1594476018000" />
@@ -408,7 +369,7 @@
     <state width="1238" height="379" key="GridCell.Tab.0.right/0.23.1280.777@0.23.1280.777" timestamp="1596668791266" />
     <state width="889" height="267" key="GridCell.Tab.0.right/1280.-257.1920.1057/0.0.1280.800@0.0.1280.800" timestamp="1595956092123" />
     <state width="1238" height="380" key="GridCell.Tab.0.right/1280.-280.1920.1080/0.0.1280.800@0.0.1280.800" timestamp="1596641696707" />
-    <state width="1878" height="535" key="GridCell.Tab.0.right/1280.-280.1920.1080/0.0.1280.800@1280.-280.1920.1080" timestamp="1596673024791" />
+    <state width="1878" height="535" key="GridCell.Tab.0.right/1280.-280.1920.1080/0.0.1280.800@1280.-280.1920.1080" timestamp="1596727359494" />
     <state width="1878" height="535" key="GridCell.Tab.0.right/1280.-280.1920.1080/0.23.1280.777@1280.-280.1920.1080" timestamp="1596671376255" />
     <state width="1238" height="123" key="GridCell.Tab.0.right/1280.0.1920.1080/0.0.1280.800@0.0.1280.800" timestamp="1596208211326" />
     <state width="1878" height="277" key="GridCell.Tab.0.right/1280.0.1920.1080/0.0.1280.800@1280.0.1920.1080" timestamp="1596650473636" />
@@ -448,15 +409,15 @@
       <screen x="0" y="0" width="1280" height="800" />
     </state>
     <state x="100" y="100" width="1080" height="600" key="com.android.tools.idea.avdmanager.AvdListDialog/-1920.0.1920.1080/0.0.1280.800@0.0.1280.800" timestamp="1594906794947" />
-    <state x="310" y="248" key="com.intellij.ide.util.TipDialog" timestamp="1596667062398">
-      <screen x="0" y="0" width="1280" height="800" />
+    <state x="1745" y="33" key="com.intellij.ide.util.TipDialog" timestamp="1596717819160">
+      <screen x="1280" y="-280" width="1920" height="1080" />
     </state>
     <state x="-1455" y="313" key="com.intellij.ide.util.TipDialog/-1920.0.1920.1080/0.0.1280.800@-1920.0.1920.1080" timestamp="1593614393640" />
     <state x="310" y="232" key="com.intellij.ide.util.TipDialog/-1920.0.1920.1080/0.0.1280.800@0.0.1280.800" timestamp="1594997101714" />
     <state x="310" y="232" key="com.intellij.ide.util.TipDialog/-1920.23.1920.1057/0.23.1280.777@0.23.1280.777" timestamp="1594228577720" />
     <state x="310" y="248" key="com.intellij.ide.util.TipDialog/0.0.1280.800@0.0.1280.800" timestamp="1596667062398" />
     <state x="310" y="232" key="com.intellij.ide.util.TipDialog/1280.-280.1920.1080/0.0.1280.800@0.0.1280.800" timestamp="1596027913847" />
-    <state x="1745" y="33" key="com.intellij.ide.util.TipDialog/1280.-280.1920.1080/0.0.1280.800@1280.-280.1920.1080" timestamp="1596633137468" />
+    <state x="1745" y="33" key="com.intellij.ide.util.TipDialog/1280.-280.1920.1080/0.0.1280.800@1280.-280.1920.1080" timestamp="1596717819160" />
     <state x="310" y="232" key="com.intellij.ide.util.TipDialog/1280.0.1920.1080/0.0.1280.800@0.0.1280.800" timestamp="1594937851065" />
     <state x="2020" y="464" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1594675539095">
       <screen x="1280" y="0" width="1920" height="1080" />

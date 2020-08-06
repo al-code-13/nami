@@ -1,10 +1,10 @@
-package com.example.nami.presenters
+package com.chefmenu.nami.presenters
 
 import android.app.Activity
 import android.content.Context
 import android.content.SharedPreferences
 import android.util.Log
-import com.example.nami.models.sections.SectionResponse
+import com.chefmenu.nami.models.sections.SectionResponse
 import io.realm.kotlin.where
 import kotlinx.coroutines.*
 

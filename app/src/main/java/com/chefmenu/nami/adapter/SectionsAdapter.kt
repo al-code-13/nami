@@ -1,12 +1,12 @@
-package com.example.nami.adapter
+package com.chefmenu.nami.adapter
 
 import android.content.Context
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentPagerAdapter
-import com.example.nami.SectionFragment
-import com.example.nami.models.sections.Behavior
-import com.example.nami.models.sections.Section
+import com.chefmenu.nami.SectionFragment
+import com.chefmenu.nami.models.sections.Behavior
+import com.chefmenu.nami.models.sections.Section
 
 
 @Suppress("DEPRECATION")

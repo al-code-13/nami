@@ -1,4 +1,4 @@
-package com.example.nami.models
+package com.chefmenu.nami.models
 
 class UpdateProfileRequest (
     val phone:String

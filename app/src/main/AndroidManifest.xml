@@ -28,7 +28,7 @@
             android:parentActivityName="com.chefmenu.nami.MainActivity"></activity>
         <activity
             android:name="com.chefmenu.nami.MainActivity"
-            android:configChanges="orientation|screenSize"
+            android:configChanges="orientation|screenSize|keyboard|keyboardHidden"
             android:theme="@style/AppTheme.NoActionBar"></activity>
         <activity
             android:name="com.chefmenu.nami.HelpPage"

@@ -1,4 +1,4 @@
-package com.example.nami.models.auth
+package com.chefmenu.nami.models.auth
 
 data class LoginResponse (
     val alias: String,

@@ -1,4 +1,4 @@
-package com.example.nami.adapter
+package com.chefmenu.nami.adapter
 
 import android.annotation.SuppressLint
 import android.app.Activity
@@ -13,15 +13,14 @@ import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.cardview.widget.CardView
 import androidx.core.app.ActivityCompat
-import androidx.core.content.ContextCompat.startActivity
 import androidx.recyclerview.widget.RecyclerView
-import com.example.nami.Detail
-import com.example.nami.MainActivity
-import com.example.nami.R
-import com.example.nami.controllers.services.ServiceFactory
-import com.example.nami.models.sections.OrdersList
-import com.example.nami.presenters.SectionPresenter
-import com.example.nami.utils.ButtonDialogActions
+import com.chefmenu.nami.Detail
+import com.chefmenu.nami.MainActivity
+import com.chefmenu.nami.R
+import com.chefmenu.nami.controllers.services.ServiceFactory
+import com.chefmenu.nami.models.sections.OrdersList
+import com.chefmenu.nami.presenters.SectionPresenter
+import com.chefmenu.nami.utils.ButtonDialogActions
 import com.google.android.material.bottomsheet.BottomSheetDialog
 import java.text.NumberFormat
 import java.util.*

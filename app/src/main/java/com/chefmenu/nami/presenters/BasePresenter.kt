@@ -1,6 +1,6 @@
-package com.example.nami.presenters
+package com.chefmenu.nami.presenters
 
-import com.example.nami.controllers.services.ServiceInteractor
+import com.chefmenu.nami.controllers.services.ServiceInteractor
 import io.realm.Realm
 
 open class BasePresenter {
