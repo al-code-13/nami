@@ -2,8 +2,8 @@ package com.chefmenu.nami.controllers.services
 
 import android.util.Log
 import com.chefmenu.nami.BuildConfig
-import com.chefmenu.nami.models.UpdateProfileRequest
-import com.chefmenu.nami.models.UpdateProfileResponse
+import com.chefmenu.nami.models.user.UpdateProfileRequest
+import com.chefmenu.nami.models.user.UpdateProfileResponse
 import com.chefmenu.nami.models.auth.LoginRequest
 import com.chefmenu.nami.models.auth.LoginResponse
 import com.chefmenu.nami.models.detailModels.*
@@ -11,6 +11,7 @@ import com.chefmenu.nami.models.sections.ReasonsResponse
 import com.chefmenu.nami.models.sections.SectionResponse
 import com.chefmenu.nami.models.sections.SectionsResponse
 import com.chefmenu.nami.models.user.BranchsResponse
+import com.chefmenu.nami.models.user.ProfitsResponse
 import com.chefmenu.nami.models.user.UserResponse
 import com.google.gson.Gson
 import com.google.gson.GsonBuilder
@@ -62,7 +63,8 @@ class ServiceInteractor : ServiceFactory() {
                 }
 
                 override fun onFailure(call: Call, e: IOException) {
-                    error("Error en el servicio")
+                    Log.i("error en el login",e.message)
+                    error("${e.message}")
                 }
             })
         }
@@ -91,17 +93,19 @@ class ServiceInteractor : ServiceFactory() {
                 val gson = GsonBuilder().create()
                 val res = gson.fromJson(body, BranchsResponse::class.java)
                 if (response.isSuccessful) {
-                    Log.i("body",body)
+                    //Log.i("body",body)
                     then(res)
                 } else {
                     error(res.message.toString())
                 }
             }
+
             override fun onFailure(call: Call, e: IOException) {
                 error("Error en el servicio")
             }
         })
     }
+
     fun getSections(
         branchId: Int,
         then: (SectionsResponse) -> Unit,
@@ -209,7 +213,7 @@ class ServiceInteractor : ServiceFactory() {
                     Log.i("ME LLAMARON", "POS AQUI ESTOY")
 
                     val body = response.body?.string()
-                    Log.i("bodySection", body)
+                    //Log.i("bodySection", body)
                     val gson = GsonBuilder().create()
                     val res = gson.fromJson(body, SectionResponse::class.java)
                     if (response.isSuccessful) {
@@ -220,7 +224,7 @@ class ServiceInteractor : ServiceFactory() {
                 }
 
                 override fun onFailure(call: Call, e: IOException) {
-                    Log.i("timeout?", e.message)
+                    //Log.i("timeout?", e.message)
                     error("Error en el servicio")
                 }
             })
@@ -243,7 +247,7 @@ class ServiceInteractor : ServiceFactory() {
         then: (DetailResponse) -> Unit,
         error: (String) -> Unit
     ) {
-        Log.i("token peticion detail", token)
+        //Log.i("token peticion detail", token)
         val url = "$serverUrl$routeBase$routeOrders/$order"
         withContext(Dispatchers.IO) {
             get(url, token!!).enqueue(object : Callback {
@@ -487,7 +491,7 @@ class ServiceInteractor : ServiceFactory() {
         val request = ConfirmDeliveryRequest(code)
         val json = Gson().toJson(request)
         withContext(Dispatchers.IO) {
-            Log.i("LOQUE ENVIAMOS",request.toString())
+            Log.i("LOQUE ENVIAMOS", request.toString())
             put(url, token!!, json).enqueue(object : Callback {
                 override fun onResponse(call: Call, response: Response) {
                     val body = response.body?.string()
@@ -631,12 +635,12 @@ class ServiceInteractor : ServiceFactory() {
 
 
     fun putMe(
-        phone:String,
+        phone: String,
         then: (UpdateProfileResponse) -> Unit,
         error: (String) -> Unit
     ) {
         uiScope.launch {
-            putMeCorutine(phone,then, error)
+            putMeCorutine(phone, then, error)
         }
     }
 
@@ -649,7 +653,7 @@ class ServiceInteractor : ServiceFactory() {
         val request = UpdateProfileRequest(phone)
         val json = Gson().toJson(request)
         withContext(Dispatchers.IO) {
-            put(url, token!!,json).enqueue(object : Callback {
+            put(url, token!!, json).enqueue(object : Callback {
                 override fun onResponse(call: Call, response: Response) {
                     val body = response.body?.string()
                     val gson = GsonBuilder().create()
@@ -660,6 +664,49 @@ class ServiceInteractor : ServiceFactory() {
                         error(res.message.toString())
                     }
                 }
+
+                override fun onFailure(call: Call, e: IOException) {
+                    error("Error en el servicio")
+                }
+            })
+        }
+
+    }
+
+    fun getProfits(
+        cycle: Int? = null,
+        then: (ProfitsResponse) -> Unit,
+        error: (String) -> Unit
+    ) {
+        uiScope.launch {
+            getProfitsCorutine(cycle, then, error)
+        }
+    }
+
+    private suspend fun getProfitsCorutine(
+        cycle: Int? = null,
+        then: (ProfitsResponse) -> Unit,
+        error: (String) -> Unit
+    ) {
+        val url = if (cycle != null) {
+            "$serverUrl$routeBase$routePicker$routeProfits?cycle=$cycle"
+
+        } else {
+            "$serverUrl$routeBase$routePicker$routeProfits"
+        }
+        withContext(Dispatchers.IO) {
+            get(url, token!!).enqueue(object : Callback {
+                override fun onResponse(call: Call, response: Response) {
+                    val body = response.body?.string()
+                    val gson = GsonBuilder().create()
+                    val res = gson.fromJson(body, ProfitsResponse::class.java)
+                    if (response.isSuccessful) {
+                        then(res)
+                    } else {
+                        error(res.message.toString())
+                    }
+                }
+
                 override fun onFailure(call: Call, e: IOException) {
                     error("Error en el servicio")
                 }

@@ -8,16 +8,19 @@ open class UserResponse (
     var id: String = "userId",
     var user: User? = null,
     var message:String ?=null
-): RealmObject()
+):RealmObject()
 
-open  class User (
+open class User (
     var alias: String? = null,
     var name: String? = null,
     var lastname: String? = null,
     var phone: String? = null,
+    var email: String? = null,
+    var typeIdentification: String? = null,
+    var identification: String? = null,
     var role: Role? = null
-): RealmObject()
+):RealmObject()
 
-open  class Role (
+open class Role (
     var name: String? = null
-): RealmObject()
+):RealmObject()

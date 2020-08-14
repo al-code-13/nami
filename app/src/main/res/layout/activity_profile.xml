@@ -9,149 +9,190 @@
     android:orientation="vertical"
     tools:context=".ProfileActivity">
 
-        <ScrollView
-            android:id="@+id/containerProfile"
+    <ScrollView
+        android:id="@+id/containerProfile"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_alignParentTop="true"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_alignParentTop="true"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
+            android:layout_height="wrap_content"
+            android:baselineAligned="false"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <Space
+                android:layout_width="wrap_content"
+                android:layout_height="50dp" />
+
+
+            <ImageView
+                android:id="@+id/user"
+                android:layout_width="180dp"
+                android:layout_height="180dp"
+                android:elevation="15dp"
+                android:scaleType="fitXY"
+                app:srcCompat="@drawable/user" />
+
+
+            <Space
+                android:layout_width="match_parent"
+                android:layout_height="36dp" />
+
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:baselineAligned="false"
-                android:gravity="center"
+                android:layout_height="match_parent"
                 android:orientation="vertical">
 
-                <Space
-                    android:layout_width="wrap_content"
-                    android:layout_height="50dp" />
-
-
-
-                    <ImageView
-                        android:id="@+id/user"
-                        android:layout_width="180dp"
-                        android:layout_height="180dp"
-                        android:elevation="15dp"
-                        android:scaleType="fitXY"
-                        app:srcCompat="@drawable/user" />
-
-
-                <Space
-                    android:layout_width="match_parent"
-                    android:layout_height="36dp" />
-
-
                 <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="24dp"
+                    android:layout_marginRight="24dp"
                     android:orientation="vertical">
 
                     <LinearLayout
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="24dp"
-                        android:layout_marginRight="24dp"
-                        android:orientation="vertical">
-
-                        <Space
-                            android:layout_width="match_parent"
-                            android:layout_height="30dp" />
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
 
                         <TextView
-                            android:layout_width="228dp"
+                            android:id="@+id/identificationType"
+                            android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginLeft="4dp"
                             android:fontFamily="sans-serif"
-                            android:text="Nombre"
                             android:textSize="18sp" />
 
                         <TextView
-                            android:id="@+id/name"
-                            android:layout_width="228dp"
-                            android:layout_height="wrap_content"
-                            android:layout_marginLeft="4dp"
-                            android:layout_marginTop="10dp"
-                            android:text="Arturo Diego"
-                            android:textSize="14sp" />
-
-                        <Space
-                            android:layout_width="match_parent"
-                            android:layout_height="18dp" />
-
-                        <TextView
-                            android:id="@+id/textView4"
-                            android:layout_width="228dp"
+                            android:id="@+id/pickerid"
+                            android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginLeft="4dp"
                             android:fontFamily="sans-serif"
-                            android:text="Apellido"
                             android:textSize="18sp" />
-
-                        <TextView
-                            android:id="@+id/lastName"
-                            android:layout_width="228dp"
-                            android:layout_height="wrap_content"
-                            android:layout_marginLeft="4dp"
-                            android:layout_marginTop="10dp"
-                            android:textSize="14sp" />
-
-                        <Space
-                            android:layout_width="match_parent"
-                            android:layout_height="18dp" />
-
-                        <TextView
-                            android:id="@+id/textView3"
-                            android:layout_width="228dp"
-                            android:layout_height="wrap_content"
-                            android:layout_marginLeft="4dp"
-                            android:fontFamily="sans-serif"
-                            android:text="Teléfono"
-                            android:textSize="18sp" />
-
-                        <EditText
-                            android:id="@+id/edit_phone"
-                            android:layout_width="270dp"
-                            android:layout_height="wrap_content"
-                            android:hint="### #### ###"
-                            android:inputType="number"
-                            android:maxLength="10" />
-
                     </LinearLayout>
 
                     <Space
                         android:layout_width="match_parent"
-                        android:layout_height="50dp" />
+                        android:layout_height="36dp" />
 
+                    <TextView
+                        android:layout_width="228dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="4dp"
+                        android:fontFamily="sans-serif"
+                        android:text="Nombre"
+                        android:textSize="18sp" />
+
+                    <EditText
+                        android:id="@+id/name"
+                        android:layout_width="228dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="4dp"
+                        android:layout_marginTop="10dp"
+                        android:textSize="14sp" />
+
+                    <Space
+                        android:layout_width="match_parent"
+                        android:layout_height="18dp" />
+
+                    <TextView
+                        android:id="@+id/textView4"
+                        android:layout_width="228dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="4dp"
+                        android:fontFamily="sans-serif"
+                        android:text="Apellido"
+                        android:textSize="18sp" />
+
+                    <EditText
+                        android:id="@+id/lastName"
+                        android:layout_width="228dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="4dp"
+                        android:layout_marginTop="10dp"
+                        android:textSize="14sp" />
+
+                    <Space
+                        android:layout_width="match_parent"
+                        android:layout_height="18dp" />
+
+                    <TextView
+                        android:layout_width="228dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="4dp"
+                        android:fontFamily="sans-serif"
+                        android:text="Correo electrónico"
+                        android:textSize="18sp" />
+
+                    <EditText
+                        android:id="@+id/email"
+                        android:layout_width="228dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="4dp"
+                        android:layout_marginTop="10dp"
+                        android:inputType="textEmailAddress"
+                        android:textSize="14sp" />
+
+                    <Space
+                        android:layout_width="match_parent"
+                        android:layout_height="18dp" />
+
+                    <TextView
+                        android:id="@+id/textView3"
+                        android:layout_width="228dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="4dp"
+                        android:fontFamily="sans-serif"
+                        android:text="Teléfono"
+                        android:textSize="18sp" />
+
+                    <EditText
+                        android:id="@+id/edit_phone"
+                        android:layout_width="270dp"
+                        android:layout_height="wrap_content"
+                        android:hint="### #### ###"
+                        android:inputType="number"
+                        android:maxLength="10" />
 
                 </LinearLayout>
+
+                <Space
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp" />
 
 
             </LinearLayout>
 
-        </ScrollView>
 
-        <Button
-            android:id="@+id/button1"
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:layout_alignParentBottom="true"
-            android:background="@color/secondaryColor"
-            android:padding="8dp"
-            android:text="Guardar"
-            android:textColor="#ffffff" />
+        </LinearLayout>
+
+    </ScrollView>
+
+    <Button
+        android:id="@+id/button1"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_alignParentBottom="true"
+        android:background="@color/secondaryColor"
+        android:padding="8dp"
+        android:text="Guardar"
+        android:textColor="#ffffff" />
 
     <LinearLayout
         android:id="@+id/progressContainer"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical"
         android:gravity="center"
+        android:orientation="vertical"
         android:visibility="gone">
+
         <ProgressBar
             android:id="@+id/progressBar"
             style="?android:attr/progressBarStyleLarge"

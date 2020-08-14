@@ -43,7 +43,7 @@ class DetailPresenter(
                         ui.showDetailInfo(data, order)
                     }
                 } catch (e: Exception) {
-                    Log.i("Errorbuscandobd", e.message)
+                    //Log.i("Errorbuscandobd", e.message)
                 }
             }
         }, { error ->
@@ -52,7 +52,7 @@ class DetailPresenter(
     }
 
     fun actionTake() {
-        interactor.putTakeOrder(orderId, "2020-05-20", { data ->
+        interactor.putTakeOrder(orderId, "2020-05-20", { _ ->
             ui.showDetailFunctionTaked()
         }, { error ->
             ui.showError(error)
@@ -62,13 +62,13 @@ class DetailPresenter(
     fun actionRelease(observations: String?) {
 
         if (observations.isNullOrEmpty() || observations.isNullOrBlank()) {
-            interactor.putReleaseOrder(orderId, null, { data ->
+            interactor.putReleaseOrder(orderId, null, { _ ->
                 ui.showDetailFunctionReleased()
             }, { error ->
                 ui.showError(error)
             })
         } else {
-            interactor.putReleaseOrder(orderId, observations, { data ->
+            interactor.putReleaseOrder(orderId, observations, { _ ->
                 ui.showDetailFunctionReleased()
             }, { error ->
                 ui.showError(error)
@@ -109,7 +109,7 @@ class DetailPresenter(
                 productsok,
                 adjustmentValue.toString(),
                 null,
-                { data ->
+                { _ ->
                     ui.showDetailFunctionPicked()
                 },
                 { error ->
@@ -122,7 +122,7 @@ class DetailPresenter(
                 productsok,
                 adjustmentValue.toString(),
                 observations,
-                { data ->
+                { _ ->
                     ui.showDetailFunctionPicked()
                 },
                 { error ->
@@ -132,7 +132,7 @@ class DetailPresenter(
     }
 
     fun actionPutDeliverCourier(email:String?=null,phone:String?=null) {
-        interactor.putDeliverCourier(orderId,email,phone, { data ->
+        interactor.putDeliverCourier(orderId,email,phone, { _ ->
             ui.showDetailFunctioDeliverCourier()
         }, { error ->
             ui.showError(error)
@@ -140,7 +140,7 @@ class DetailPresenter(
     }
 
     fun actionPutDeliverCustomer(code:String,showDialog:()->Unit) {
-        interactor.putConfirmDelivery(orderId,code, { data ->
+        interactor.putConfirmDelivery(orderId,code, { _ ->
             ui.showDetailFunctionDeliverCustomer()
         }, { error ->
             showDialog()
@@ -158,7 +158,7 @@ class DetailPresenter(
     }
 
     fun actionPutFreeze(idReason: Int) {
-        interactor.putFreeze(orderId, idReason, { data ->
+        interactor.putFreeze(orderId, idReason, { _ ->
             ui.showDetailFunctionFreeze()
         }, { error ->
             ui.showError(error)

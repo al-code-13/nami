@@ -35,8 +35,11 @@ class ProfileActivity : AppCompatActivity(), ProfileUI {
             containerProfile?.visibility = View.VISIBLE
             button1?.visibility = View.VISIBLE
             progressContainer?.visibility = View.GONE
-            name.text = data.user!!.name
-            lastName.text = data.user!!.lastname
+            identificationType.text="${data.user!!.typeIdentification}: "
+            pickerid.text = "${data.user!!.identification}"
+            name.hint = data.user!!.name
+            lastName.hint = data.user!!.lastname
+            email.hint=data.user!!.email
             edit_phone.hint = data.user!!.phone
         }
     }

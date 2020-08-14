@@ -61,7 +61,6 @@ class MainActivity : AppCompatActivity(), SectionsUI {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        //solicitud del primer servicio (secciones)
         presenter.actionSections()
         presenter.actionBranchs()
         tabLayout = findViewById(R.id.tabLayout)
@@ -138,6 +137,20 @@ class MainActivity : AppCompatActivity(), SectionsUI {
                                 false
                             }
                         }
+
+                        primaryItem("Mis Ingresos") {
+                            enabled = true
+                            this.onClick {_->
+                                val intent = Intent(this@MainActivity, ProfitsActivity::class.java)
+                                startActivity(intent)
+                                false
+                            }
+                            badge {
+                                cornersDp = 0
+                                text = ">"
+                                colorPressed = 0xFFCC99FF
+                            }
+                        }
                         primaryItem("Recursos") {
                             enabled = false
                             badge {
@@ -146,16 +159,7 @@ class MainActivity : AppCompatActivity(), SectionsUI {
                                 colorPressed = 0xFFCC99FF
                             }
                         }
-
                         primaryItem("Zonas") {
-                            enabled = false
-                            badge {
-                                cornersDp = 0
-                                text = ">"
-                                colorPressed = 0xFFCC99FF
-                            }
-                        }
-                        primaryItem("Mis ganancias") {
                             enabled = false
                             badge {
                                 cornersDp = 0
@@ -221,6 +225,19 @@ class MainActivity : AppCompatActivity(), SectionsUI {
 
                             }
                         }
+                        primaryItem("Mis Ingresos") {
+                            enabled = true
+                            this.onClick {_->
+                                val intent = Intent(this@MainActivity, ProfitsActivity::class.java)
+                                startActivity(intent)
+                                false
+                            }
+                            badge {
+                                cornersDp = 0
+                                text = ">"
+                                colorPressed = 0xFFCC99FF
+                            }
+                        }
                         primaryItem("Recursos") {
                             enabled = false
                             badge {
@@ -231,14 +248,6 @@ class MainActivity : AppCompatActivity(), SectionsUI {
                         }
 
                         primaryItem("Zonas") {
-                            enabled = false
-                            badge {
-                                cornersDp = 0
-                                text = ">"
-                                colorPressed = 0xFFCC99FF
-                            }
-                        }
-                        primaryItem("Mis ganancias") {
                             enabled = false
                             badge {
                                 cornersDp = 0
@@ -298,7 +307,6 @@ class MainActivity : AppCompatActivity(), SectionsUI {
                 override fun onTabSelected(tab: TabLayout.Tab) {
                     viewPager!!.currentItem = tab.position
                 }
-
                 override fun onTabUnselected(tab: TabLayout.Tab) {}
                 override fun onTabReselected(tab: TabLayout.Tab) {}
             })

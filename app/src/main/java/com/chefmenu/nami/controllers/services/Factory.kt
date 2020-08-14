@@ -30,6 +30,7 @@ open class ServiceFactory {
     val routeSendConfirmation:String="/send-confirmation"
     val routeFreeze: String = "freeze"
     val routeMe: String = "/me"
+    val routeProfits:String="/profits"
 
     var timeOut = 40L
 

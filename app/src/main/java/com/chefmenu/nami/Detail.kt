@@ -253,7 +253,7 @@ class Detail : AppCompatActivity(), DetailUI {
     override fun showDetailInfo(data: DetailResponse, order: OrdersList) {
         // stop animating Shimmer and hide the layout
         Log.i("detail",data.order.detailOrder.list.toString())
-        shimmer_view_container.stopShimmerAnimation()
+        shimmer_view_container.stopShimmer()
         shimmer_view_container.visibility = View.GONE
         skeletonIcons.visibility = View.GONE
         contentDetailPage.visibility  = View.VISIBLE
@@ -366,11 +366,11 @@ class Detail : AppCompatActivity(), DetailUI {
     }
     override fun onResume() {
         super.onResume()
-        shimmer_view_container.startShimmerAnimation()
+        shimmer_view_container.startShimmer()
     }
 
     override fun onPause() {
-        shimmer_view_container.stopShimmerAnimation()
+        shimmer_view_container.stopShimmer()
         super.onPause()
     }
 
