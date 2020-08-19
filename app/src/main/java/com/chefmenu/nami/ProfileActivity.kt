@@ -25,7 +25,22 @@ class ProfileActivity : AppCompatActivity(), ProfileUI {
         val phone = edit_phone
         presenter.getUser()
         button1.setOnClickListener {
-            presenter.actionUpdateProfile(phone.text.toString())
+            if (phone.text.isEmpty() && name.text.isEmpty() && lastName.text.isEmpty() && email.text.isEmpty()) {
+                runOnUiThread {
+                    Toast.makeText(
+                        applicationContext,
+                        "Debes realizar un cambio antes de guardar",
+                        Toast.LENGTH_LONG
+                    ).show()
+                }
+            } else {
+                presenter.actionUpdateProfile(
+                    phone.text.toString(),
+                    name.text.toString(),
+                    lastName.text.toString(),
+                    email.text.toString()
+                )
+            }
         }
     }
 
@@ -35,11 +50,11 @@ class ProfileActivity : AppCompatActivity(), ProfileUI {
             containerProfile?.visibility = View.VISIBLE
             button1?.visibility = View.VISIBLE
             progressContainer?.visibility = View.GONE
-            identificationType.text="${data.user!!.typeIdentification}: "
+            identificationType.text = "${data.user!!.typeIdentification}: "
             pickerid.text = "${data.user!!.identification}"
             name.hint = data.user!!.name
             lastName.hint = data.user!!.lastname
-            email.hint=data.user!!.email
+            email.hint = data.user!!.email
             edit_phone.hint = data.user!!.phone
         }
     }

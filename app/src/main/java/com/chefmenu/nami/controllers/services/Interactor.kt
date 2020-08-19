@@ -635,23 +635,23 @@ class ServiceInteractor : ServiceFactory() {
 
 
     fun putMe(
-        phone: String,
+        user:UpdateProfileRequest,
         then: (UpdateProfileResponse) -> Unit,
         error: (String) -> Unit
     ) {
         uiScope.launch {
-            putMeCorutine(phone, then, error)
+            putMeCorutine(user, then, error)
         }
     }
 
     private suspend fun putMeCorutine(
-        phone: String,
+        user:UpdateProfileRequest,
         then: (UpdateProfileResponse) -> Unit,
         error: (String) -> Unit
     ) {
         val url = "$serverUrl$routeBase$routePicker$routeMe"
-        val request = UpdateProfileRequest(phone)
-        val json = Gson().toJson(request)
+        val json = Gson().toJson(user)
+        Log.i("json",json)
         withContext(Dispatchers.IO) {
             put(url, token!!, json).enqueue(object : Callback {
                 override fun onResponse(call: Call, response: Response) {

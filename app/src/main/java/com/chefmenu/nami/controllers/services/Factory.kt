@@ -79,7 +79,7 @@ open class ServiceFactory {
         //Desarrollo
         val serverUrl: String = "https://d1-dev-test.chefmenu.com.co:6443"
         //stage
-        //val serverUrl: String = "https://d1-picking-test.chefmenu.com.co"
+        // val serverUrl: String = "https://d1-picking-test.chefmenu.com.co"
         lateinit var data: SectionsResponse
         var token: String? = null
         lateinit var reasons: ReasonsResponse

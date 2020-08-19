@@ -1,7 +1,6 @@
 package com.chefmenu.nami.presenters
 
 import android.content.Context
-import android.util.Log
 import com.chefmenu.nami.models.user.UpdateProfileRequest
 import com.chefmenu.nami.models.user.UserResponse
 import kotlinx.coroutines.*
@@ -32,17 +31,42 @@ class ProfilePresenter(val context: Context, private val ui: ProfileUI) : BasePr
         }
     }
 
-    fun actionUpdateProfile(phone: String,name:String?=null,lastname:String?=null,email:String?=null) {
+    fun actionUpdateProfile(
+        phone: String? = null,
+        name: String? = null,
+        lastname: String? = null,
+        email: String? = null
+    ) {
         uiScope.launch {
             try {
                 ui.showLoad()
-                val user=UpdateProfileRequest(phone,name,lastname,email)
-                Log.i("updateRequest",user.toString())
-                /*interactor.putMe(phone, { data ->
+                val newphone: String? = if (phone == "") {
+                    null
+                } else {
+                    phone
+                }
+                val newname: String? = if (name == "") {
+                    null
+                } else {
+                    name
+                }
+                val newlastname: String? = if (lastname == "") {
+                    null
+                } else {
+                    lastname
+                }
+                val newemail: String? = if (email == "") {
+                    null
+                } else {
+                    email
+                }
+
+                val user = UpdateProfileRequest(newname, newlastname, newphone, newemail)
+                interactor.putMe(user, { data ->
                     ui.showSuccess(data.message)
                 }, { error ->
                     ui.showError(error)
-                })*/
+                })
             } catch (e: Exception) {
             }
 

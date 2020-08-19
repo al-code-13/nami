@@ -80,7 +80,7 @@
 
                     <Space
                         android:layout_width="match_parent"
-                        android:layout_height="36dp" />
+                        android:layout_height="18dp" />
 
                     <TextView
                         android:layout_width="228dp"

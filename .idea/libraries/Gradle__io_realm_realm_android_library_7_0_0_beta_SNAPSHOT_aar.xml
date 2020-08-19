@@ -1,6 +1,7 @@
 <component name="libraryTable">
   <library name="Gradle: io.realm:realm-android-library:7.0.0-beta-SNAPSHOT@aar">
     <CLASSES>
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/17f59d9af5953ec670c8c02d2f52255f/jetified-realm-android-library-7.0.0-beta-SNAPSHOT/AndroidManifest.xml" />
       <root url="jar://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/17f59d9af5953ec670c8c02d2f52255f/jetified-realm-android-library-7.0.0-beta-SNAPSHOT/jars/classes.jar!/" />
       <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/17f59d9af5953ec670c8c02d2f52255f/jetified-realm-android-library-7.0.0-beta-SNAPSHOT/res" />
     </CLASSES>
