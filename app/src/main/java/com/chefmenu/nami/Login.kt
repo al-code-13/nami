@@ -1,7 +1,9 @@
 package com.chefmenu.nami
 
 
+import android.content.Context
 import android.content.Intent
+import android.content.SharedPreferences
 import android.net.Uri
 import android.os.Bundle
 import android.util.Log
@@ -12,6 +14,7 @@ import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
+import com.chefmenu.nami.controllers.services.ServiceFactory
 import com.chefmenu.nami.presenters.LoginPresenter
 import com.chefmenu.nami.presenters.LoginUI
 import com.google.firebase.ktx.Firebase
@@ -27,6 +30,8 @@ class Login : AppCompatActivity(), LoginUI {
     var containerLogin: ScrollView? = null
     var firebaseVersion: Long = BuildConfig.VERSION_CODE.toLong()
     var storeUrl: String = ""
+    lateinit var sharedPreferences:SharedPreferences
+
     override fun onCreate(savedInstanceState: Bundle?) {
         setTheme(R.style.AppTheme_NoActionBar)
         super.onCreate(savedInstanceState)
@@ -51,6 +56,35 @@ class Login : AppCompatActivity(), LoginUI {
                 "googleplay_url" to storeUrl
             )
         )
+        if(BuildConfig.DEBUG){
+            sharedPreferences=getSharedPreferences("localStorage", Context.MODE_PRIVATE)
+            val editor=sharedPreferences.edit()
+            val url=sharedPreferences.getString("ServerUrl","")
+            if(url!=""){
+             ServiceFactory.serverUrl=url!!
+            }
+            Log.i("ServerUrl",ServiceFactory.serverUrl )
+
+            imageView.setOnClickListener {
+                val alert = AlertDialog.Builder(this)
+                alert.setTitle("Server Url")
+                alert.setNegativeButton("Development") { _, _ ->
+                    ServiceFactory.serverUrl = "https://d1-dev-test.chefmenu.com.co:6443"
+                    Log.i("ServerUrl",ServiceFactory.serverUrl )
+                    editor.putString("ServerUrl",ServiceFactory.serverUrl )
+                    editor.commit()
+                }
+                alert.setPositiveButton("Stage") { _, _ ->
+                    ServiceFactory.serverUrl = "https://d1-picking-test.chefmenu.com.co"
+                    Log.i("ServerUrl",ServiceFactory.serverUrl )
+
+                    editor.putString("ServerUrl",ServiceFactory.serverUrl )
+                    editor.commit()
+                }
+                alert.create()
+                alert.show()
+            }
+        }
         remoteConfig.fetchAndActivate().addOnCompleteListener { task ->
             if (task.isSuccessful) {
                 firebaseVersion = remoteConfig.getLong("current_version")
@@ -61,11 +95,11 @@ class Login : AppCompatActivity(), LoginUI {
                         .setMessage("Hemos actualizado rydder para mejorar tu experiencia. Por favor actualiza a la última versión para continuar. Gracias.")
                         .setPositiveButton("Actualizar") { _, _ ->
                             //throw RuntimeException("Forzando primer error")
-                              val uri: Uri =
-                                  Uri.parse(storeUrl)
-                              val intent = Intent(Intent.ACTION_VIEW, uri)
-                              startActivity(intent)
-                              finish()
+                            val uri: Uri =
+                                Uri.parse(storeUrl)
+                            val intent = Intent(Intent.ACTION_VIEW, uri)
+                            startActivity(intent)
+                            finish()
                         }
                         .setCancelable(false)
                         .create()
@@ -99,7 +133,6 @@ class Login : AppCompatActivity(), LoginUI {
     override fun showHome() {
         val intent = Intent(this, MainActivity::class.java)
         ContextCompat.startActivity(this, intent, null)
-
     }
 
 
@@ -117,4 +150,5 @@ class Login : AppCompatActivity(), LoginUI {
             spinner?.visibility = View.VISIBLE
         }
     }
+
 }

@@ -2,17 +2,13 @@ package com.chefmenu.nami.controllers.services
 
 import android.util.Log
 import com.chefmenu.nami.BuildConfig
-import com.chefmenu.nami.models.user.UpdateProfileRequest
-import com.chefmenu.nami.models.user.UpdateProfileResponse
 import com.chefmenu.nami.models.auth.LoginRequest
 import com.chefmenu.nami.models.auth.LoginResponse
 import com.chefmenu.nami.models.detailModels.*
 import com.chefmenu.nami.models.sections.ReasonsResponse
 import com.chefmenu.nami.models.sections.SectionResponse
 import com.chefmenu.nami.models.sections.SectionsResponse
-import com.chefmenu.nami.models.user.BranchsResponse
-import com.chefmenu.nami.models.user.ProfitsResponse
-import com.chefmenu.nami.models.user.UserResponse
+import com.chefmenu.nami.models.user.*
 import com.google.gson.Gson
 import com.google.gson.GsonBuilder
 import kotlinx.coroutines.*
@@ -463,6 +459,7 @@ class ServiceInteractor : ServiceFactory() {
                 }
 
                 override fun onFailure(call: Call, e: IOException) {
+                    Log.i("ErrorAlRydder",e.message)
                     error("Error en el servicio")
                 }
             })
@@ -610,9 +607,11 @@ class ServiceInteractor : ServiceFactory() {
         then: (UserResponse) -> Unit,
         error: (String) -> Unit
     ) {
-
+        //se guarda en una variable la url que que va a recibir la peticion
         val url = "$serverUrl$routeBase$routePicker$routeMe"
+        //----Espacio de la corrutina, eso lo revisamos despues-----
         withContext(Dispatchers.IO) {
+            //Se llama la funcion get y se envia todoo lo necesario
             get(url, token!!).enqueue(object : Callback {
                 override fun onResponse(call: Call, response: Response) {
                     val body = response.body?.string()
@@ -651,13 +650,48 @@ class ServiceInteractor : ServiceFactory() {
     ) {
         val url = "$serverUrl$routeBase$routePicker$routeMe"
         val json = Gson().toJson(user)
-        Log.i("json",json)
+        Log.i("jsonProfile",json)
         withContext(Dispatchers.IO) {
             put(url, token!!, json).enqueue(object : Callback {
                 override fun onResponse(call: Call, response: Response) {
                     val body = response.body?.string()
                     val gson = GsonBuilder().create()
                     val res = gson.fromJson(body, UpdateProfileResponse::class.java)
+                    if (response.isSuccessful) {
+                        then(res)
+                    } else {
+                        error(res.message.toString())
+                    }
+                }
+
+                override fun onFailure(call: Call, e: IOException) {
+                    error("Error en el servicio")
+                }
+            })
+        }
+
+    }
+    fun getProfile(
+        then: (ProfileResponse) -> Unit,
+        error: (String) -> Unit
+    ) {
+        uiScope.launch {
+            getProfileCorutine(then, error)
+        }
+    }
+
+    private suspend fun getProfileCorutine(
+        then: (ProfileResponse) -> Unit,
+        error: (String) -> Unit
+    ) {
+
+        val url = "$serverUrl$routeBase$routeSystem$routeProfile"
+        withContext(Dispatchers.IO) {
+            get(url, token!!).enqueue(object : Callback {
+                override fun onResponse(call: Call, response: Response) {
+                    val body = response.body?.string()
+                    val gson = GsonBuilder().create()
+                    val res = gson.fromJson(body, ProfileResponse::class.java)
                     if (response.isSuccessful) {
                         then(res)
                     } else {
@@ -689,11 +723,12 @@ class ServiceInteractor : ServiceFactory() {
         error: (String) -> Unit
     ) {
         val url = if (cycle != null) {
-            "$serverUrl$routeBase$routePicker$routeProfits?cycle=$cycle"
+            "$serverUrl$routeBase$routePicker$routeProfits?cycles=$cycle"
 
         } else {
             "$serverUrl$routeBase$routePicker$routeProfits"
         }
+        Log.i("UrlProfits",url)
         withContext(Dispatchers.IO) {
             get(url, token!!).enqueue(object : Callback {
                 override fun onResponse(call: Call, response: Response) {

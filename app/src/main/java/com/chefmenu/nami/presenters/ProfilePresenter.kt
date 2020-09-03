@@ -1,12 +1,14 @@
 package com.chefmenu.nami.presenters
 
 import android.content.Context
+import android.content.SharedPreferences
+import com.chefmenu.nami.models.user.ProfileResponse
 import com.chefmenu.nami.models.user.UpdateProfileRequest
 import com.chefmenu.nami.models.user.UserResponse
 import kotlinx.coroutines.*
 
 interface ProfileUI {
-    fun showProfile(data: UserResponse)
+    fun showProfile(data: UserResponse,payData:ProfileResponse)
     fun showSuccess(message: String)
     fun showError(error: String)
     fun showLoad()
@@ -21,7 +23,11 @@ class ProfilePresenter(val context: Context, private val ui: ProfileUI) : BasePr
                 interactor.getMe({ data ->
                     ui.showLoad()
                     addDataToDB(data)
-                    ui.showProfile(data)
+                    interactor.getProfile({payData->
+                        ui.showProfile(data,payData)
+                    },{error->
+                        ui.showError(error)
+                    })
                 }, { error ->
                     ui.showError(error)
                 })
@@ -32,37 +38,68 @@ class ProfilePresenter(val context: Context, private val ui: ProfileUI) : BasePr
     }
 
     fun actionUpdateProfile(
-        phone: String? = null,
         name: String? = null,
         lastname: String? = null,
-        email: String? = null
+        documentType:String?=null,
+        document:String?=null,
+        phone: String? = null,
+        email: String? = null,
+        entity:String?=null,
+        accountType:String?=null,
+        accountNum:String?=null
     ) {
         uiScope.launch {
             try {
                 ui.showLoad()
-                val newphone: String? = if (phone == "") {
-                    null
-                } else {
-                    phone
-                }
-                val newname: String? = if (name == "") {
+                val newName: String? = if (name == "") {
                     null
                 } else {
                     name
                 }
-                val newlastname: String? = if (lastname == "") {
+                val newlastMame: String? = if (lastname == "") {
                     null
                 } else {
                     lastname
                 }
-                val newemail: String? = if (email == "") {
+                val newDocumentType: String? = if (documentType == "") {
+                    null
+                } else {
+                    documentType
+                }
+                val newDocument: String? = if (document == "") {
+                    null
+                } else {
+                    document
+                }
+                val newPhone: String? = if (phone == "") {
+                    null
+                } else {
+                    phone
+                }
+                val newEmail: String? = if (email == "") {
                     null
                 } else {
                     email
                 }
+                val newEntity: String? = if (entity == "") {
+                    null
+                } else {
+                    entity
+                }
+                val newAccountType: String? = if (accountType == "") {
+                    null
+                } else {
+                    accountType
+                }
+                val newAccountNum: String? = if (accountNum == "") {
+                    null
+                } else {
+                    accountNum
+                }
 
-                val user = UpdateProfileRequest(newname, newlastname, newphone, newemail)
+                val user = UpdateProfileRequest(newName, newlastMame,newDocumentType,newDocument, newPhone, newEmail,newEntity,newAccountType,newAccountNum)
                 interactor.putMe(user, { data ->
+                    getUser()
                     ui.showSuccess(data.message)
                 }, { error ->
                     ui.showError(error)
@@ -83,5 +120,4 @@ class ProfilePresenter(val context: Context, private val ui: ProfileUI) : BasePr
             }
         }
     }
-
 }

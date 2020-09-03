@@ -12,7 +12,7 @@
         android:id="@+id/toolbar3"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/primaryColor"
+        android:background="@color/utilColor"
         android:minHeight="?attr/actionBarSize"
         android:theme="?attr/actionBarTheme" />
 
@@ -20,11 +20,13 @@
         android:id="@+id/tabLayout"
         android:layout_width="match_parent"
         android:layout_height="60dp"
-        app:tabMode="scrollable"
-        android:background="@color/primaryColor"
+        android:background="@color/utilColor"
         app:tabIndicatorColor="#FFFFFF"
+        app:tabIndicatorHeight="4dp"
+        app:tabMode="scrollable"
         app:tabRippleColor="#FFFFFF"
-        app:tabTextColor="#FFFFFF">
+        app:tabSelectedTextColor="@color/primaryLightColor"
+        app:tabTextColor="#80FFFFFF">
 
 
     </com.google.android.material.tabs.TabLayout>

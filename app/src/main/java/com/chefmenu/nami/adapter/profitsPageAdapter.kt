@@ -1,6 +1,7 @@
 package com.chefmenu.nami.adapter
 
 import android.content.Context
+import android.util.Log
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentPagerAdapter
@@ -19,21 +20,7 @@ class ProfitsPageAdapter(
     FragmentPagerAdapter(fm) {
 
     override fun getItem(position: Int): Fragment {
-        val data = mutableListOf<History>()
-        return if (dataService.history!!.isEmpty() || dataService.history == null) {
-            ProfitFragment(myContext,null)
-
-        } else {
-            if (position == 0) {
-                data.add(dataService.history[0])
-                ProfitFragment(myContext, data)
-            } else {
-                for (i in dataService.history) {
-                    data.add(i)
-                }
-                ProfitFragment(myContext, data)
-            }
-        }
+       return ProfitFragment(myContext,dataService.history,position)
     }
 
     override fun getCount(): Int {

@@ -16,9 +16,10 @@ import kotlinx.coroutines.*
 
 
 interface SectionsUI {
-    fun showBranchs(data: BranchsResponse, userData: UserResponse,selectedBranch:Branch?=null)
+    fun showBranchs(data: BranchsResponse, userData: UserResponse, selectedBranch: Branch? = null)
     fun showSection(data: SectionsResponse)
     fun showError(error: String)
+    fun showProfile()
     fun exit()
 }
 
@@ -26,7 +27,7 @@ class SectionsPresenter(private val ui: SectionsUI, val context: Context) : Base
     private var viewModelJob: Job = Job()
     private val uiScope = CoroutineScope(Dispatchers.Main + viewModelJob)
 
-    fun actionBranchs() {
+    fun actionBranchs(isResume: Boolean? = false) {
 
         uiScope.launch {
             try {
@@ -35,27 +36,49 @@ class SectionsPresenter(private val ui: SectionsUI, val context: Context) : Base
                 val sharedPreference =
                     context.getSharedPreferences("localStorage", Context.MODE_PRIVATE)
                 val branchId = sharedPreference.getString("branchId", "null")?.toString()
-                interactor.getBranchs(
-                    { data ->
-                        // TODO CUIDADO SOLO PRUEBAS
-                        //data.branchs!!.clear()
-                        // TODO CUIDADO SOLO PRUEBAS
-                        if(branchId!="null"){
-                            val selectedBranch =
-                                data.branchs?.firstOrNull { it.id == branchId?.toInt() }
-                            ui.showBranchs(data, userResponse!!,selectedBranch)
-                        }
-                        else{
-                            ui.showBranchs(data, userResponse!!,null)
-                        }
-                    },
-                    { error ->
-                        ui.showError(error)
-                    })
+                if (isResume == false) {
+                    if (
+                        userResponse!!.name != null &&
+                        userResponse.lastname != null &&
+                        userResponse.typeIdentification != null &&
+                        userResponse.identification != null &&
+                        userResponse.phone != null &&
+                        userResponse.email != null &&
+                        userResponse.entity != null &&
+                        userResponse.typeAccount != null &&
+                        userResponse.account != null
+                    ) {
+                        getBranchs(branchId, userResponse)
+                    } else {
+                        ui.showProfile()
+                    }
+                } else {
+                    Log.i("Es resume",isResume.toString())
+                    getBranchs(branchId, userResponse)
+                }
 
             } catch (e: Exception) {
             }
         }
+    }
+
+    fun getBranchs(branchId: String?, userResponse: UserResponse?) {
+        interactor.getBranchs(
+            { data ->
+                // TODO CUIDADO SOLO PRUEBAS
+                //data.branchs!!.clear()
+                // TODO CUIDADO SOLO PRUEBAS
+                if (branchId != "null") {
+                    val selectedBranch =
+                        data.branchs?.firstOrNull { it.id == branchId!!.toInt() }
+                    ui.showBranchs(data, userResponse!!, selectedBranch)
+                } else {
+                    ui.showBranchs(data, userResponse!!, null)
+                }
+            },
+            { error ->
+                ui.showError(error)
+            })
     }
 
     fun actionSections() {
@@ -72,7 +95,7 @@ class SectionsPresenter(private val ui: SectionsUI, val context: Context) : Base
         }
     }
 
-     fun actionRefreshSections(branchId: Int) {
+    fun actionRefreshSections(branchId: Int) {
         uiScope.launch {
             try {
                 val sharedPreference =

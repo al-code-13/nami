@@ -41,7 +41,9 @@ class LoginPresenter(val context: Context, private val ui: LoginUI) : BasePresen
                     ui.showLoad()
                     interactor.getMe({ data ->
                         addDataToDB(data)
-                        ui.showHome()
+
+                            ui.showHome()
+
                     }, { error ->
                         ui.showError(error)
                     })
@@ -54,6 +56,7 @@ class LoginPresenter(val context: Context, private val ui: LoginUI) : BasePresen
 
         }
     }
+
     private fun addDataToDB(data: UserResponse) = runBlocking {
         launch(Dispatchers.Main) {
             try {

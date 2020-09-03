@@ -1,11 +1,18 @@
 package com.chefmenu.nami.models.user
 
-class UpdateProfileRequest (
-    var name: String? = null,
-    var lastname: String? = null,
-    var phone: String? = null,
-    var email: String? = null
+data class UpdateProfileRequest (
+    val name: String? = null,
+    val lastname: String? = null,
+    val typeIdentification: String? = null,
+    val identification: String? = null,
+    val phone: String? = null,
+    val email: String? = null,
+    val entity: String? = null,
+    val typeAccount: Any? = null,
+    val account: Any? = null
 )
+
+
 
 class UpdateProfileResponse (
     val message:String

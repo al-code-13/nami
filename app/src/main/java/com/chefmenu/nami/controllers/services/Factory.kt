@@ -31,22 +31,23 @@ open class ServiceFactory {
     val routeFreeze: String = "freeze"
     val routeMe: String = "/me"
     val routeProfits:String="/profits"
-
+    val routeSystem:String="/system"
+    val routeProfile:String="/profile"
     var timeOut = 40L
 
+    //Instancia de okhttp
     private val client: OkHttpClient =
         OkHttpClient().newBuilder().connectTimeout(timeOut, TimeUnit.SECONDS)
             .readTimeout(timeOut, TimeUnit.SECONDS).build()
 
-
+    //Armar la peticion get
     @Throws(IOException::class)
     fun get(url: String, token: String): Call {
         val request: Request = Request.Builder()
             .url(url)
             .addHeader("x-access-token-nami", token)
             .build()
-        //client!!.newCall(request).execute().use { response -> return response.body!!.string() }
-
+        //Entregarle la peticion al metodo de okhttp
         return client.newCall(request)
     }
 
@@ -77,12 +78,12 @@ open class ServiceFactory {
 
     companion object {
         //Desarrollo
-        val serverUrl: String = "https://d1-dev-test.chefmenu.com.co:6443"
+        var serverUrl: String = "https://d1-dev-test.chefmenu.com.co:6443"
         //stage
-        // val serverUrl: String = "https://d1-picking-test.chefmenu.com.co"
+        //var serverUrl: String = "https://d1-picking-test.chefmenu.com.co"
         lateinit var data: SectionsResponse
         var token: String? = null
-        lateinit var reasons: ReasonsResponse
+        lateinit var reasons: ReasonsResponse            
       //  var development:Boolean = this.serverUrl=="https://d1-dev-test.chefmenu.com.co:6443"
     }
 

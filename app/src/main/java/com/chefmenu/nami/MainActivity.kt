@@ -6,6 +6,7 @@ import android.util.Log
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.ContextCompat
 import androidx.viewpager.widget.ViewPager
 import co.zsmb.materialdrawerkt.builders.accountHeader
 import co.zsmb.materialdrawerkt.builders.drawer
@@ -88,6 +89,8 @@ class MainActivity : AppCompatActivity(), SectionsUI {
         selectedBranch: Branch?
     ) {
         runOnUiThread {
+            Log.i("Trae banshs","shi")
+
             if (data.branchs!!.size <= 0 || data.branchs == null) {
                 val dialog = AlertDialog.Builder(this)
                 dialog.setTitle("No tienes ninguna sucursal asignada, comunicate con tu administrador. gracias")
@@ -133,6 +136,7 @@ class MainActivity : AppCompatActivity(), SectionsUI {
                             enabled = true
                             this.onClick {_->
                                 val intent = Intent(this@MainActivity, ProfileActivity::class.java)
+                                intent.putExtra("backButton",true)
                                 startActivity(intent)
                                 false
                             }
@@ -143,7 +147,7 @@ class MainActivity : AppCompatActivity(), SectionsUI {
                             this.onClick {_->
                                 val intent = Intent(this@MainActivity, ProfitsActivity::class.java)
                                 startActivity(intent)
-                                false
+                                true
                             }
                             badge {
                                 cornersDp = 0
@@ -220,6 +224,7 @@ class MainActivity : AppCompatActivity(), SectionsUI {
                             enabled = true
                             this.onClick {_->
                                 val intent = Intent(this@MainActivity, ProfileActivity::class.java)
+                                intent.putExtra("backButton",true)
                                 startActivity(intent)
                                 false
 
@@ -230,7 +235,7 @@ class MainActivity : AppCompatActivity(), SectionsUI {
                             this.onClick {_->
                                 val intent = Intent(this@MainActivity, ProfitsActivity::class.java)
                                 startActivity(intent)
-                                false
+                                true
                             }
                             badge {
                                 cornersDp = 0
@@ -280,6 +285,10 @@ class MainActivity : AppCompatActivity(), SectionsUI {
         }
     }
 
+    override fun onResume() {
+        super.onResume()
+        presenter.actionBranchs(true)
+    }
 
     //Funcion cuando responde el servicio
     override fun showSection(data: SectionsResponse) {
@@ -328,6 +337,11 @@ class MainActivity : AppCompatActivity(), SectionsUI {
                 Toast.makeText(applicationContext, error, Toast.LENGTH_LONG).show()
             }
         }
+    }
+
+    override fun showProfile() {
+        val intent = Intent(this, ProfileActivity::class.java)
+        ContextCompat.startActivity(this, intent, null)
     }
 
     override fun exit() {
