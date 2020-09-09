@@ -113,21 +113,21 @@ class ProfitAdapter(
     override fun getChildrenCount(listPosition: Int): Int {
         return data!![listPosition].profits!!.size
     }
-    fun getMonth(mes:String):String{
-        when (mes) {
-            "01" -> return( "Enero")
-            "02" -> return( "Febrero")
-            "03" -> return( "Marzo")
-            "04" -> return( "Abril")
-            "05" -> return( "Mayo")
-            "06" -> return( "Junio")
-            "07" -> return( "Julio")
-            "08" -> return( "Agosto")
-            "09" -> return( "Septiembre")
-            "10" -> return( "Octubre")
-            "11" -> return( "Noviembre")
-            "12" -> return( "Diciembre")
-            else -> return( "Invalid month")
+    private fun getMonth(mes:String):String{
+        return when (mes) {
+            "01" -> ( "Enero")
+            "02" -> ( "Febrero")
+            "03" -> ( "Marzo")
+            "04" -> ( "Abril")
+            "05" -> ( "Mayo")
+            "06" -> ( "Junio")
+            "07" -> ( "Julio")
+            "08" -> ( "Agosto")
+            "09" -> ( "Septiembre")
+            "10" -> ( "Octubre")
+            "11" -> ( "Noviembre")
+            "12" -> ( "Diciembre")
+            else -> ( "Invalid month")
         }
     }
 

@@ -1,3 +1,4 @@
+
 package com.chefmenu.nami
 
 
@@ -30,7 +31,7 @@ class Login : AppCompatActivity(), LoginUI {
     var containerLogin: ScrollView? = null
     var firebaseVersion: Long = BuildConfig.VERSION_CODE.toLong()
     var storeUrl: String = ""
-    lateinit var sharedPreferences:SharedPreferences
+    lateinit var sharedPreferences: SharedPreferences
 
     override fun onCreate(savedInstanceState: Bundle?) {
         setTheme(R.style.AppTheme_NoActionBar)
@@ -56,29 +57,29 @@ class Login : AppCompatActivity(), LoginUI {
                 "googleplay_url" to storeUrl
             )
         )
-        if(BuildConfig.DEBUG){
-            sharedPreferences=getSharedPreferences("localStorage", Context.MODE_PRIVATE)
-            val editor=sharedPreferences.edit()
-            val url=sharedPreferences.getString("ServerUrl","")
-            if(url!=""){
-             ServiceFactory.serverUrl=url!!
+        if (BuildConfig.DEBUG) {
+            sharedPreferences = getSharedPreferences("localStorage", Context.MODE_PRIVATE)
+            val editor = sharedPreferences.edit()
+            val url = sharedPreferences.getString("ServerUrl", "")
+            if (url != "") {
+                ServiceFactory.serverUrl = url!!
             }
-            Log.i("ServerUrl",ServiceFactory.serverUrl )
+            Log.i("ServerUrl", ServiceFactory.serverUrl)
 
             imageView.setOnClickListener {
                 val alert = AlertDialog.Builder(this)
                 alert.setTitle("Server Url")
                 alert.setNegativeButton("Development") { _, _ ->
                     ServiceFactory.serverUrl = "https://d1-dev-test.chefmenu.com.co:6443"
-                    Log.i("ServerUrl",ServiceFactory.serverUrl )
-                    editor.putString("ServerUrl",ServiceFactory.serverUrl )
+                    Log.i("ServerUrl", ServiceFactory.serverUrl)
+                    editor.putString("ServerUrl", ServiceFactory.serverUrl)
                     editor.commit()
                 }
                 alert.setPositiveButton("Stage") { _, _ ->
                     ServiceFactory.serverUrl = "https://d1-picking-test.chefmenu.com.co"
-                    Log.i("ServerUrl",ServiceFactory.serverUrl )
+                    Log.i("ServerUrl", ServiceFactory.serverUrl)
 
-                    editor.putString("ServerUrl",ServiceFactory.serverUrl )
+                    editor.putString("ServerUrl", ServiceFactory.serverUrl)
                     editor.commit()
                 }
                 alert.create()
@@ -152,3 +153,4 @@ class Login : AppCompatActivity(), LoginUI {
     }
 
 }
+

@@ -327,7 +327,6 @@ class ServiceInteractor : ServiceFactory() {
         then: (ReleaseOrderResponse) -> Unit,
         error: (String) -> Unit
     ) {
-        Log.i("elobservaarfva", observations.toString())
         val url = "$serverUrl$routeBase$routeOrders/$idOrder$routeRelease"
         val request = ReleaseOrderRequest(observations)
         val json = Gson().toJson(request)

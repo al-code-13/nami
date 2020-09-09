@@ -1,5 +1,7 @@
 package com.chefmenu.nami.presenters
 
+import android.content.Context
+import android.content.SharedPreferences
 import android.util.Log
 import com.chefmenu.nami.models.detailModels.DetailResponse
 import com.chefmenu.nami.models.detailModels.ListDataPicker
@@ -21,9 +23,11 @@ interface DetailUI {
     fun showDetailFunctioDeliverCourier()
     fun showDetailFunctionDeliverCustomer()
     fun showDetailFunctionFreeze()
+    fun exit();
 }
 
 class DetailPresenter(
+    private val context:Context,
     private val orderId: Int,
     private val ui: DetailUI,
     private val idSection: Int
@@ -85,9 +89,9 @@ class DetailPresenter(
         observations: String?
     ) {
 
-        val productsok = compareArticleList.equals(articleList)
+        val productsOk = compareArticleList == articleList
         var listDataPicker: MutableList<ListDataPicker> = mutableListOf<ListDataPicker>()
-        if (productsok != true) {
+        if (!productsOk) {
             for (i in data.order.detailOrder.list) {
                 if (compareArticleList[data.order.detailOrder.list.indexOf(i)] != articleList[data.order.detailOrder.list.indexOf(
                         i
@@ -106,7 +110,7 @@ class DetailPresenter(
             interactor.putPickingOrder(
                 listDataPicker,
                 orderId,
-                productsok,
+                productsOk,
                 adjustmentValue.toString(),
                 null,
                 { _ ->
@@ -119,7 +123,7 @@ class DetailPresenter(
             interactor.putPickingOrder(
                 listDataPicker,
                 orderId,
-                productsok,
+                productsOk,
                 adjustmentValue.toString(),
                 observations,
                 { _ ->
@@ -163,6 +167,25 @@ class DetailPresenter(
         }, { error ->
             ui.showError(error)
         })
+    }
+
+    fun actionLogOut() {
+        val sharedPreference: SharedPreferences =
+            this.context.getSharedPreferences("localStorage", Context.MODE_PRIVATE)
+
+        uiScope.launch {
+            try {
+                realm!!.executeTransaction {
+                    it.deleteAll()
+                }
+                sharedPreference.edit()
+                    .clear()
+                    .apply()
+                ui.exit()
+            } catch (e: Exception) {
+                ui.showError("Error al cerrar sesión")
+            }
+        }
     }
     fun cleanDB(){
         uiScope.launch {

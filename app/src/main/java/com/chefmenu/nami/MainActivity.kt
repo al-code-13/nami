@@ -1,3 +1,4 @@
+
 package com.chefmenu.nami
 
 import android.content.Intent
@@ -89,8 +90,6 @@ class MainActivity : AppCompatActivity(), SectionsUI {
         selectedBranch: Branch?
     ) {
         runOnUiThread {
-            Log.i("Trae banshs","shi")
-
             if (data.branchs!!.size <= 0 || data.branchs == null) {
                 val dialog = AlertDialog.Builder(this)
                 dialog.setTitle("No tienes ninguna sucursal asignada, comunicate con tu administrador. gracias")
@@ -134,9 +133,9 @@ class MainActivity : AppCompatActivity(), SectionsUI {
                         primaryItem("Inicio")
                         primaryItem("Perfil") {
                             enabled = true
-                            this.onClick {_->
+                            this.onClick { _ ->
                                 val intent = Intent(this@MainActivity, ProfileActivity::class.java)
-                                intent.putExtra("backButton",true)
+                                intent.putExtra("backButton", true)
                                 startActivity(intent)
                                 false
                             }
@@ -144,7 +143,7 @@ class MainActivity : AppCompatActivity(), SectionsUI {
 
                         primaryItem("Mis Ingresos") {
                             enabled = true
-                            this.onClick {_->
+                            this.onClick { _ ->
                                 val intent = Intent(this@MainActivity, ProfitsActivity::class.java)
                                 startActivity(intent)
                                 true
@@ -222,17 +221,16 @@ class MainActivity : AppCompatActivity(), SectionsUI {
                         primaryItem("Inicio")
                         primaryItem("Perfil") {
                             enabled = true
-                            this.onClick {_->
+                            this.onClick { _ ->
                                 val intent = Intent(this@MainActivity, ProfileActivity::class.java)
-                                intent.putExtra("backButton",true)
+                                intent.putExtra("backButton", true)
                                 startActivity(intent)
                                 false
-
                             }
                         }
                         primaryItem("Mis Ingresos") {
                             enabled = true
-                            this.onClick {_->
+                            this.onClick { _ ->
                                 val intent = Intent(this@MainActivity, ProfitsActivity::class.java)
                                 startActivity(intent)
                                 true
@@ -333,6 +331,7 @@ class MainActivity : AppCompatActivity(), SectionsUI {
         runOnUiThread {
             if (error.contains("token")) {
                 presenter.actionLogOut()
+                Toast.makeText(applicationContext, "La sesión ha expirado", Toast.LENGTH_LONG).show()
             } else {
                 Toast.makeText(applicationContext, error, Toast.LENGTH_LONG).show()
             }
@@ -349,3 +348,4 @@ class MainActivity : AppCompatActivity(), SectionsUI {
     }
 
 }
+

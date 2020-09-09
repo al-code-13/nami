@@ -281,32 +281,41 @@ class ButtonDialogActions {
                 presenter.actionTake()
             }
             4 -> {
-                title.text = "¿Esta seguro de guardar la orden #${data.order.id}?"
-                observationsView.visibility = View.VISIBLE
-                val v: View =
-                    LayoutInflater.from(mContext).inflate(R.layout.action_item, null)
-                v.setOnClickListener {
-                    observations = observationsView.text.toString()
-                    observationsView.text = null
-                    presenter.actionPick(
-                        data,
-                        Detail.adjustvalue,
-                        compareArticleList,
-                        articleList,
-                        observations
-                    )
-                    dialog.dismiss()
+                var canSave=false
+                for (i in articleList){
+                    if(i.toInt()>=1){
+                        canSave=true
+                    }
                 }
-                v.action.text = "Aceptar"
+                if (!canSave) {
+                    title.text = "Debe Pickear primero."
+                } else {
+                    title.text = "¿Esta seguro de guardar la orden #${data.order.id}?"
+                    observationsView.visibility = View.VISIBLE
+                    val v: View =
+                        LayoutInflater.from(mContext).inflate(R.layout.action_item, null)
+                    v.setOnClickListener {
+                        observations = observationsView.text.toString()
+                        observationsView.text = null
+                        presenter.actionPick(
+                            data,
+                            Detail.adjustvalue,
+                            compareArticleList,
+                            articleList,
+                            observations
+                        )
+                        dialog.dismiss()
+                    }
+                    v.action.text = "Aceptar"
 
-                v.action.setCompoundDrawablesWithIntrinsicBounds(
-                    R.drawable.yes_action,
-                    0,
-                    0,
-                    0
-                )
-                layoutActions.addView(v)
-
+                    v.action.setCompoundDrawablesWithIntrinsicBounds(
+                        R.drawable.yes_action,
+                        0,
+                        0,
+                        0
+                    )
+                    layoutActions.addView(v)
+                }
             }
             5 -> {
 

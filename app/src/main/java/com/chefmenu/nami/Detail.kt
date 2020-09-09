@@ -1,20 +1,22 @@
 package com.chefmenu.nami
 
+import android.Manifest
 import android.app.Dialog
 import android.content.Intent
+import android.content.pm.PackageManager
 import android.graphics.Typeface
+import android.net.Uri
 import android.os.Bundle
 import android.text.InputType
 import android.util.Log
-import android.view.KeyEvent
-import android.view.MenuItem
-import android.view.View
-import android.view.ViewGroup
+import android.view.*
 import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.app.ActivityCompat
+import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.chefmenu.nami.adapter.ItemsDetailAdapter
@@ -39,12 +41,35 @@ class Detail : AppCompatActivity(), DetailUI {
     var articleList: MutableList<String> = mutableListOf<String>()
     var compareArticleList: MutableList<String> = mutableListOf<String>()
     var methodString: String = "Datafono"
+    var totalItemsToPicked = 0
+    var totalItemsPicked = 0
 
     companion object {
         var adjustvalue: Double = 0.0
     }
 
     var dataChange = false
+
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        menuInflater.inflate(R.menu.phonemenu, menu)
+        return super.onCreateOptionsMenu(menu)
+    }
+
+    private fun callClient() {
+        val permissionCheck =
+            ContextCompat.checkSelfPermission(this, Manifest.permission.CALL_PHONE)
+
+        if (permissionCheck != PackageManager.PERMISSION_GRANTED) {
+            ActivityCompat.requestPermissions(
+                this, arrayOf(Manifest.permission.CALL_PHONE),
+                123
+            )
+        } else {
+            val numberToCall = phoneNumber.text.toString()
+            //presenter!!.addRegistringCall(name.text.toString(), phoneNumber.text.toString())
+            startActivity(Intent(Intent.ACTION_CALL).setData(Uri.parse("tel:$numberToCall")))
+        }
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -58,7 +83,7 @@ class Detail : AppCompatActivity(), DetailUI {
         Log.i("elbehavior", behavior.toString())
         val idSection = intent.getIntExtra("idSection", -1)
         actionbar!!.title = "Orden #$orderId"
-        presenter = DetailPresenter(orderId, this, idSection)
+        presenter = DetailPresenter(this,orderId, this, idSection)
         recyclerItemsDetail = findViewById(R.id.layoutArticles)
         presenter!!.actionDetail()
         checkBox.setOnClickListener { checkAll(checkBox.isChecked) }
@@ -244,6 +269,7 @@ class Detail : AppCompatActivity(), DetailUI {
                 newFunction,
                 this.articleList,
                 { calculateAdjustTotal() },
+                { action -> calculateCounters(action) },
                 checkBox,
                 compareArticleList
             )
@@ -253,6 +279,9 @@ class Detail : AppCompatActivity(), DetailUI {
     override fun showDetailInfo(data: DetailResponse, order: OrdersList) {
         // stop animating Shimmer and hide the layout
         Log.i("detail",data.order.detailOrder.list.toString())
+        totalGeneralItems.text="Total Productos ${order.detailOrder!!.totalItems!!}"
+        totalItemsToPicked = order.detailOrder!!.totalItems!!
+        totalItemsPicked = 0
         shimmer_view_container.stopShimmer()
         shimmer_view_container.visibility = View.GONE
         skeletonIcons.visibility = View.GONE
@@ -274,6 +303,9 @@ class Detail : AppCompatActivity(), DetailUI {
             name.text = order.name!!.capitalize() + " " + order.lastname!!.capitalize()
             idProduct.text = order.id.toString()
             phoneNumber.text = order.phoneClient
+            phoneNumber.setOnClickListener {
+                callClient()
+            }
             method.text = order.methodPay!!.name.toString()
             adress.text = order.address
             date.text = order.date
@@ -311,12 +343,13 @@ class Detail : AppCompatActivity(), DetailUI {
                     compareArticleList[data.order.detailOrder.list.indexOf(i)]
             }
             checkBox.isChecked = true
+            calculateCounters("checkAll")
         } else {
             for (i in data.order.detailOrder.list) {
                 articleList[data.order.detailOrder.list.indexOf(i)] = "0"
             }
             checkBox.isChecked = false
-
+            calculateCounters("disCheckAll")
             adjustvalue = data.order.deliveryValue.toDouble()
         }
         createArticleView(behavior)
@@ -390,9 +423,56 @@ class Detail : AppCompatActivity(), DetailUI {
         }
     }
 
+    fun calculateCounters (actionCounter: String? = null) {
+        Log.i("entra en el if","chi")
+
+        var aux = totalItemsPicked + totalItemsToPicked
+
+        when (actionCounter) {
+            "+" -> {
+                totalItemsToPicked -= 1
+                totalItemsPicked += 1
+            }
+            "-" -> {
+                totalItemsToPicked += 1
+                totalItemsPicked -= 1
+            }
+            "checkAll" -> {
+                totalItemsPicked += aux
+                totalItemsToPicked = 0
+            }
+            "disCheckAll" -> {
+                totalItemsToPicked += aux
+                totalItemsPicked = 0
+            }
+            else -> {
+                Log.i("no entra en ninguno", "nel jaja")
+            }
+        }
+
+        if (totalItemsPicked > 0) {
+            layoutCounters.visibility = View.VISIBLE
+        } else {
+            layoutCounters.visibility = View.GONE
+        }
+        totalItemsToPickedView.text = "Productos Faltantes $totalItemsToPicked"
+        totalItemsPickedView.text = "Productos Pickeados $totalItemsPicked"
+
+        Log.i("totalItemsToPic", totalItemsToPicked.toString())
+        Log.i("totalItems", totalItemsPicked.toString())
+    }
+
     override fun showError(error: String) {
+
+        Log.i("erordeltoken", error)
         runOnUiThread {
-            Toast.makeText(this, error, Toast.LENGTH_LONG).show()
+            if (error.contains("token")) {
+                presenter!!.actionLogOut()
+                Toast.makeText(applicationContext, "La sesión ha expirado", Toast.LENGTH_LONG).show()
+
+            } else {
+                Toast.makeText(applicationContext, error, Toast.LENGTH_LONG).show()
+            }
         }
     }
 
@@ -402,9 +482,14 @@ class Detail : AppCompatActivity(), DetailUI {
         super.onBackPressed()
     }
 
+
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        if (item.itemId == android.R.id.home) {
-            Log.i("SI me tocaron","HOMEE")
+
+        val id = item.itemId
+        if (id == R.id.myphonebutton) {
+            callClient()
+        }
+        if (id == android.R.id.home) {
             //setRefreshInResult()
             // finish()
             super.onBackPressed()
@@ -413,7 +498,6 @@ class Detail : AppCompatActivity(), DetailUI {
         }
         return super.onOptionsItemSelected(item)
     }
-
 
     override fun showDetailFunctionReleased() {
         runOnUiThread {
@@ -475,14 +559,20 @@ class Detail : AppCompatActivity(), DetailUI {
         }
     }
 
-    fun setRefreshInResult() {
+    override fun exit() {
+        finish()
+        finish()
+    }
+
+    private fun setRefreshInResult() {
         //if (dataChange || isDataChanged!!) {
-            dataChange = true
-            val refresh = Intent()
-            refresh.putExtra("datosp", dataChange)
-            setResult(MainActivity.DETAIL_RESULT, refresh)
-            Log.i("Se sale", "del detail")
+        dataChange = true
+        val refresh = Intent()
+        refresh.putExtra("datosp", dataChange)
+        setResult(MainActivity.DETAIL_RESULT, refresh)
+        Log.i("Se sale", "del detail")
         //}
     }
 
 }
+

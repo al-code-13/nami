@@ -13,10 +13,12 @@
         android:layout_height="match_parent"
         android:layout_gravity="center"
         android:orientation="vertical">
+
         <include layout="@layout/skeleton_detail"></include>
     </com.facebook.shimmer.ShimmerFrameLayout>
 
     <include layout="@layout/skeleton_detail_icons"></include>
+
     <EditText
         android:id="@+id/edit_codecito"
         android:layout_width="match_parent"
@@ -33,10 +35,10 @@
 
     <androidx.core.widget.NestedScrollView
         android:id="@+id/contentDetailPage"
-        android:visibility="gone"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:fillViewport="true">
+        android:fillViewport="true"
+        android:visibility="gone">
 
         <LinearLayout
 
@@ -123,8 +125,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="16dp"
-                    android:layout_marginRight="16dp"
                     android:layout_marginTop="16dp"
+                    android:layout_marginRight="16dp"
                     android:drawableLeft="@drawable/home"
                     android:drawablePadding="8dp"
                     android:textSize="@dimen/materialize_typography_body1" />
@@ -401,14 +403,51 @@
     </androidx.core.widget.NestedScrollView>
 
     <LinearLayout
-        android:id="@+id/buttonsLinearLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
-        android:background="@color/md_white_1000"
-        android:dividerPadding="8dp"
-        android:gravity="center"
-        android:orientation="horizontal" >
+        android:orientation="vertical"
+        >
+
+        <LinearLayout
+            android:id="@+id/layoutCounters"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/md_white_1000"
+            android:orientation="vertical"
+            android:visibility="gone"
+            android:padding="16dp">
+            <TextView
+                android:id="@+id/totalItemsToPickedView"
+                android:textColor="@color/secondaryColor"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="16sp"/>
+            <TextView
+                android:textColor="@color/utilColor"
+                android:id="@+id/totalItemsPickedView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="16sp"/>
+            <TextView
+                android:textColor="@color/utilColor"
+                android:id="@+id/totalGeneralItems"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="16sp"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/buttonsLinearLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:background="@color/md_white_1000"
+            android:dividerPadding="8dp"
+            android:gravity="center"
+            android:orientation="horizontal"></LinearLayout>
+
     </LinearLayout>
 
 </RelativeLayout>

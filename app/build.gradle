@@ -17,8 +17,8 @@ android {
         applicationId "com.chefmenu.nami"
         minSdkVersion 16
         targetSdkVersion 29
-        versionCode 5500
-        versionName "0.5.5"
+        versionCode 5700
+        versionName "0.5.7"
         multiDexEnabled true
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }

@@ -2,6 +2,7 @@ package com.chefmenu.nami.adapter
 
 import android.content.Context
 import android.graphics.Typeface
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -18,8 +19,9 @@ class ItemsDetailAdapter(
     private val behavior: Int,
     private var compareList: MutableList<String>,
     private val calculateAdjustValue: () -> Unit,
+    private val calculateCounters: (String) -> Unit,
     private val checkBox: CheckBox,
-    private val compareArticleList:List<String>
+    private val compareArticleList: List<String>
 ) : RecyclerView.Adapter<ItemsDetailAdapter.ViewHolder>() {
 
     class ViewHolder(v: View) : RecyclerView.ViewHolder(v) {
@@ -55,31 +57,35 @@ class ItemsDetailAdapter(
         val elements = data[position]
         v.name.text = elements.article.name
         v.idProduct.text = "${elements.article.sku}"
-        if(behavior==2){
+        if (behavior == 2) {
             v.cant.text = "${compareList[position]}"
-        }
-        else if((behavior==7||behavior==8||behavior==9)&&elements.picking!=null){
-            v.cant.text= elements.picking.toString()
-        }
-        else {
+        } else if ((behavior == 7 || behavior == 8 || behavior == 9) && elements.picking != null) {
+            v.cant.text = elements.picking.toString()
+        } else {
             v.cant.text = elements.quantityArticle
         }
-            v.cantTotal.text = elements.quantityArticle
+        v.cantTotal.text = elements.quantityArticle
         if (compareList[position].toInt() > 0) {
             v.minusButton?.visibility = View.VISIBLE
             v.minusButton?.setOnClickListener {
+                if (compareList[position].toInt() == 1) {
+                    Log.i("tocaron el boton del +","conincide con el if")
+                    calculateCounters("-")
+                }
                 v.moreButton?.visibility = View.VISIBLE
                 compareList[position] = (compareList[position].toInt() - 1).toString()
                 onBindViewHolder(v, position)
             }
             v.minusButton?.setOnLongClickListener {
+                if (compareList[position].toInt() == 1) {
+                    calculateCounters("-")
+                }
                 v.moreButton?.visibility = View.VISIBLE
                 compareList[position] = "1"
                 onBindViewHolder(v, position)
                 it.isActivated
             }
-        }
-        else {
+        } else {
             v.minusButton?.visibility = View.INVISIBLE
         }
 
@@ -88,11 +94,18 @@ class ItemsDetailAdapter(
             v.cant.setTypeface(Typeface.create(v.cant.typeface, Typeface.NORMAL), Typeface.NORMAL)
             v.moreButton?.visibility = View.VISIBLE
             v.moreButton?.setOnClickListener {
+                if (compareList[position].toInt() < 1) {
+                    calculateCounters("+")
+                }
                 compareList[position] = (compareList[position].toInt() + 1).toString()
                 onBindViewHolder(v, position)
 
             }
             v.moreButton?.setOnLongClickListener {
+                if (compareList[position].toInt() < 1) {
+                    Log.i("tocaron el boton del +","conincide con el if")
+                    calculateCounters("+")
+                }
                 compareList[position] = (elements.quantityArticle.toInt() - 1).toString()
                 onBindViewHolder(v, position)
                 it.isActivated
